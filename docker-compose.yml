@@ -1,0 +1,10 @@
+version: '3'
+services:
+  postgres:
+    image: "postgres:11-alpine"
+    environment:
+    - POSTGRES_USER=ptolemy
+    - POSTGRES_PASSWORD=imnotmeantforproduction
+    - POSTGRES_DB=ptolemy_dev
+    ports:
+    - "5432:5432"
