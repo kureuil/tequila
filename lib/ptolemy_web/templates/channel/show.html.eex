@@ -1,0 +1,29 @@
+<section class="box">
+  <header class="box__header">
+    <h1 class="box__title" title="Hello World">
+      <%= @channel.name %>
+    </h1>
+    <div class="box__actions">
+      <%= link "Modifier", to: Routes.channel_path(@conn, :edit, @channel), class: "btn btn--primary" %>
+      <%= form_for @conn, Routes.channel_path(@conn, :delete, @channel), [method: :delete], fn _f ->  %>
+        <%= submit "Supprimer", class: "btn btn--danger" %>
+      <% end %>
+    </div>
+  </header>
+  <div class="box__body">
+    <ul class="entries-list">
+      <%= for entry <- @entries do %>
+        <li class="entry">
+          <img src="" alt="" class="entry__favicon">
+          <div class="entry__title">
+            <%= link entry.title, to: entry.location, class: "entry__link" %>
+            <span class="entry__location">(<%= link_host entry.location %>)<span>
+          </div>
+          <nav class="entry__actions" title="<%= entry.location %>">
+            <%= link "0 commentaires", to: Routes.link_path(@conn, :show, entry) %>
+          </nav>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</section>

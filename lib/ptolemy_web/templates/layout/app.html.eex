@@ -1,35 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8"/>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<title>Ptolemy · Phoenix Framework</title>
-	<link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ptolemy</title>
+  <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
 </head>
 <body>
-	<div class="app-shell">
-		<form class="app-shell__search" id="app-shell-search-container">
-			<div class="form-group">
-				<label for="app-shell-search-input" class="form-group__label">Rechercher</label>
-				<input type="search" class="form-group__input" id="app-shell-search-input" name="q">
-			</div>
-		</form>
-		<nav class="app-shell__navigation sidenav">
-			<a class="sidenav__link sidenav__link--active" href="#">Dashboard</a>
-			<a class="sidenav__link" href="#">Dashboard</a>
-			<a class="sidenav__link" href="#">Dashboard</a>
-			<a class="sidenav__link" href="#">Dashboard</a>
-			<a class="sidenav__link" href="#">Dashboard</a>
-			<hr>
-			<a class="sidenav__link" href="#">Log out</a>
-		</nav>
-		<main role="main" class="app-shell__main">
-			<div class="alert alert--info" role="alert"><%= get_flash(@conn, :info) %></div>
-			<div class="alert alert--danger" role="alert"><%= get_flash(@conn, :error) %></div>
-			<%= render @view_module, @view_template, assigns %>
-		</main>
-	</div>
-	<script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+  <div class="app-shell">
+    <form class="app-shell__search" id="app-shell-search-container">
+      <div class="form-group">
+        <label for="app-shell-search-input" class="form-group__label">Rechercher</label>
+        <input type="search" class="form-group__input" id="app-shell-search-input" name="q">
+      </div>
+    </form>
+    <nav class="app-shell__navigation sidenav">
+      <%= link "Ajouter un lien", to: Routes.link_path(@conn, :new), class: "btn btn--primary btn--block btn--sidebar" %>
+      <p class="sidenav__header">Channels</p>
+      <%= link "Ajouter un channel", to: Routes.channel_path(@conn, :new), class: "sidenav__link sidenav__link--create" %>
+      <%= for channel <- user_channels(@conn.assigns[:current_user]) do %>
+        <%= active_link @conn, channel.name, to: Routes.channel_path(@conn, :show, channel), class: "sidenav__link sidenav__link--channel", class_active: "sidenav__link--active" %>
+      <% end %>
+      <hr>
+      <p class="sidenav__header">Mon compte</p>
+      <a class="sidenav__link" href="/">Log out</a>
+    </nav>
+    <main role="main" class="app-shell__main">
+      <div class="alert alert--info" role="alert"><%= get_flash(@conn, :info) %></div>
+      <div class="alert alert--danger" role="alert"><%= get_flash(@conn, :error) %></div>
+      <%= render @view_module, @view_template, assigns %>
+    </main>
+  </div>
+  <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
 </body>
 </html>

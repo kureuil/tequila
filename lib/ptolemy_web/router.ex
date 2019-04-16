@@ -7,6 +7,7 @@ defmodule PtolemyWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug PtolemyWeb.AuthPlug
   end
 
   pipeline :api do
@@ -17,10 +18,9 @@ defmodule PtolemyWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    resources "/channels", ChannelController
+    resources "/links", LinkController, except: [:index]
+    resources "/tags", TagController
+    resources "/users", UserController
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", PtolemyWeb do
-  #   pipe_through :api
-  # end
 end

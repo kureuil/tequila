@@ -39,6 +39,8 @@ defmodule PtolemyWeb do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
+      import PhoenixActiveLink
+
       import PtolemyWeb.ErrorHelpers
       import PtolemyWeb.Gettext
       alias PtolemyWeb.Router.Helpers, as: Routes

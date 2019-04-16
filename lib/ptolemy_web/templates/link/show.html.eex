@@ -1,0 +1,31 @@
+<h1>Show Link</h1>
+
+<ul>
+
+  <li>
+    <strong>Location:</strong>
+    <%= @link.location %>
+  </li>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @link.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @link.description %>
+  </li>
+
+  <li>
+    <strong>Tags:</strong>
+    <ul>
+      <%= for tag <- @link.tags do %>
+        <li><%= tag.name %></li>
+      <% end %>
+    </ul>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.link_path(@conn, :edit, @link) %></span>

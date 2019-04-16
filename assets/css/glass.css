@@ -1,21 +1,13 @@
 * {
-  box-shadow: border-box;
+  box-sizing: border-box;
 }
 
 body {
   --color-brand: #a58855;
-  --color-primary: #1d3e7e; /* #25283d; */
+  --color-primary: #1d3e7e;
   --color-success: #355834;
   --color-danger: #9b1d20;
   --color-grey: #7d7d7d;
-
-  /*
-  --color-brand: #cda56d;
-  --color-primary: #6f96ce;
-  --color-success: #96ce6f;
-  --color-danger: #a66fce;
-  --color-grey: #9e9e9e;
-  */
 
   background-color: #efefef;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
@@ -32,6 +24,10 @@ img {
   height: auto;
 }
 
+p {
+  margin: 0 0 1rem 0;
+}
+
 .app-shell {
   max-width: 1140px;
   margin: 0 auto;
@@ -44,13 +40,13 @@ img {
 
 .app-shell__navigation {
   display: flex;
-  flex-basis: 20%;
+  flex: 0 0 20%;
   flex-direction: column;
 }
 
 .app-shell__main {
   display: flex;
-  flex-grow: 1;
+  flex: 0 0 80%;
   flex-direction: column;
   padding-left: 1rem;
 }
@@ -63,12 +59,8 @@ img {
 }
 
 .app-shell__search > .form-group {
-  width: 35%;
-  transition: width .25s ease-out;
-}
-
-.app-shell__search--focused > .form-group {
-  width: 100%;
+  width: 50%;
+  margin-bottom: 0;
 }
 
 .box {
@@ -100,7 +92,7 @@ img {
   flex-grow: 0;
 }
 
-.box__actions > .btn + .btn {
+.box__actions > * + * {
   margin-left: .5rem;
 }
 
@@ -117,6 +109,15 @@ img {
   border-radius: .3rem;
   color: #444;
   text-transform: uppercase;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  /*
+    Introduced in IE 10.
+    See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+  */
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .btn:hover,
@@ -143,6 +144,10 @@ img {
   color: #fff;
 }
 
+.btn--sidebar {
+  margin-bottom: .5rem;
+}
+
 .card {
   display: flex;
   flex-direction: row;
@@ -166,20 +171,36 @@ img {
 .form-group {
   display: flex;
   flex-direction: row;
+  margin-bottom: 1rem;
 }
 
 .form-group__label {
-  flex-basis: 20%;
+  flex: 0 0 20%;
   text-align: right;
   padding-right: 1rem;
   padding-top: .3rem;
 }
 
+.form-group__content {
+  flex: 0 0 80%;
+}
+
 .form-group__input {
-  flex-grow: 1;
-  padding: .5rem 1rem;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  padding: .5rem;
   border-radius: .25rem;
+  resize: vertical;
   border: 1px solid var(--color-grey);
+}
+
+.form-group__error {
+  color: var(--color-danger);
+}
+
+.form-actions {
+  text-align: right;
 }
 
 .sidenav {
@@ -194,6 +215,12 @@ img {
   border-width: 1px 0 0 0;
   border-style: solid;
   margin: .5rem;
+}
+
+.sidenav__header {
+	margin: 0;
+	font-variant: small-caps;
+	padding: 0 .5rem;
 }
 
 .sidenav__link {
@@ -211,4 +238,35 @@ img {
 .sidenav__link--active {
   font-weight: bold;
   color: var(--color-primary);
+}
+
+.alert {
+  border-left: 5px solid transparent;
+  padding: .5rem;
+  margin-bottom: 1rem;
+}
+
+.alert:empty {
+  display: none;
+  visibility: hidden;
+}
+
+.alert > :last-child {
+  margin-bottom: 0;
+}
+
+.alert--info {
+  color: #fff;
+  background-color: var(--color-primary);
+}
+
+.alert--success {
+  color: #fff;
+  background-color: var(--color-success);
+}
+
+.alert--danger {
+  color: #fff;
+  background-color: var(--color-danger);
+  border-color: rgba(0, 0, 0, .35);
 }
