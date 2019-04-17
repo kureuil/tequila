@@ -1,7 +1,6 @@
 /* This file is for your main application css. */
 
-@import "~normalize.css";
-@import "./glass.css";
+@import "./glass/glass.css";
 
 .sidenav__link--create:before {
   content: "+ ";

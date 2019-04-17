@@ -1,0 +1,13 @@
+body {
+  background-color: #efefef;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  color: #444;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #222;
+}
+
+p {
+  margin: 0 0 1rem 0;
+}
