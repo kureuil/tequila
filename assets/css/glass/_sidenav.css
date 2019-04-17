@@ -1,0 +1,36 @@
+.sidenav {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidenav > hr {
+  display: block;
+  max-width: 100%;
+  border-color: var(--color-grey);
+  border-width: 1px 0 0 0;
+  border-style: solid;
+  margin: .5rem;
+}
+
+.sidenav__header {
+  margin: 0;
+  font-variant: small-caps;
+  padding: 0 .5rem;
+}
+
+.sidenav__link {
+  padding: .25rem .5rem;
+  color: #444;
+  text-decoration: none;
+}
+
+.sidenav__link:hover,
+.sidenav__link:focus {
+  border-radius: .25rem;
+  background-color: rgba(0, 0, 0, .15);
+}
+
+.sidenav__link--active {
+  font-weight: bold;
+  color: var(--color-primary);
+}

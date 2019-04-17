@@ -9,6 +9,7 @@
 </head>
 <body>
   <div class="app-shell">
+    <a class="app-shell__menu-toggle" href="#app-shell-search-container">☰&nbsp;Accéder au menu</a>
     <form class="app-shell__search" id="app-shell-search-container">
       <div class="form-group">
         <label for="app-shell-search-input" class="form-group__label">Rechercher</label>

@@ -1,0 +1,17 @@
+body {
+  --color-brand: #a58855;
+  --color-primary: #1d3e7e;
+  --color-success: #355834;
+  --color-danger: #9b1d20;
+  --color-grey: #7d7d7d;
+}
+
+@import "./_reset.css";
+@import "./_layout.css";
+@import "./_box.css";
+@import "./_type.css";
+@import "./_button.css";
+@import "./_card.css";
+@import "./_form.css";
+@import "./_sidenav.css";
+@import "./_alert.css";
