@@ -1,31 +1,34 @@
-<h1>Show Link</h1>
-
-<ul>
-
-  <li>
-    <strong>Location:</strong>
-    <%= @link.location %>
-  </li>
-
-  <li>
-    <strong>Title:</strong>
-    <%= @link.title %>
-  </li>
-
-  <li>
-    <strong>Description:</strong>
-    <%= @link.description %>
-  </li>
-
-  <li>
-    <strong>Tags:</strong>
+<section class="box">
+  <header class="box__header">
+    <h1 class="box__title">
+      <%= @link.title %>
+    </h1>
+    <div class="box__actions">
+      <%= link "Modifier", to: Routes.link_path(@conn, :edit, @link), class: "btn btn--primary" %>
+    </div>
+  </header>
+  <div class="box__body">
     <ul>
-      <%= for tag <- @link.tags do %>
-        <li><%= tag.name %></li>
-      <% end %>
+      <li>
+        <strong>Location:</strong>
+        <%= @link.location %>
+      </li>
+      <li>
+        <strong>Title:</strong>
+        <%= @link.title %>
+      </li>
+      <li>
+        <strong>Description:</strong>
+        <%= @link.description %>
+      </li>
+      <li>
+        <strong>Tags:</strong>
+        <ul>
+          <%= for tag <- @link.tags do %>
+            <li><%= tag.name %></li>
+          <% end %>
+        </ul>
+      </li>
     </ul>
-  </li>
-
-</ul>
-
-<span><%= link "Edit", to: Routes.link_path(@conn, :edit, @link) %></span>
+  </div>
+</section>

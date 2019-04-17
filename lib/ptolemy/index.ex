@@ -117,7 +117,7 @@ defmodule Ptolemy.Index do
 
       tags = Submit.to_tags(submit) |> Taxonomy.upsert_tags()
 
-      Link.changeset(link, Map.from_struct(submit))
+      Link.changeset(link, Map.from_struct(Submit.to_link(submit)))
       |> Changeset.put_assoc(:tags, tags)
       |> Repo.update()
     else

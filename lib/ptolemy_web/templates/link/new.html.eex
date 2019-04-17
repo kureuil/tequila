@@ -1,6 +1,6 @@
 <section class="box">
   <header class="box__header">
-    <h1 class="box__title" title="Hello World">
+    <h1 class="box__title">
       Ajout d'un lien
     </h1>
   </header>

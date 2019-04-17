@@ -96,6 +96,10 @@ p {
   margin-left: .5rem;
 }
 
+.box__actions .btn {
+  height: max-content;
+}
+
 .box__body {
   padding: .5rem;
 }

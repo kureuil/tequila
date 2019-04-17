@@ -1,3 +1,11 @@
-<h1>Edit Link</h1>
+<section class="box">
+  <header class="box__header">
+    <h1 class="box__title" title="Modification du lien <%= @link.title %>">
+      Modification du lien "<%= @link.title %>"
+    </h1>
+  </header>
+  <div class="box__body">
+    <%= render "form.html", Map.put(Map.put(assigns, :action, Routes.link_path(@conn, :update, @link)), :method, :patch) %>
+  </div>
+</section>
 
-<%= render "form.html", Map.put(Map.put(assigns, :action, Routes.link_path(@conn, :update, @link)), :method, :patch) %>
