@@ -1,4 +1,14 @@
 language: elixir
+
+branches:
+  only:
+  - master
+  - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
+
 script:
 - mix format --check-formatted
 - mix test
+
+notifications:
+  email:
+    on_success: never
