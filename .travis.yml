@@ -5,6 +5,9 @@ branches:
   - master
   - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
 
+elixir: '1.8'
+otp_release: '21'
+
 script:
 - mix format --check-formatted
 - mix test
