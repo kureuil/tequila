@@ -39,7 +39,7 @@ defmodule Ptolemy.ChannelsTest do
 
       user_channels = Channels.list_channels_by_user(owner)
       assert length(user_channels) == 1
-      [head | tail] = user_channels
+      [head | _tail] = user_channels
       assert head.id == channel.id
     end
 
