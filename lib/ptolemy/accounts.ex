@@ -38,6 +38,22 @@ defmodule Ptolemy.Accounts do
   def get_user!(id), do: Repo.get!(User, id)
 
   @doc """
+  Gets a single user by its email.
+
+  Raises `Ecto.NoResultsError` if the User does not exist.
+
+  ## Examples
+
+      iex> get_user!("louis@person.guru")
+      %User{}
+
+      iex> get_user!("walouis@person.guru")
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_user_by_email!(email), do: Repo.one!(from u in User, where: u.email == ^email)
+
+  @doc """
   Creates a user.
 
   ## Examples

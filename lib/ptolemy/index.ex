@@ -95,7 +95,7 @@ defmodule Ptolemy.Index do
     if changeset.valid? do
       submit = Ecto.Changeset.apply_changes(changeset)
 
-      tags = Submit.to_tags(submit) |> Tag.upsert_tags()
+      tags = Submit.to_tags(submit) |> Taxonomy.upsert_tags()
 
       submit
       |> Submit.to_link()
