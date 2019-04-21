@@ -4,8 +4,16 @@ defmodule PtolemyWeb.LinkControllerTest do
   alias Ptolemy.Index
   alias Ptolemy.Accounts
 
-  @create_attrs %{location: "https://github.com/", title: "Ptolemy repository", tags: "knowledgebase, learning, collaborative, sharing"}
-  @update_attrs %{location: "https://kureuil.github.io/ptolemy/", title: "Ptolemy homepage", tags: "knowledgebase, learning, collaborative, sharing"}
+  @create_attrs %{
+    location: "https://github.com/",
+    title: "Ptolemy repository",
+    tags: "knowledgebase, learning, collaborative, sharing"
+  }
+  @update_attrs %{
+    location: "https://kureuil.github.io/ptolemy/",
+    title: "Ptolemy homepage",
+    tags: "knowledgebase, learning, collaborative, sharing"
+  }
   @invalid_attrs %{location: nil, title: nil}
 
   def fixture(:link) do
@@ -16,6 +24,7 @@ defmodule PtolemyWeb.LinkControllerTest do
 
   def fixture(:owner) do
     email = "louis@person.guru"
+
     try do
       Accounts.get_user_by_email!(email)
     rescue

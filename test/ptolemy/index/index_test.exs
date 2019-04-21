@@ -14,6 +14,7 @@ defmodule Ptolemy.IndexTest do
       alias Ptolemy.Accounts
 
       email = "louis@person.guru"
+
       try do
         Accounts.get_user_by_email!(email)
       rescue
@@ -25,6 +26,7 @@ defmodule Ptolemy.IndexTest do
 
     def link_fixture(attrs \\ %{}) do
       owner = owner_fixture()
+
       {:ok, link} =
         attrs
         |> Enum.into(@valid_attrs)

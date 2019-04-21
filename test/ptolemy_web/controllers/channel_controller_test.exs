@@ -23,6 +23,7 @@ defmodule PtolemyWeb.ChannelControllerTest do
 
   def fixture_owner() do
     email = "louis@person.guru"
+
     try do
       Accounts.get_user_by_email!(email)
     rescue
@@ -104,7 +105,12 @@ defmodule PtolemyWeb.ChannelControllerTest do
   describe "delete channel" do
     setup [:create_channel, :create_home_channel, :create_owner]
 
-    test "deletes chosen channel", %{conn: conn, channel: channel, home_channel: home_channel, owner: owner} do
+    test "deletes chosen channel", %{
+      conn: conn,
+      channel: channel,
+      home_channel: home_channel,
+      owner: owner
+    } do
       conn = Plug.Conn.assign(conn, :current_user, owner)
       conn = delete(conn, Routes.channel_path(conn, :delete, channel))
       assert redirected_to(conn) == Routes.channel_path(conn, :show, home_channel)
