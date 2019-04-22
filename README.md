@@ -1,4 +1,4 @@
-# Ptolemy
+# Ptolemy [![Build Status](https://travis-ci.com/kureuil/ptolemy.svg?token=deZzzyBmMYhYyBs3KMvw&branch=master)](https://travis-ci.com/kureuil/ptolemy)
 
 To start your Phoenix server:
 
