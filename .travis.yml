@@ -5,6 +5,14 @@ branches:
   - master
   - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
 
+services:
+- postgresql
+
+env:
+  global:
+  - TEST_DATABASE_USER=postgres
+  - TEST_DATABASE_PASS=
+
 elixir: '1.8'
 
 script:
