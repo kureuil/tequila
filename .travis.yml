@@ -27,6 +27,7 @@ install:
   - sudo systemctl restart postgresql@11-main
 
 script:
+- mix local.hex --force
 - mix format --check-formatted
 - mix test
 
