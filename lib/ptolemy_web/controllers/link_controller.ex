@@ -13,7 +13,7 @@ defmodule PtolemyWeb.LinkController do
     case Index.create_submit(submit_params, conn.assigns[:current_user]) do
       {:ok, link} ->
         conn
-        |> put_flash(:info, "Link created successfully.")
+        |> put_flash(:info, gettext("Link created successfully."))
         |> redirect(to: Routes.link_path(conn, :show, link))
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -39,7 +39,7 @@ defmodule PtolemyWeb.LinkController do
     case Index.update_submit(link, submit_params) do
       {:ok, link} ->
         conn
-        |> put_flash(:info, "Link updated successfully.")
+        |> put_flash(:info, gettext("Link updated successfully."))
         |> redirect(to: Routes.link_path(conn, :show, link))
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -52,7 +52,7 @@ defmodule PtolemyWeb.LinkController do
     {:ok, _link} = Index.delete_link(link)
 
     conn
-    |> put_flash(:info, "Link deleted successfully.")
+    |> put_flash(:info, gettext("Link deleted successfully."))
     |> redirect(to: Routes.channel_path(conn, :index))
   end
 end

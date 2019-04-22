@@ -19,7 +19,7 @@ config :ptolemy, PtolemyWeb.Endpoint,
   pubsub: [name: Ptolemy.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Add support for multiple locales in UI elements
-config :ptolemy, PtolemyWeb.Gettext, default_locale: "en", locales: ~w(en fr)
+config :ptolemy, PtolemyWeb.Gettext, default_locale: "fr", locales: ~w(en fr)
 
 # Configures Elixir's Logger
 config :logger, :console,

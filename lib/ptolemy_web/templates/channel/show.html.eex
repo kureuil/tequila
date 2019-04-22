@@ -1,12 +1,12 @@
 <section class="box">
   <header class="box__header">
-    <h1 class="box__title" title="Hello World">
+    <h1 class="box__title">
       <%= @channel.name %>
     </h1>
     <div class="box__actions">
-      <%= link "Modifier", to: Routes.channel_path(@conn, :edit, @channel), class: "btn btn--primary" %>
+      <%= link gettext("Edit"), to: Routes.channel_path(@conn, :edit, @channel), class: "btn btn--primary" %>
       <%= form_for @conn, Routes.channel_path(@conn, :delete, @channel), [method: :delete], fn _f ->  %>
-        <%= submit "Supprimer", class: "btn btn--danger" %>
+        <%= submit gettext("Delete"), class: "btn btn--danger" %>
       <% end %>
     </div>
   </header>
@@ -20,7 +20,7 @@
             <span class="entry__location">(<%= link_host entry.location %>)<span>
           </div>
           <nav class="entry__actions" title="<%= entry.location %>">
-            <%= link "0 commentaires", to: Routes.link_path(@conn, :show, entry) %>
+            <%= link ngettext("%{count} comment", "%{count} comments", 0), to: Routes.link_path(@conn, :show, entry) %>
           </nav>
         </li>
       <% end %>

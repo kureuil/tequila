@@ -1,7 +1,7 @@
 <section class="box">
   <header class="box__header">
-    <h1 class="box__title" title="Modification du lien <%= @link.title %>">
-      Modification du lien "<%= @link.title %>"
+    <h1 class="box__title" title="<%= gettext "Editing link %{link}", link: @link.title %>">
+      <%= gettext "Editing link %{link}", link: @link.title %>
     </h1>
   </header>
   <div class="box__body">

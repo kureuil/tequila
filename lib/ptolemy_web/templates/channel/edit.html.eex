@@ -1,7 +1,7 @@
 <section class="box">
   <header class="box__header">
-    <h1 class="box__title" title="Modification du channel <%= @channel.name %>">
-      Modification du channel "<%= @channel.name %>"
+    <h1 class="box__title" title="<%= gettext "Editing channel %{channel}", channel: @channel.name %>">
+      <%= gettext "Editing channel %{channel}", channel: @channel.name %>
     </h1>
   </header>
   <div class="box__body">

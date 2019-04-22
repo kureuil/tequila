@@ -1,7 +1,7 @@
 <section class="box">
   <header class="box__header">
     <h1 class="box__title">
-      Ajout d'un lien
+      <%= gettext "New link" %>
     </h1>
   </header>
   <div class="box__body">

@@ -17,15 +17,15 @@
       </div>
     </form>
     <nav class="app-shell__navigation sidenav">
-      <%= link "Ajouter un lien", to: Routes.link_path(@conn, :new), class: "btn btn--primary btn--block btn--sidebar" %>
-      <p class="sidenav__header">Channels</p>
-      <%= link "Ajouter un channel", to: Routes.channel_path(@conn, :new), class: "sidenav__link sidenav__link--create" %>
+      <%= link gettext("Submit link"), to: Routes.link_path(@conn, :new), class: "btn btn--primary btn--block btn--sidebar" %>
+      <p class="sidenav__header"><%= gettext "Channels" %></p>
+      <%= link gettext("Create channel"), to: Routes.channel_path(@conn, :new), class: "sidenav__link sidenav__link--create" %>
       <%= for channel <- user_channels(@conn.assigns[:current_user]) do %>
         <%= active_link @conn, channel.name, to: Routes.channel_path(@conn, :show, channel), class: "sidenav__link sidenav__link--channel", class_active: "sidenav__link--active" %>
       <% end %>
       <hr>
-      <p class="sidenav__header">Mon compte</p>
-      <a class="sidenav__link" href="/">Log out</a>
+      <p class="sidenav__header"><%= gettext "My account" %></p>
+      <a class="sidenav__link" href="/"><%= gettext "Log out" %></a>
     </nav>
     <main role="main" class="app-shell__main">
       <div class="alert alert--info" role="alert"><%= get_flash(@conn, :info) %></div>
