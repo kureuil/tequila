@@ -1,0 +1,37 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: fr\n"
+"Plural-Forms: nplurals=2\n"
+
+#, elixir-format
+#: lib/ptolemy_web/controllers/channel_controller.ex:22
+msgid "Channel created successfully."
+msgstr "La chaîne a bien été créée."
+
+#, elixir-format
+#: lib/ptolemy_web/controllers/channel_controller.ex:63
+msgid "Channel deleted successfully."
+msgstr "La chaîne a bien été supprimée."
+
+#, elixir-format
+#: lib/ptolemy_web/controllers/channel_controller.ex:48
+msgid "Channel updated successfully."
+msgstr "La chaîne a bien été mise à jour."
+
+#, elixir-format
+#: lib/ptolemy_web/templates/layout/app.html.eex:12
+msgid "Menu"
+msgstr "Accéder au menu"
+
+#, elixir-format
+#: lib/ptolemy_web/templates/layout/app.html.eex:15
+msgid "Search"
+msgstr "Rechercher"

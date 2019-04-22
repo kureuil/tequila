@@ -19,7 +19,7 @@ defmodule PtolemyWeb.ChannelController do
     case Channels.create_channel(channel_params, conn.assigns[:current_user]) do
       {:ok, channel} ->
         conn
-        |> put_flash(:info, "Channel created successfully.")
+        |> put_flash(:info, gettext("Channel created successfully."))
         |> redirect(to: Routes.channel_path(conn, :show, channel))
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -45,7 +45,7 @@ defmodule PtolemyWeb.ChannelController do
     case Channels.update_channel(channel, channel_params) do
       {:ok, channel} ->
         conn
-        |> put_flash(:info, "Channel updated successfully.")
+        |> put_flash(:info, gettext("Channel updated successfully."))
         |> redirect(to: Routes.channel_path(conn, :show, channel))
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -60,7 +60,7 @@ defmodule PtolemyWeb.ChannelController do
     default_channel = Channels.get_default_for_user(conn.assigns[:current_user])
 
     conn
-    |> put_flash(:info, "Channel deleted successfully.")
+    |> put_flash(:info, gettext("Channel deleted successfully."))
     |> redirect(to: Routes.channel_path(conn, :show, default_channel))
   end
 end

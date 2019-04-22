@@ -18,6 +18,9 @@ config :ptolemy, PtolemyWeb.Endpoint,
   render_errors: [view: PtolemyWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Ptolemy.PubSub, adapter: Phoenix.PubSub.PG2]
 
+# Add support for multiple locales in UI elements
+config :ptolemy, PtolemyWeb.Gettext, default_locale: "en", locales: ~w(en fr)
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
