@@ -1,4 +1,5 @@
 language: elixir
+dist: xenial
 
 branches:
   only:
@@ -20,6 +21,10 @@ env:
   - TEST_DATABASE_PASS=
 
 elixir: '1.8'
+
+install:
+  - sudo cp /etc/postgresql/10/main/pg_hba.conf /etc/postgresql/11/main/pg_hba.conf
+  - sudo systemctl restart postgresql@11-main
 
 script:
 - mix format --check-formatted
