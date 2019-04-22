@@ -4,25 +4,25 @@
       <%= @link.title %>
     </h1>
     <div class="box__actions">
-      <%= link "Modifier", to: Routes.link_path(@conn, :edit, @link), class: "btn btn--primary" %>
+      <%= link gettext("Edit"), to: Routes.link_path(@conn, :edit, @link), class: "btn btn--primary" %>
     </div>
   </header>
   <div class="box__body">
     <ul>
       <li>
-        <strong>Location:</strong>
+        <strong><%= gettext "URL:" %></strong>
         <%= @link.location %>
       </li>
       <li>
-        <strong>Title:</strong>
+        <strong><%= gettext "Title:" %></strong>
         <%= @link.title %>
       </li>
       <li>
-        <strong>Description:</strong>
+        <strong><%= gettext "Description:" %></strong>
         <%= @link.description %>
       </li>
       <li>
-        <strong>Tags:</strong>
+        <strong><%= gettext "Tags:" %></strong>
         <ul>
           <%= for tag <- @link.tags do %>
             <li><%= tag.name %></li>

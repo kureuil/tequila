@@ -1,0 +1,179 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+"Plural-Forms: nplurals=2\n"
+
+#, elixir-format
+#: lib/ptolemy_web/controllers/channel_controller.ex:22
+msgid "Channel created successfully."
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/controllers/channel_controller.ex:63
+msgid "Channel deleted successfully."
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/controllers/channel_controller.ex:48
+msgid "Channel updated successfully."
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/layout/app.html.eex:12
+msgid "Menu"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/layout/app.html.eex:15
+msgid "Search"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/layout/app.html.eex:22
+msgid "Create channel"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/layout/app.html.eex:20
+msgid "Submit link"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/layout/app.html.eex:28
+msgid "Log out"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/layout/app.html.eex:27
+msgid "My account"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/channel/edit.html.eex:3
+#: lib/ptolemy_web/templates/channel/edit.html.eex:4
+msgid "Editing channel %{channel}"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/channel/form.html.eex:4
+#: lib/ptolemy_web/templates/link/form.html.eex:4
+msgid "Oops, something went wrong! Please check the errors below."
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/channel/form.html.eex:9
+msgid "Name"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/channel/form.html.eex:17
+msgid "Query"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/layout/app.html.eex:21
+msgid "Channels"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/channel/form.html.eex:25
+#: lib/ptolemy_web/templates/link/form.html.eex:41
+msgid "Save"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/channel/new.html.eex:4
+msgid "New channel"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/channel/show.html.eex:23
+msgid "%{count} comment"
+msgid_plural "%{count} comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/channel/show.html.eex:9
+msgid "Delete"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/channel/show.html.eex:7
+#: lib/ptolemy_web/templates/link/show.html.eex:7
+msgid "Edit"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/link/edit.html.eex:3
+#: lib/ptolemy_web/templates/link/edit.html.eex:4
+msgid "Editing link %{link}"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/link/form.html.eex:17
+msgid "Tags"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/link/form.html.eex:9
+msgid "URL"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/link/form.html.eex:33
+msgid "Description"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/link/form.html.eex:25
+msgid "Title"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/link/new.html.eex:4
+msgid "New link"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/link/show.html.eex:21
+msgid "Description:"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/link/show.html.eex:25
+msgid "Tags:"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/link/show.html.eex:17
+msgid "Title:"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/link/show.html.eex:13
+msgid "URL:"
+msgstr ""
+
+#, elixir-format, fuzzy
+#: lib/ptolemy_web/controllers/link_controller.ex:16
+msgid "Link created successfully."
+msgstr ""
+
+#, elixir-format, fuzzy
+#: lib/ptolemy_web/controllers/link_controller.ex:55
+msgid "Link deleted successfully."
+msgstr ""
+
+#, elixir-format, fuzzy
+#: lib/ptolemy_web/controllers/link_controller.ex:42
+msgid "Link updated successfully."
+msgstr ""

@@ -1,12 +1,12 @@
 <%= form_for @changeset, @action, [method: @method], fn f -> %>
   <%= if @changeset.action do %>
     <div class="alert alert--danger">
-      <p>Oops, quelquechose s'est mal passé ! Merci de bien vouloir adresser les problèmes ci-dessous.</p>
+      <p><%= gettext "Oops, something went wrong! Please check the errors below." %></p>
     </div>
   <% end %>
 
   <div class="form-group">
-    <%= label f, :location, "URL", class: "form-group__label", type: "url", required: true %>
+    <%= label f, :location, gettext("URL"), class: "form-group__label", type: "url", required: true %>
     <div class="form-group__content">
       <%= text_input f, :location, class: "form-group__input" %>
       <%= error_tag f, :location %>
@@ -14,7 +14,7 @@
   </div>
 
   <div class="form-group">
-    <%= label f, :tags, "Mots-clés", class: "form-group__label" %>
+    <%= label f, :tags, gettext("Tags"), class: "form-group__label" %>
     <div class="form-group__content">
       <%= text_input f, :tags, class: "form-group__input" %>
       <%= error_tag f, :tags %>
@@ -22,7 +22,7 @@
   </div>
 
   <div class="form-group">
-    <%= label f, :title, "Titre", class: "form-group__label" %>
+    <%= label f, :title, gettext("Title"), class: "form-group__label" %>
     <div class="form-group__content">
       <%= text_input f, :title, class: "form-group__input" %>
       <%= error_tag f, :title %>
@@ -30,7 +30,7 @@
   </div>
 
   <div class="form-group">
-    <%= label f, :description, "Description", class: "form-group__label" %>
+    <%= label f, :description, gettext("Description"), class: "form-group__label" %>
     <div class="form-group__content">
       <%= textarea f, :description, class: "form-group__input" %>
       <%= error_tag f, :description %>
@@ -38,6 +38,6 @@
   </div>
 
   <div class="form-actions">
-    <%= submit "Sauvegarder", class: "btn btn--primary" %>
+    <%= submit gettext("Save"), class: "btn btn--primary" %>
   </div>
 <% end %>

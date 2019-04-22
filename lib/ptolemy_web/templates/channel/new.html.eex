@@ -1,7 +1,7 @@
 <section class="box">
   <header class="box__header">
-    <h1 class="box__title" title="Ajout d'un channel">
-      Ajout d'un channel
+    <h1 class="box__title">
+      <%= gettext "New channel" %>
     </h1>
   </header>
   <div class="box__body">
