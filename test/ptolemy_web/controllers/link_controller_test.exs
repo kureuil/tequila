@@ -40,7 +40,7 @@ defmodule PtolemyWeb.LinkControllerTest do
     test "renders form", %{conn: conn, owner: owner} do
       conn = Plug.Conn.assign(conn, :current_user, owner)
       conn = get(conn, Routes.link_path(conn, :new))
-      assert html_response(conn, 200) =~ "Ajout d'un lien"
+      assert html_response(conn, 200) =~ gettext "New link"
     end
   end
 
@@ -61,7 +61,7 @@ defmodule PtolemyWeb.LinkControllerTest do
     test "renders errors when data is invalid", %{conn: conn, owner: owner} do
       conn = Plug.Conn.assign(conn, :current_user, owner)
       conn = post(conn, Routes.link_path(conn, :create), submit: @invalid_attrs)
-      assert html_response(conn, 200) =~ "Ajout d'un lien"
+      assert html_response(conn, 200) =~ gettext "New link"
     end
   end
 
@@ -71,7 +71,7 @@ defmodule PtolemyWeb.LinkControllerTest do
     test "renders form for editing chosen link", %{conn: conn, link: link, owner: owner} do
       conn = Plug.Conn.assign(conn, :current_user, owner)
       conn = get(conn, Routes.link_path(conn, :edit, link))
-      assert html_response(conn, 200) =~ "Modification du lien \"#{link.title}\""
+      assert html_response(conn, 200) =~ gettext "Editing link %{link}", link: link.title
     end
   end
 
@@ -90,7 +90,7 @@ defmodule PtolemyWeb.LinkControllerTest do
     test "renders errors when data is invalid", %{conn: conn, link: link, owner: owner} do
       conn = Plug.Conn.assign(conn, :current_user, owner)
       conn = put(conn, Routes.link_path(conn, :update, link), submit: @invalid_attrs)
-      assert html_response(conn, 200) =~ "Modification du lien \"#{link.title}\""
+      assert html_response(conn, 200) =~ gettext "Editing link %{link}", link: link.title
     end
   end
 
