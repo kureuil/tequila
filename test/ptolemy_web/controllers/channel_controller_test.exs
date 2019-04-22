@@ -48,7 +48,7 @@ defmodule PtolemyWeb.ChannelControllerTest do
     test "renders form", %{conn: conn, owner: owner} do
       conn = Plug.Conn.assign(conn, :current_user, owner)
       conn = get(conn, Routes.channel_path(conn, :new))
-      assert html_response(conn, 200) =~ gettext "New channel"
+      assert html_response(conn, 200) =~ gettext("New channel")
     end
   end
 
@@ -69,7 +69,7 @@ defmodule PtolemyWeb.ChannelControllerTest do
     test "renders errors when data is invalid", %{conn: conn, owner: owner} do
       conn = Plug.Conn.assign(conn, :current_user, owner)
       conn = post(conn, Routes.channel_path(conn, :create), channel: @invalid_attrs)
-      assert html_response(conn, 200) =~ gettext "New channel"
+      assert html_response(conn, 200) =~ gettext("New channel")
     end
   end
 
@@ -79,7 +79,9 @@ defmodule PtolemyWeb.ChannelControllerTest do
     test "renders form for editing chosen channel", %{conn: conn, channel: channel, owner: owner} do
       conn = Plug.Conn.assign(conn, :current_user, owner)
       conn = get(conn, Routes.channel_path(conn, :edit, channel))
-      assert html_response(conn, 200) =~ gettext "Editing channel %{channel}", channel: channel.name
+
+      assert html_response(conn, 200) =~
+               gettext("Editing channel %{channel}", channel: channel.name)
     end
   end
 
@@ -98,7 +100,9 @@ defmodule PtolemyWeb.ChannelControllerTest do
     test "renders errors when data is invalid", %{conn: conn, channel: channel, owner: owner} do
       conn = Plug.Conn.assign(conn, :current_user, owner)
       conn = put(conn, Routes.channel_path(conn, :update, channel), channel: @invalid_attrs)
-      assert html_response(conn, 200) =~ gettext "Editing channel %{channel}", channel: channel.name
+
+      assert html_response(conn, 200) =~
+               gettext("Editing channel %{channel}", channel: channel.name)
     end
   end
 
