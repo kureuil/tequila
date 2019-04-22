@@ -15,5 +15,6 @@ config :ptolemy, Ptolemy.Repo,
   password: System.get_env("TEST_DATABASE_PASS") || "imnotmeantforproduction",
   database: System.get_env("TEST_DATABASE_NAME") || "ptolemy_test",
   hostname: System.get_env("TEST_DATABASE_HOST") || "localhost",
+  port: Integer.parse(System.get_env("TEST_DATABASE_PORT") || "5432"),
   pool: Ecto.Adapters.SQL.Sandbox,
   migration_primary_key: [name: :id, type: :binary_id]
