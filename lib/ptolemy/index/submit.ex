@@ -22,7 +22,7 @@ defmodule Ptolemy.Index.Submit do
   end
 
   def to_tags(submit) do
-    submit.tags
+    (submit.tags || "")
     |> String.split(",")
     |> Enum.map(&String.trim/1)
     |> Enum.filter(fn name -> String.length(name) > 1 end)

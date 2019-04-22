@@ -20,7 +20,7 @@ defmodule Ptolemy.Channels do
       [%Channel{}, ...]
 
   """
-  def list_channels(%User{id: owner_id}) do
+  def list_channels_by_user(%User{id: owner_id}) do
     Channel
     |> where(owner_id: ^owner_id)
     |> order_by(:inserted_at)

@@ -4,6 +4,6 @@ defmodule PtolemyWeb.LayoutView do
   alias Ptolemy.Channels
 
   def user_channels(current_user) do
-    Channels.list_channels(current_user)
+    Channels.list_channels_by_user(current_user)
   end
 end

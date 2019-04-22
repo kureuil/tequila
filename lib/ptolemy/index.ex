@@ -37,12 +37,16 @@ defmodule Ptolemy.Index do
 
     query =
       case excluded_tags do
-        [] -> query
+        [] ->
+          query
+
         _ ->
-          except_query = Link
-          |> distinct(true)
-          |> join(:inner, [l], t in assoc(l, :tags))
-          |> where([l, t], t.name in ^excluded_tags)
+          except_query =
+            Link
+            |> distinct(true)
+            |> join(:inner, [l], t in assoc(l, :tags))
+            |> where([l, t], t.name in ^excluded_tags)
+
           query |> except(^except_query)
       end
 
@@ -95,7 +99,7 @@ defmodule Ptolemy.Index do
     if changeset.valid? do
       submit = Ecto.Changeset.apply_changes(changeset)
 
-      tags = Submit.to_tags(submit) |> Tag.upsert_tags()
+      tags = Submit.to_tags(submit) |> Taxonomy.upsert_tags()
 
       submit
       |> Submit.to_link()

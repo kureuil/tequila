@@ -53,6 +53,6 @@ defmodule PtolemyWeb.LinkController do
 
     conn
     |> put_flash(:info, "Link deleted successfully.")
-    |> redirect(to: Routes.link_path(conn, :index))
+    |> redirect(to: Routes.channel_path(conn, :index))
   end
 end
