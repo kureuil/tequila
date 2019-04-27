@@ -48,7 +48,7 @@ defmodule PtolemyWeb.ChannelControllerTest do
       _ in Ecto.NoResultsError ->
         {:ok, user} = Accounts.create_user(%{email: email})
         user
-    end    
+    end
   end
 
   describe "index" do
@@ -94,7 +94,11 @@ defmodule PtolemyWeb.ChannelControllerTest do
   describe "show channel" do
     setup [:create_owner, :create_forbidden_channel]
 
-    test "redirects to index when viewing channel of other user", %{conn: conn, owner: owner, forbidden_channel: forbidden_channel} do
+    test "redirects to index when viewing channel of other user", %{
+      conn: conn,
+      owner: owner,
+      forbidden_channel: forbidden_channel
+    } do
       conn = Plug.Conn.assign(conn, :current_user, owner)
       conn = get(conn, Routes.channel_path(conn, :show, forbidden_channel))
       assert get_flash(conn, :error) != ""
@@ -170,6 +174,6 @@ defmodule PtolemyWeb.ChannelControllerTest do
 
   defp create_forbidden_channel(_) do
     channel = fixture_forbidden_channel()
-    {:ok, forbidden_channel: channel}    
+    {:ok, forbidden_channel: channel}
   end
 end

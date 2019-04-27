@@ -30,10 +30,12 @@ defmodule PtolemyWeb.ChannelController do
   def show(conn, %{"id" => id}) do
     channel = Channels.get_channel!(id)
     current_user = conn.assigns[:current_user].id
+
     case channel.owner_id do
       ^current_user ->
         entries = Index.search(channel.query)
         render(conn, "show.html", channel: channel, entries: entries)
+
       _ ->
         conn
         |> put_flash(:error, gettext("You are not authorized to view this channel"))
