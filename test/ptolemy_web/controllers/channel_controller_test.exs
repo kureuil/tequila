@@ -33,6 +33,24 @@ defmodule PtolemyWeb.ChannelControllerTest do
     end
   end
 
+  def fixture_forbidden_channel() do
+    owner = fixture_user()
+    {:ok, channel} = Channels.create_channel(@create_attrs, owner)
+    channel
+  end
+
+  def fixture_user() do
+    email = "walouis@person.guru"
+
+    try do
+      Accounts.get_user_by_email!(email)
+    rescue
+      _ in Ecto.NoResultsError ->
+        {:ok, user} = Accounts.create_user(%{email: email})
+        user
+    end    
+  end
+
   describe "index" do
     setup [:create_home_channel]
 
@@ -70,6 +88,16 @@ defmodule PtolemyWeb.ChannelControllerTest do
       conn = Plug.Conn.assign(conn, :current_user, owner)
       conn = post(conn, Routes.channel_path(conn, :create), channel: @invalid_attrs)
       assert html_response(conn, 200) =~ gettext("New channel")
+    end
+  end
+
+  describe "show channel" do
+    setup [:create_owner, :create_forbidden_channel]
+
+    test "redirects to index when viewing channel of other user", %{conn: conn, owner: owner, forbidden_channel: forbidden_channel} do
+      conn = Plug.Conn.assign(conn, :current_user, owner)
+      conn = get(conn, Routes.channel_path(conn, :show, forbidden_channel))
+      assert get_flash(conn, :error) != ""
     end
   end
 
@@ -138,5 +166,10 @@ defmodule PtolemyWeb.ChannelControllerTest do
   defp create_home_channel(_) do
     channel = fixture_home_channel()
     {:ok, home_channel: channel}
+  end
+
+  defp create_forbidden_channel(_) do
+    channel = fixture_forbidden_channel()
+    {:ok, forbidden_channel: channel}    
   end
 end
