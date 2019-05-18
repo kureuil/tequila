@@ -37,6 +37,7 @@ script:
 - mix local.rebar --force
 - mix deps.get
 - mix format --check-formatted
+- MIX_ENV=test mix ecto.create
 - MIX_ENV=test mix ecto.migrate
 - MIX_ENV=test mix elasticsearch.build entries --cluster Ptolemy.ElasticsearchCluster
 - mix test
