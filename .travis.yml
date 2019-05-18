@@ -43,7 +43,7 @@ script:
 - MIX_ENV=test mix ecto.create
 - MIX_ENV=test mix ecto.migrate
 - systemctl status elasticsearch
-- journalctl -u elasticsearch
+- sudo journalctl -u elasticsearch
 - MIX_ENV=test mix elasticsearch.build entries --cluster Ptolemy.ElasticsearchCluster
 - mix test
 
