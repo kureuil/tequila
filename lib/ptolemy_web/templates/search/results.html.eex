@@ -1,0 +1,25 @@
+<section class="box">
+  <header class="box__header">
+    <h1 class="box__title">
+      <%= gettext "Search results" %>
+    </h1>
+    <div class="box__actions">
+    </div>
+  </header>
+  <div class="box__body">
+    <ul class="entries-list">
+      <%= for entry <- @entries do %>
+        <li class="entry">
+          <img src="" alt="" class="entry__favicon">
+          <div class="entry__title">
+            <%= link entry.title, to: entry.location, class: "entry__link" %>
+            <span class="entry__location">(<%= link_host entry.location %>)<span>
+          </div>
+          <nav class="entry__actions" title="<%= entry.location %>">
+            <%= link ngettext("%{count} comment", "%{count} comments", 0), to: Routes.link_path(@conn, :show, entry) %>
+          </nav>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</section>

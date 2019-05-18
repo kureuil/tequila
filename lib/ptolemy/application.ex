@@ -11,9 +11,11 @@ defmodule Ptolemy.Application do
       # Start the Ecto repository
       Ptolemy.Repo,
       # Start the endpoint when the application starts
-      PtolemyWeb.Endpoint
+      PtolemyWeb.Endpoint,
       # Starts a worker by calling: Ptolemy.Worker.start_link(arg)
       # {Ptolemy.Worker, arg},
+      # Start the Elasticsearch client
+      Ptolemy.ElasticsearchCluster
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

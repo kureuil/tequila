@@ -9,7 +9,6 @@ defmodule Ptolemy.Channels do
   alias Ecto.Changeset
   alias Ptolemy.Accounts.User
   alias Ptolemy.Channels.Channel
-  alias Ptolemy.Index.Link
 
   @doc """
   Returns the list of channels.

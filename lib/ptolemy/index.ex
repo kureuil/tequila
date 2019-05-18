@@ -9,52 +9,79 @@ defmodule Ptolemy.Index do
   alias Ecto.Changeset
   alias Ptolemy.Index.Link
   alias Ptolemy.Index.Submit
+  alias Ptolemy.Index.Entry
   alias Ptolemy.Accounts.User
   alias Ptolemy.Taxonomy
-  alias Ptolemy.Taxonomy.Tag
+  alias Ptolemy.QueryParser
 
   @doc """
-  Get the entries for the given channel.
+  Get the entries for the given search query.
 
-  Returns `[]` if no entries matched the channel's query.
+  Returns `[]` if no entries matched the query.
   """
   def search(query) do
-    included_regex = ~r/#(?<name>[a-zA-Z]+)/
-    excluded_regex = ~r/!(?<name>[a-zA-Z]+)/
-    included_tags = Enum.map(Regex.scan(included_regex, query), fn [_c, name] -> name end)
-    excluded_tags = Enum.map(Regex.scan(excluded_regex, query), fn [_c, name] -> name end)
+    case QueryParser.parse(query) do
+      {:ok, result, _, _, _, _} ->
+        constraints = build_constraints(result)
 
-    query =
-      Link
-      |> distinct(true)
-      |> join(:inner, [l], t in assoc(l, :tags))
+        {:ok, %{"hits" => %{"hits" => hits}}} =
+          Elasticsearch.post(Ptolemy.ElasticsearchCluster, "/entries/_doc/_search", %{
+            "query" => constraints
+          })
 
-    query =
-      case included_tags do
-        [] -> query
-        _ -> query |> where([l, t], t.name in ^included_tags)
-      end
+        hits_ids = Enum.map(hits, fn entry -> entry["_id"] end)
 
-    query =
-      case excluded_tags do
-        [] ->
-          query
+        Link
+        |> where([l], l.id in ^hits_ids)
+        |> Repo.all()
 
-        _ ->
-          except_query =
-            Link
-            |> distinct(true)
-            |> join(:inner, [l], t in assoc(l, :tags))
-            |> where([l, t], t.name in ^excluded_tags)
+      error ->
+        throw(error)
+    end
+  end
 
-          query |> except(^except_query)
-      end
+  defp build_constraints([]), do: %{"match_all" => %{}}
 
-    subquery(query)
-    |> order_by([l, t], desc: l.inserted_at)
-    |> select([l, t], l)
-    |> limit(50)
-    |> Repo.all()
+  defp build_constraints([root | []]), do: build_constraints(root)
+
+  defp build_constraints({:word, word}) do
+    %{"match" => %{"title" => word}}
+  end
+
+  defp build_constraints({:tag, tag}) do
+    %{"term" => %{"tags" => tag}}
+  end
+
+  defp build_constraints({:and, [clause, rest]}) do
+    lhs = build_constraints(clause)
+    rhs = build_constraints(rest)
+
+    %{
+      "bool" => %{
+        "must" => [lhs, rhs]
+      }
+    }
+  end
+
+  defp build_constraints({:or, [clause, rest]}) do
+    lhs = build_constraints(clause)
+    rhs = build_constraints(rest)
+
+    %{
+      "bool" => %{
+        "should" => [lhs, rhs]
+      }
+    }
+  end
+
+  defp build_constraints({:not, clause}) do
+    constraint = build_constraints(clause)
+
+    %{
+      "bool" => %{
+        "must_not" => constraint
+      }
+    }
   end
 
   @doc """
@@ -86,7 +113,12 @@ defmodule Ptolemy.Index do
 
   """
   def delete_link(%Link{} = link) do
-    Repo.delete(link)
+    Repo.transaction(fn ->
+      deleted = Repo.delete!(link)
+      entry = %Entry{id: link.id}
+      Elasticsearch.delete_document!(Ptolemy.ElasticsearchCluster, entry, "entries")
+      deleted
+    end)
   end
 
   def change_submit(%Submit{} = submit) do
@@ -101,12 +133,27 @@ defmodule Ptolemy.Index do
 
       tags = Submit.to_tags(submit) |> Taxonomy.upsert_tags()
 
-      submit
-      |> Submit.to_link()
-      |> Link.changeset()
-      |> Changeset.put_assoc(:author, author)
-      |> Changeset.put_assoc(:tags, tags)
-      |> Repo.insert()
+      Repo.transaction(fn ->
+        link =
+          submit
+          |> Submit.to_link()
+          |> Link.changeset()
+          |> Changeset.put_assoc(:author, author)
+          |> Changeset.put_assoc(:tags, tags)
+          |> Repo.insert!()
+
+        entry = %Entry{
+          id: link.id,
+          location: link.location,
+          title: link.title,
+          description: link.description,
+          tags: Enum.map(tags, fn tag -> tag.name end)
+        }
+
+        Elasticsearch.put_document!(Ptolemy.ElasticsearchCluster, entry, "entries")
+
+        link
+      end)
     else
       changeset = %{changeset | action: :submit}
       {:error, changeset}
@@ -121,9 +168,24 @@ defmodule Ptolemy.Index do
 
       tags = Submit.to_tags(submit) |> Taxonomy.upsert_tags()
 
-      Link.changeset(link, Map.from_struct(Submit.to_link(submit)))
-      |> Changeset.put_assoc(:tags, tags)
-      |> Repo.update()
+      Repo.transaction(fn ->
+        link =
+          Link.changeset(link, Map.from_struct(Submit.to_link(submit)))
+          |> Changeset.put_assoc(:tags, tags)
+          |> Repo.update!()
+
+        entry = %Entry{
+          id: link.id,
+          location: link.location,
+          title: link.title,
+          description: link.description,
+          tags: Enum.map(tags, fn tag -> tag.name end)
+        }
+
+        Elasticsearch.put_document!(Ptolemy.ElasticsearchCluster, entry, "entries")
+
+        link
+      end)
     else
       changeset = %{changeset | action: :submit}
       {:error, changeset}

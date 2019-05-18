@@ -13,6 +13,9 @@ addons:
     - postgresql-11
     - postgresql-client-11
 
+services:
+- elasticsearch
+
 env:
   global:
   - PGPORT=5433
@@ -25,6 +28,9 @@ elixir: '1.8'
 install:
   - sudo cp /etc/postgresql/10/main/pg_hba.conf /etc/postgresql/11/main/pg_hba.conf
   - sudo systemctl restart postgresql@11-main
+
+before_script:
+- sleep 10
 
 script:
 - mix local.hex --force

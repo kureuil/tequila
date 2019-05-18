@@ -17,12 +17,12 @@ msgid "Channel created successfully."
 msgstr "La chaîne a bien été créée."
 
 #, elixir-format
-#: lib/ptolemy_web/controllers/channel_controller.ex:63
+#: lib/ptolemy_web/controllers/channel_controller.ex:73
 msgid "Channel deleted successfully."
 msgstr "La chaîne a bien été supprimée."
 
 #, elixir-format
-#: lib/ptolemy_web/controllers/channel_controller.ex:48
+#: lib/ptolemy_web/controllers/channel_controller.ex:58
 msgid "Channel updated successfully."
 msgstr "La chaîne a bien été mise à jour."
 
@@ -96,6 +96,7 @@ msgstr "Nouvelle chaîne"
 
 #, elixir-format
 #: lib/ptolemy_web/templates/channel/show.html.eex:23
+#: lib/ptolemy_web/templates/search/results.html.eex:19
 msgid "%{count} comment"
 msgid_plural "%{count} comments"
 msgstr[0] "%{count} commentaire"
@@ -163,17 +164,32 @@ msgstr "Titre :"
 msgid "URL:"
 msgstr "URL :"
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/ptolemy_web/controllers/link_controller.ex:16
 msgid "Link created successfully."
 msgstr "Le lien a bien été créé."
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/ptolemy_web/controllers/link_controller.ex:55
 msgid "Link deleted successfully."
 msgstr "Le lien a bien été supprimé."
 
-#, elixir-format, fuzzy
+#, elixir-format
 #: lib/ptolemy_web/controllers/link_controller.ex:42
 msgid "Link updated successfully."
 msgstr "Le lien a bien été mis à jour."
+
+#, elixir-format
+#: query.html.eex:4
+msgid "Empty query"
+msgstr "Requête vide"
+
+#, elixir-format, fuzzy
+#: lib/ptolemy_web/templates/search/results.html.eex:4
+msgid "Search results"
+msgstr "Résultats de la recherche"
+
+#, elixir-format
+#: lib/ptolemy_web/controllers/channel_controller.ex:41
+msgid "You are not authorized to view this channel"
+msgstr "Vous n'êtes pas autorisé à consulter cette chaîne"
