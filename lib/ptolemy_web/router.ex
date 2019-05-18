@@ -20,5 +20,6 @@ defmodule PtolemyWeb.Router do
     get "/", PageController, :index
     resources "/channels", ChannelController
     resources "/links", LinkController, except: [:index]
+    resources "/search", SearchController, only: [:index]
   end
 end

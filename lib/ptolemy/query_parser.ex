@@ -198,5 +198,5 @@ defmodule Ptolemy.QueryParser do
     ])
   )
 
-  defparsec(:parse, parsec(:ws0) |> parsec(:union))
+  defparsec(:parse, parsec(:ws0) |> parsec(:union)) |> parsec(:ws0) |> eos()
 end

@@ -10,10 +10,10 @@
 <body>
   <div class="app-shell">
     <a class="app-shell__menu-toggle" href="#app-shell-search-container">☰&nbsp;<%= gettext "Menu" %></a>
-    <form class="app-shell__search" id="app-shell-search-container">
+    <form class="app-shell__search" id="app-shell-search-container" action="<%= Routes.search_path(@conn, :index) %>" method="GET">
       <div class="form-group">
         <label for="app-shell-search-input" class="form-group__label"><%= gettext "Search" %></label>
-        <input type="search" class="form-group__input" id="app-shell-search-input" name="q">
+        <input type="search" class="form-group__input" id="app-shell-search-input" name="q" value="<%= @conn.params["q"] %>">
       </div>
     </form>
     <nav class="app-shell__navigation sidenav">

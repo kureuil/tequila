@@ -44,7 +44,8 @@ defmodule Ptolemy.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:phoenix_active_link, "~> 0.2.1"},
-      {:nimble_parsec, "~> 0.5"}
+      {:nimble_parsec, "~> 0.5"},
+      {:elasticsearch, "~> 1.0"}
     ]
   end
 

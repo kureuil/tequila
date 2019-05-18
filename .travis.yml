@@ -13,6 +13,9 @@ addons:
     - postgresql-11
     - postgresql-client-11
 
+services:
+- elasticsearch
+
 env:
   global:
   - PGPORT=5433
@@ -22,15 +25,24 @@ env:
 
 elixir: '1.8'
 
+before_install:
+- curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.0.1-amd64.deb && sudo dpkg -i --force-confnew elasticsearch-7.0.1-amd64.deb && sudo chown -R elasticsearch:elasticsearch /etc/default/elasticsearch && sudo systemctl restart elasticsearch
+
 install:
-  - sudo cp /etc/postgresql/10/main/pg_hba.conf /etc/postgresql/11/main/pg_hba.conf
-  - sudo systemctl restart postgresql@11-main
+- sudo cp /etc/postgresql/10/main/pg_hba.conf /etc/postgresql/11/main/pg_hba.conf
+- sudo systemctl restart postgresql@11-main
+
+before_script:
+- sleep 10
 
 script:
 - mix local.hex --force
 - mix local.rebar --force
 - mix deps.get
 - mix format --check-formatted
+- MIX_ENV=test mix ecto.create
+- MIX_ENV=test mix ecto.migrate
+- MIX_ENV=test mix elasticsearch.build entries --cluster Ptolemy.ElasticsearchCluster
 - mix test
 
 notifications:
