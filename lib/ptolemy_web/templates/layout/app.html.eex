@@ -25,7 +25,9 @@
       <% end %>
       <hr>
       <p class="sidenav__header"><%= gettext "My account" %></p>
-      <a class="sidenav__link" href="/"><%= gettext "Log out" %></a>
+      <%= form_for @conn, Routes.session_path(@conn, :delete), fn _f ->  %>
+        <%= submit gettext("Log out"), class: "sidenav__link" %>
+      <% end %>
     </nav>
     <main role="main" class="app-shell__main">
       <div class="alert alert--info" role="alert"><%= get_flash(@conn, :info) %></div>

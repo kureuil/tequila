@@ -1,0 +1,21 @@
+<h1><%= gettext "Sign in" %></h1>
+
+<%= form_for @conn, Routes.session_path(@conn, :create), fn f -> %>
+  <div class="form-group">
+    <%= label f, :email, gettext("Email"), class: "form-group__label" %>
+    <div class="form-group__content">
+      <%= email_input f, :email, class: "form-group__input", required: true %>
+      <%= error_tag f, :email %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= label f, :password, gettext("Password"), class: "form-group__label" %>
+    <div class="form-group__content">
+      <%= password_input f, :password, class: "form-group__input", required: true %>
+      <%= error_tag f, :password %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= submit gettext("Sign in"), class: "btn btn--primary" %>
+  </div>
+<% end %>

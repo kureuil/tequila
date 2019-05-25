@@ -54,6 +54,8 @@ defmodule PtolemyWeb.LinkControllerTest do
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == Routes.link_path(conn, :show, id)
 
+      conn = recycle(conn)
+      conn = Plug.Conn.assign(conn, :current_user, owner)
       conn = get(conn, Routes.link_path(conn, :show, id))
       assert html_response(conn, 200) =~ @create_attrs[:title]
     end
@@ -83,6 +85,8 @@ defmodule PtolemyWeb.LinkControllerTest do
       conn = put(conn, Routes.link_path(conn, :update, link), submit: @update_attrs)
       assert redirected_to(conn) == Routes.link_path(conn, :show, link)
 
+      conn = recycle(conn)
+      conn = Plug.Conn.assign(conn, :current_user, owner)
       conn = get(conn, Routes.link_path(conn, :show, link))
       assert html_response(conn, 200) =~ @update_attrs[:title]
     end
@@ -103,6 +107,8 @@ defmodule PtolemyWeb.LinkControllerTest do
       assert redirected_to(conn) == Routes.channel_path(conn, :index)
 
       assert_error_sent 404, fn ->
+        conn = recycle(conn)
+        conn = Plug.Conn.assign(conn, :current_user, owner)
         get(conn, Routes.link_path(conn, :show, link))
       end
     end

@@ -18,3 +18,5 @@ config :ptolemy, Ptolemy.Repo,
   port: (System.get_env("TEST_DATABASE_PORT") || "5432") |> Integer.parse() |> elem(0),
   pool: Ecto.Adapters.SQL.Sandbox,
   migration_primary_key: [name: :id, type: :binary_id]
+
+config :pbkdf2_elixir, :rounds, 1

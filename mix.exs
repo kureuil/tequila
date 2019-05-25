@@ -33,7 +33,7 @@ defmodule Ptolemy.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.1"},
+      {:phoenix, "~> 1.4"},
       {:phoenix_pubsub, "~> 1.1"},
       {:phoenix_ecto, "~> 4.0"},
       {:ecto_sql, "~> 3.0"},
@@ -45,7 +45,8 @@ defmodule Ptolemy.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:phoenix_active_link, "~> 0.2.1"},
       {:nimble_parsec, "~> 0.5"},
-      {:elasticsearch, "~> 1.0"}
+      {:elasticsearch, "~> 1.0"},
+      {:pbkdf2_elixir, "~> 1.0"}
     ]
   end
 

@@ -52,9 +52,10 @@ defmodule PtolemyWeb.ChannelControllerTest do
   end
 
   describe "index" do
-    setup [:create_home_channel]
+    setup [:create_owner, :create_home_channel]
 
-    test "redirects to home channel", %{conn: conn, home_channel: home_channel} do
+    test "redirects to home channel", %{conn: conn, owner: owner, home_channel: home_channel} do
+      conn = Plug.Conn.assign(conn, :current_user, owner)
       conn = get(conn, Routes.channel_path(conn, :index))
       assert redirected_to(conn) =~ "/channels/#{home_channel.id}"
     end
@@ -80,6 +81,8 @@ defmodule PtolemyWeb.ChannelControllerTest do
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == Routes.channel_path(conn, :show, id)
 
+      conn = recycle(conn)
+      conn = Plug.Conn.assign(conn, :current_user, owner)
       conn = get(conn, Routes.channel_path(conn, :show, id))
       assert html_response(conn, 200) =~ @create_attrs[:name]
     end
@@ -125,6 +128,8 @@ defmodule PtolemyWeb.ChannelControllerTest do
       conn = put(conn, Routes.channel_path(conn, :update, channel), channel: @update_attrs)
       assert redirected_to(conn) == Routes.channel_path(conn, :show, channel)
 
+      conn = recycle(conn)
+      conn = Plug.Conn.assign(conn, :current_user, owner)
       conn = get(conn, Routes.channel_path(conn, :show, channel))
       assert html_response(conn, 200) =~ @update_attrs[:name]
     end
@@ -152,6 +157,8 @@ defmodule PtolemyWeb.ChannelControllerTest do
       assert redirected_to(conn) == Routes.channel_path(conn, :show, home_channel)
 
       assert_error_sent 404, fn ->
+        conn = recycle(conn)
+        conn = Plug.Conn.assign(conn, :current_user, owner)
         get(conn, Routes.channel_path(conn, :show, channel))
       end
     end
