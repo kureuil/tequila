@@ -20,12 +20,14 @@ defmodule PtolemyWeb.AuthPlugTest do
 
   def fixture_credential() do
     query = from(c in Credential, where: c.provider == "email" and c.uid == "louis@person.guru")
-    Repo.one(query) || Repo.insert!(%Credential{
-      provider: "email",
-      uid: "louis@person.guru",
-      token: "supersecretpassword",
-      user_id: fixture_owner().id
-    })
+
+    Repo.one(query) ||
+      Repo.insert!(%Credential{
+        provider: "email",
+        uid: "louis@person.guru",
+        token: "supersecretpassword",
+        user_id: fixture_owner().id
+      })
   end
 
   describe "Authentication Plug" do
@@ -37,27 +39,41 @@ defmodule PtolemyWeb.AuthPlugTest do
       assert redirected_to(conn) =~ Routes.session_path(conn, :new)
     end
 
-    test "Ignores session data if :current_user is already assigned", %{conn: conn, owner: owner, credential: credential} do
-      other_user = Repo.insert!(%Accounts.User{
-        email: "walouis@person.guru",
-      })
-      session = Repo.insert!(%Accounts.Session{
-        invalidated_at: nil,
-        user_id: owner.id,
-        credential_id: credential.id,
-      })
+    test "Ignores session data if :current_user is already assigned", %{
+      conn: conn,
+      owner: owner,
+      credential: credential
+    } do
+      other_user =
+        Repo.insert!(%Accounts.User{
+          email: "walouis@person.guru"
+        })
+
+      session =
+        Repo.insert!(%Accounts.Session{
+          invalidated_at: nil,
+          user_id: owner.id,
+          credential_id: credential.id
+        })
+
       conn = Plug.Test.init_test_session(conn, %{"user:session" => session.id})
       conn = Plug.Conn.assign(conn, :current_user, other_user)
       conn = AuthPlug.call(conn, %{})
       assert conn.assigns[:current_user] == other_user
     end
 
-    test "Assigns to the connection the user associated to the session", %{conn: conn, owner: owner, credential: credential} do
-      session = Repo.insert!(%Accounts.Session{
-        invalidated_at: nil,
-        user_id: owner.id,
-        credential_id: credential.id,
-      })
+    test "Assigns to the connection the user associated to the session", %{
+      conn: conn,
+      owner: owner,
+      credential: credential
+    } do
+      session =
+        Repo.insert!(%Accounts.Session{
+          invalidated_at: nil,
+          user_id: owner.id,
+          credential_id: credential.id
+        })
+
       conn = Plug.Test.init_test_session(conn, %{"user:session" => session.id})
       conn = AuthPlug.call(conn, %{})
       assert conn.assigns[:current_user] == owner
