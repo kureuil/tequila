@@ -13,6 +13,7 @@
 defmodule Seeds do
   alias Ptolemy.Repo
   alias Ptolemy.Accounts.User
+  alias Ptolemy.Accounts.Credential
   alias Ptolemy.Channels.Channel
   alias Ptolemy.Index.Link
   alias Ptolemy.Taxonomy.Tag
@@ -22,6 +23,18 @@ defmodule Seeds do
   def user_find_or_create(email) do
     query = from u in User, where: u.email == ^email
     Repo.one(query) || Repo.insert!(%User{email: email})
+  end
+
+  def email_credential_find_or_create(%User{email: email} = user, password) do
+    query = from c in Credential, where: c.provider == "email" and c.uid == ^email
+
+    Repo.one(query) ||
+      Repo.insert!(%Credential{
+        provider: "email",
+        uid: user.email,
+        token: Pbkdf2.hash_pwd_salt(password),
+        user_id: user.id
+      })
   end
 
   def channel_find_or_create(name, channel_query, %User{id: owner_id}, default \\ false) do
@@ -62,6 +75,7 @@ defmodule Seeds do
 end
 
 user = Seeds.user_find_or_create("louis@person.guru")
+Seeds.email_credential_find_or_create(user, "azertyuiop")
 
 channels = [
   %{

@@ -7,6 +7,8 @@ defmodule Ptolemy.Accounts do
   alias Ptolemy.Repo
 
   alias Ptolemy.Accounts.User
+  alias Ptolemy.Accounts.Credential
+  alias Ptolemy.Accounts.Session
 
   @doc """
   Returns the list of users.
@@ -116,5 +118,48 @@ defmodule Ptolemy.Accounts do
   """
   def change_user(%User{} = user) do
     User.changeset(user, %{})
+  end
+
+  def authenticate_by_email_and_pass(email, password) do
+    credential =
+      from(c in Credential, where: c.provider == "email" and c.uid == ^email) |> Repo.one()
+
+    cond do
+      credential && Pbkdf2.verify_pass(password, credential.token) ->
+        Repo.insert(%Session{
+          user_id: credential.user_id,
+          credential_id: credential.id
+        })
+
+      credential ->
+        {:error, :unauthorized}
+
+      true ->
+        Pbkdf2.no_user_verify()
+        {:error, :not_found}
+    end
+  end
+
+  def get_session!(id), do: Repo.get!(Session, id)
+
+  def get_valid_session!(id),
+    do: from(s in Session, where: is_nil(s.invalidated_at) and s.id == ^id) |> Repo.one!()
+
+  def touch_session!(id) do
+    changeset =
+      Session.changeset(get_session!(id), %{
+        updated_at: DateTime.utc_now()
+      })
+
+    Repo.update!(changeset)
+  end
+
+  def invalidate_session!(id) do
+    changeset =
+      Session.changeset(get_session!(id), %{
+        invalidated_at: DateTime.utc_now()
+      })
+
+    Repo.update!(changeset)
   end
 end

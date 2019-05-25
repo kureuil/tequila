@@ -22,6 +22,11 @@
   padding: .25rem .5rem;
   color: #444;
   text-decoration: none;
+  width: 100%;
+  border: none;
+  text-align: left;
+  background: transparent;
+  cursor: pointer;
 }
 
 .sidenav__link:hover,
