@@ -85,15 +85,15 @@ channels = [
   },
   %{
     name: "Linux",
-    query: "#linux !nsfw"
+    query: "#linux not #nsfw"
   },
   %{
     name: "Windows",
-    query: "#windows !nsfw"
+    query: "#windows not #nsfw"
   },
   %{
     name: "Distributed Systems",
-    query: "#distributedsystems !nsfw"
+    query: "#distributedsystems not #nsfw"
   },
   %{
     name: "NSFW",
