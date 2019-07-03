@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
 </head>
 <body>
-  <div class="app-shell">
+  <div class="app-shell app-shell--narrow">
     <main role="main" class="app-shell__main">
       <div class="alert alert--info" role="alert"><%= get_flash(@conn, :info) %></div>
       <div class="alert alert--danger" role="alert"><%= get_flash(@conn, :error) %></div>

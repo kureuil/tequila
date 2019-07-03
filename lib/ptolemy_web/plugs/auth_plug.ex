@@ -10,6 +10,9 @@ defmodule PtolemyWeb.AuthPlug do
     case conn.assigns[:current_user] do
       nil ->
         case get_session(conn, "user:session") do
+          nil ->
+            clear_session_and_redirect(conn)
+
           session_id ->
             try do
               session = Accounts.get_valid_session!(session_id)
@@ -31,12 +34,9 @@ defmodule PtolemyWeb.AuthPlug do
                   clear_session_and_redirect(conn)
               end
             rescue
-              error ->
+              _error ->
                 clear_session_and_redirect(conn)
             end
-
-          nil ->
-            clear_session_and_redirect(conn)
         end
 
       _ ->

@@ -1,0 +1,5 @@
+<h1><%= gettext "Reset your password" %></h1>
+
+<p><%= gettext "Check your email for a link to reset your password. If it doesn’t appear within a few minutes, check your spam folder." %></p>
+
+<%= link gettext("Return to sign in"), to: Routes.session_path(@conn, :new), class: "btn btn--primary" %>

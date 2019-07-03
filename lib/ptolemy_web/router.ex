@@ -22,6 +22,10 @@ defmodule PtolemyWeb.Router do
 
     get "/auth/sign-in", SessionController, :new
     post "/auth/sign-in", SessionController, :create
+    get "/reset-password", PasswordResetController, :new
+    post "/reset-password", PasswordResetController, :send
+    get "/reset-password/:token", PasswordResetController, :reset
+    post "/reset-password/:token", PasswordResetController, :apply
   end
 
   scope "/", PtolemyWeb do
@@ -32,5 +36,13 @@ defmodule PtolemyWeb.Router do
     resources "/links", LinkController, except: [:index]
     resources "/search", SearchController, only: [:index]
     post "/auth/sign-out", SessionController, :delete
+  end
+
+  if Mix.env() == :dev do
+    scope "/mailbox" do
+      pipe_through :browser
+
+      forward "/", Plug.Swoosh.MailboxPreview, base_path: "/mailbox"
+    end
   end
 end

@@ -9,6 +9,7 @@ defmodule Ptolemy.Accounts do
   alias Ptolemy.Accounts.User
   alias Ptolemy.Accounts.Credential
   alias Ptolemy.Accounts.Session
+  alias Ptolemy.Accounts.PasswordReset
 
   @doc """
   Returns the list of users.
@@ -46,14 +47,30 @@ defmodule Ptolemy.Accounts do
 
   ## Examples
 
-      iex> get_user!("louis@person.guru")
+      iex> get_user_by_email!("louis@person.guru")
       %User{}
 
-      iex> get_user!("walouis@person.guru")
+      iex> get_user_by_email!("walouis@person.guru")
       ** (Ecto.NoResultsError)
 
   """
   def get_user_by_email!(email), do: Repo.one!(from u in User, where: u.email == ^email)
+
+  @doc """
+  Gets a single user by its email.
+
+  Returns nil if the User does not exist.
+
+  ## Examples
+
+      iex> get_user_by_email("louis@person.guru")
+      %User{}
+
+      iex> get_user_by_email("walouis@person.guru")
+      nil
+
+  """
+  def get_user_by_email(email), do: Repo.one(from u in User, where: u.email == ^email)
 
   @doc """
   Creates a user.
@@ -140,6 +157,49 @@ defmodule Ptolemy.Accounts do
     end
   end
 
+  def generate_password_reset_token(email) do
+    credential =
+      from(c in Credential, where: c.provider == "email" and c.uid == ^email) |> Repo.one()
+
+    case credential do
+      nil ->
+        {:error, :not_found}
+
+      _ ->
+        token = :crypto.strong_rand_bytes(32) |> Base.encode64() |> binary_part(0, 32)
+
+        changeset =
+          Credential.changeset(credential, %{
+            recovery_token: token,
+            recovery_expires_at: DateTime.utc_now() |> DateTime.add(3 * 60 * 60)
+          })
+
+        case Repo.update(changeset) do
+          {:ok, _} -> {:ok, token}
+          {:error, err} -> {:error, err}
+        end
+    end
+  end
+
+  def get_user_by_recovery_token(token) do
+    credential =
+      from(c in Credential, where: c.provider == "email" and c.recovery_token == ^token)
+      |> Repo.one()
+
+    now = DateTime.utc_now()
+
+    case credential do
+      nil ->
+        nil
+
+      _ ->
+        case DateTime.compare(now, credential.recovery_expires_at) do
+          :lt -> get_user!(credential.user_id)
+          _ -> nil
+        end
+    end
+  end
+
   def get_session!(id), do: Repo.get!(Session, id)
 
   def get_valid_session!(id),
@@ -161,5 +221,37 @@ defmodule Ptolemy.Accounts do
       })
 
     Repo.update!(changeset)
+  end
+
+  def change_password(%PasswordReset{} = password_reset) do
+    PasswordReset.changeset(password_reset)
+  end
+
+  def update_password(%User{id: user_id}, password_params) do
+    changeset = PasswordReset.changeset(%PasswordReset{}, password_params)
+
+    case changeset do
+      %{valid?: true, changes: %{password: password}} ->
+        credential =
+          from(c in Credential, where: c.provider == "email" and c.user_id == ^user_id)
+          |> Repo.one()
+
+        case credential do
+          nil ->
+            {:error, :not_found}
+
+          _ ->
+            credential
+            |> Credential.changeset(%{
+              token: Pbkdf2.hash_pwd_salt(password),
+              recovery_token: nil,
+              recovery_expires_at: nil
+            })
+            |> Repo.update()
+        end
+
+      %{valid?: false} ->
+        {:error, changeset}
+    end
   end
 end

@@ -74,3 +74,5 @@ config :ptolemy, Ptolemy.Repo,
   hostname: "localhost",
   pool_size: 10,
   migration_primary_key: [name: :id, type: :binary_id]
+
+config :ptolemy, Ptolemy.Mailer, adapter: Swoosh.Adapters.Local

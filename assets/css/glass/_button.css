@@ -10,6 +10,7 @@
   -moz-user-select: none;
   -khtml-user-select: none;
   -webkit-user-select: none;
+  text-align: center;
   /*
     Introduced in IE 10.
     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
@@ -44,4 +45,5 @@
 
 .btn--sidebar {
   margin-bottom: .5rem;
+  text-align: left;
 }

@@ -38,8 +38,17 @@
     flex-direction: row;
   }
 
+  .form--vertical .form-group {
+    flex-direction: column;
+  }
+
   .form-group__label {
     text-align: right;
     margin-bottom: 0;
+  }
+
+  .form--vertical .form-group__label {
+    text-align: left;
+    margin-bottom: .5rem;
   }
 }
