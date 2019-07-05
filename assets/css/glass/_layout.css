@@ -8,6 +8,10 @@
   padding: .5rem;
 }
 
+  .app-shell--narrow {
+    max-width: 640px;
+  }
+
 .app-shell__menu-toggle {
   text-decoration: none;
   color: #444;

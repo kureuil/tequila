@@ -46,7 +46,9 @@ defmodule Ptolemy.MixProject do
       {:phoenix_active_link, "~> 0.2.1"},
       {:nimble_parsec, "~> 0.5"},
       {:elasticsearch, "~> 1.0"},
-      {:pbkdf2_elixir, "~> 1.0"}
+      {:pbkdf2_elixir, "~> 1.0"},
+      {:swoosh, "~> 0.23"},
+      {:phoenix_swoosh, "~> 0.2"}
     ]
   end
 

@@ -205,6 +205,7 @@ msgid "Invalid email/password combination"
 msgstr "L'adresse e-mail et le mot de passe ne correspondent pas."
 
 #, elixir-format
+#: lib/ptolemy_web/templates/password_reset/reset.html.eex:5
 #: lib/ptolemy_web/templates/session/new.html.eex:12
 msgid "Password"
 msgstr "Mot de passe"
@@ -219,3 +220,86 @@ msgstr "Connexion"
 #: lib/ptolemy_web/controllers/session_controller.ex:17
 msgid "Welcome back !"
 msgstr "Bienvenue !"
+
+#, elixir-format
+#: lib/ptolemy_web/controllers/password_reset_controller.ex:22
+msgid "An email has been sent to %{email}, please check your inbox."
+msgstr "Un email a été envoyé à %{email}, vérifiez votre boîte de réception."
+
+#, elixir-format
+#: lib/ptolemy_web/emails/account_email.ex:24
+msgid "But don’t worry! You can use the following link to reset your password:"
+msgstr "Mais pas d'inquiétudes ! Vous pouvez utilisez le lien suivant pour réinitialiser votre mot de passe :"
+
+#, elixir-format
+#: lib/ptolemy_web/templates/password_reset/reset.html.eex:19
+msgid "Change password"
+msgstr "Mettre à jour le mot de passe"
+
+#, elixir-format
+#: lib/ptolemy_web/templates/password_reset/reset.html.eex:1
+msgid "Change password for %{email}"
+msgstr "Mise à jour du mot de passe pour %{email}"
+
+#, elixir-format
+#: lib/ptolemy_web/templates/password_reset/send.html.eex:3
+msgid "Check your email for a link to reset your password. If it doesn’t appear within a few minutes, check your spam folder."
+msgstr "Vérifiez vos emails, un lien pour réinitialiser votre mot de passe vous a été envoyé. Si il n'arrive pas d'ici quelques minutes, vérifiez votre dossier de pourriels."
+
+#, elixir-format
+#: lib/ptolemy_web/templates/password_reset/reset.html.eex:12
+msgid "Confirm password"
+msgstr "Confirmez le mot de passe"
+
+#, elixir-format
+#: lib/ptolemy_web/templates/password_reset/new.html.eex:5
+msgid "Enter your email address and we will send you a link to reset your password"
+msgstr "Entrez votre adresse email et nous vous enverrons un lien pour réinitialiser votre mot de passe."
+
+#, elixir-format
+#: lib/ptolemy_web/emails/account_email.ex:26
+msgid "If you don’t use this link within 3 hours, it will expire. To get a new password reset link, visit %{url}"
+msgstr "si vous n'utilisez pas ce lien d'ici 3 heures, il expirera. Pour obtenir un nouveau lien, rendez vous sur %{url}"
+
+#, elixir-format
+#: lib/ptolemy_web/controllers/password_reset_controller.ex:40
+#: lib/ptolemy_web/controllers/password_reset_controller.ex:61
+msgid "It looks like you clicked on an invalid password reset link. Please try again."
+msgstr "Il semblerait que vous ayez cliqué sur un lien de réinitialisation de mot de passe invalide. Merci de bien vouloir réessayer."
+
+#, elixir-format
+#: lib/ptolemy_web/controllers/password_reset_controller.ex:73
+msgid "Password updated successfully for %{user}"
+msgstr "Le mot de passe a bien été mis à jour pour %{user}"
+
+#, elixir-format
+#: lib/ptolemy_web/templates/password_reset/new.html.eex:1
+#: lib/ptolemy_web/templates/password_reset/send.html.eex:1
+#: lib/ptolemy_web/templates/session/new.html.eex:25
+msgid "Reset your password"
+msgstr "Réinitialisez votre mot de passe"
+
+#, elixir-format
+#: lib/ptolemy_web/templates/password_reset/send.html.eex:5
+msgid "Return to sign in"
+msgstr "Retour à l'écran de connexion"
+
+#, elixir-format
+#: lib/ptolemy_web/templates/password_reset/new.html.eex:12
+msgid "Send password reset email"
+msgstr "Envoyer l'email de réinitialisation de mot de passe"
+
+#, elixir-format
+#: lib/ptolemy_web/emails/account_email.ex:23
+msgid "We heard that you lost your Ptolemy password. Sorry about that!"
+msgstr "Il semblerait que vous ayez perdu votre mot de passe Ptolemy."
+
+#, elixir-format
+#: lib/ptolemy_web/emails/account_email.ex:19
+msgid "[Ptolemy] Please reset your password"
+msgstr "[Ptolemy] Réinitialisation de votre mot de passe"
+
+#, elixir-format
+#: lib/ptolemy/accounts/password_reset.ex:17
+msgid "does not match password"
+msgstr "ne correspond pas au mot de passe"

@@ -9,6 +9,8 @@ defmodule Ptolemy.Accounts.Credential do
     field :token, :string
     field :uid, :string
     field :user_id, :binary_id
+    field :recovery_token, :string
+    field :recovery_expires_at, :utc_datetime
 
     timestamps()
   end
@@ -16,7 +18,8 @@ defmodule Ptolemy.Accounts.Credential do
   @doc false
   def changeset(credential, attrs) do
     credential
-    |> cast(attrs, [:uid, :token, :provider])
+    |> cast(attrs, [:uid, :token, :provider, :recovery_token, :recovery_expires_at])
     |> validate_required([:uid, :token, :provider])
+    |> validate_length(:recovery_token, equal_to: 32)
   end
 end

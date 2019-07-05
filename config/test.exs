@@ -20,3 +20,5 @@ config :ptolemy, Ptolemy.Repo,
   migration_primary_key: [name: :id, type: :binary_id]
 
 config :pbkdf2_elixir, :rounds, 1
+
+config :ptolemy, Ptolemy.Mailer, adapter: Swoosh.Adapters.Local

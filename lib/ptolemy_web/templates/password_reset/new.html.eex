@@ -1,0 +1,14 @@
+<h1><%= gettext "Reset your password" %></h1>
+
+<%= form_for @conn, Routes.password_reset_path(@conn, :send), [class: "form--vertical"], fn f -> %>
+  <div class="form-group">
+    <%= label f, :email, gettext("Enter your email address and we will send you a link to reset your password"), class: "form-group__label" %>
+    <div class="form-group__content">
+      <%= email_input f, :email, class: "form-group__input", required: true %>
+      <%= error_tag f, :email %>
+    </div>
+  </div>
+  <div class="form-actions">
+    <%= submit gettext("Send password reset email"), class: "btn btn--primary" %>
+  </div>
+<% end %>

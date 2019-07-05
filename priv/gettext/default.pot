@@ -204,6 +204,7 @@ msgid "Invalid email/password combination"
 msgstr ""
 
 #, elixir-format
+#: lib/ptolemy_web/templates/password_reset/reset.html.eex:5
 #: lib/ptolemy_web/templates/session/new.html.eex:12
 msgid "Password"
 msgstr ""
@@ -217,4 +218,87 @@ msgstr ""
 #, elixir-format
 #: lib/ptolemy_web/controllers/session_controller.ex:17
 msgid "Welcome back !"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/controllers/password_reset_controller.ex:22
+msgid "An email has been sent to %{email}, please check your inbox."
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/emails/account_email.ex:24
+msgid "But don’t worry! You can use the following link to reset your password:"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/password_reset/reset.html.eex:19
+msgid "Change password"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/password_reset/reset.html.eex:1
+msgid "Change password for %{email}"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/password_reset/send.html.eex:3
+msgid "Check your email for a link to reset your password. If it doesn’t appear within a few minutes, check your spam folder."
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/password_reset/reset.html.eex:12
+msgid "Confirm password"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/password_reset/new.html.eex:5
+msgid "Enter your email address and we will send you a link to reset your password"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/emails/account_email.ex:26
+msgid "If you don’t use this link within 3 hours, it will expire. To get a new password reset link, visit %{url}"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/controllers/password_reset_controller.ex:40
+#: lib/ptolemy_web/controllers/password_reset_controller.ex:61
+msgid "It looks like you clicked on an invalid password reset link. Please try again."
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/controllers/password_reset_controller.ex:73
+msgid "Password updated successfully for %{user}"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/password_reset/new.html.eex:1
+#: lib/ptolemy_web/templates/password_reset/send.html.eex:1
+#: lib/ptolemy_web/templates/session/new.html.eex:25
+msgid "Reset your password"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/password_reset/send.html.eex:5
+msgid "Return to sign in"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/templates/password_reset/new.html.eex:12
+msgid "Send password reset email"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/emails/account_email.ex:23
+msgid "We heard that you lost your Ptolemy password. Sorry about that!"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy_web/emails/account_email.ex:19
+msgid "[Ptolemy] Please reset your password"
+msgstr ""
+
+#, elixir-format
+#: lib/ptolemy/accounts/password_reset.ex:17
+msgid "does not match password"
 msgstr ""
