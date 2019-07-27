@@ -25,6 +25,7 @@
       <% end %>
       <hr>
       <p class="sidenav__header"><%= gettext "My account" %></p>
+      <%= active_link @conn, "Invitations", to: Routes.invite_path(@conn, :index), class: "sidenav__link" %>
       <%= form_for @conn, Routes.session_path(@conn, :delete), fn _f ->  %>
         <%= submit gettext("Log out"), class: "sidenav__link" %>
       <% end %>

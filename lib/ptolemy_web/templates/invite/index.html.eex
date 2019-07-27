@@ -1,0 +1,15 @@
+<section class="box">
+  <header class="box__header">
+    <h1 class="box__title">
+      <%= gettext "Invites" %>
+    </h1>
+    <div class="box__actions">
+      <%= link gettext("New"), to: Routes.invite_path(@conn, :new), class: "btn btn--primary" %>
+    </div>
+  </header>
+  <div class="box__body">
+    <ul class="entries-list">
+      
+    </ul>
+  </div>
+</section>

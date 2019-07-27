@@ -35,6 +35,7 @@ defmodule PtolemyWeb.Router do
     resources "/channels", ChannelController
     resources "/links", LinkController, except: [:index]
     resources "/search", SearchController, only: [:index]
+    resources "/invites", InviteController, only: [:index, :new, :create]
     post "/auth/sign-out", SessionController, :delete
   end
 
