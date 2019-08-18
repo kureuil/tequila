@@ -6,6 +6,7 @@ defmodule Ptolemy.Accounts.User do
   @foreign_key_type :binary_id
   schema "users" do
     field :email, :string, null: false
+    belongs_to :invited_by, Ptolemy.Accounts.User
 
     timestamps()
   end
@@ -15,5 +16,6 @@ defmodule Ptolemy.Accounts.User do
     user
     |> cast(attrs, [:email])
     |> validate_required([:email])
+    # |> validate_format(:email, ~r/@/)
   end
 end

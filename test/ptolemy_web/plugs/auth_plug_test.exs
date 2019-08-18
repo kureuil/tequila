@@ -76,7 +76,7 @@ defmodule PtolemyWeb.AuthPlugTest do
 
       conn = Plug.Test.init_test_session(conn, %{"user:session" => session.id})
       conn = AuthPlug.call(conn, %{})
-      assert conn.assigns[:current_user] == owner
+      assert conn.assigns[:current_user].id == owner.id
     end
   end
 
