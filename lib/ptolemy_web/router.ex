@@ -26,6 +26,8 @@ defmodule PtolemyWeb.Router do
     post "/reset-password", PasswordResetController, :send
     get "/reset-password/:token", PasswordResetController, :reset
     post "/reset-password/:token", PasswordResetController, :apply
+    get "/redeem/:invite", InviteController, :redeem
+    post "/redeem/:invite", InviteController, :register
   end
 
   scope "/", PtolemyWeb do

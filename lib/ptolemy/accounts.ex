@@ -4,6 +4,7 @@ defmodule Ptolemy.Accounts do
   """
 
   import Ecto.Query, warn: false
+  alias Ecto.Changeset
   alias Ptolemy.Repo
 
   alias Ptolemy.Accounts.User
@@ -87,6 +88,13 @@ defmodule Ptolemy.Accounts do
   def create_user(attrs \\ %{}) do
     %User{}
     |> User.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def create_credential(attrs \\ %{}, %User{} = user) do
+    %Credential{}
+    |> Credential.changeset(attrs)
+    |> Changeset.put_assoc(:user, user)
     |> Repo.insert()
   end
 

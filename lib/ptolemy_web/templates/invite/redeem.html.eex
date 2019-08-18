@@ -1,6 +1,13 @@
-<h1><%= gettext("Change password for %{email}", email: @user.email) %></h1>
+<h1><%= gettext "Redeem invite" %></h1>
 
 <%= form_for @changeset, Routes.invite_path(@conn, :register, @invite.id), [class: "form--vertical"], fn f -> %>
+  <div class="form-group">
+    <%= label f, :email, gettext("Email"), class: "form-group__label" %>
+    <div class="form-group__content">
+      <%= email_input f, :email, class: "form-group__input", required: true %>
+      <%= error_tag f, :email %>
+    </div>
+  </div>
   <div class="form-group">
     <%= label f, :password, gettext("Password"), class: "form-group__label" %>
     <div class="form-group__content">
@@ -16,6 +23,6 @@
     </div>
   </div>
   <div class="form-actions">
-    <%= submit gettext("Change password"), class: "btn btn--primary" %>
+    <%= submit gettext("Sign up"), class: "btn btn--primary" %>
   </div>
 <% end %>

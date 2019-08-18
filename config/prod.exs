@@ -17,6 +17,11 @@ config :ptolemy, PtolemyWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :ptolemy, Ptolemy.Mailer,
+  adapter: Swoosh.Adapters.Mailgun,
+  api_key: "7d1c6f09cb0bb64986021f9043e2747e-52b0ea77-db94515b",
+  domain: "https://api.eu.mailgun.net/v3/mg.particular.systems"
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key

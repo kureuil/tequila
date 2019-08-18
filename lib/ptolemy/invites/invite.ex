@@ -9,7 +9,6 @@ defmodule Ptolemy.Invites.Invite do
   schema "invites" do
     belongs_to :owner, User
     field :invitee, :string, null: false
-    field :redeemed_at, :utc_datetime
 
     timestamps()
   end
@@ -17,8 +16,8 @@ defmodule Ptolemy.Invites.Invite do
   @doc false
   def changeset(invite, attrs) do
     invite
-    |> cast(attrs, [:owner_id, :invitee, :redeemed_at])
-    |> validate_required([:owner_id, :invitee])
+    |> cast(attrs, [:invitee])
+    |> validate_required([:invitee])
     |> validate_format(:invitee, ~r/@/)
     |> unique_constraint(:invitee, name: :no_concurrent_invites_per_email_and_owner)
   end
