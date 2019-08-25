@@ -20,7 +20,7 @@ defmodule Ptolemy.AccountsTest do
     end
 
     test "list_users/0 returns all users" do
-      user = user_fixture()
+      _ = user_fixture()
       assert length(Accounts.list_users()) == 1
     end
 
