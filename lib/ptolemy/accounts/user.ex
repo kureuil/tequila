@@ -16,6 +16,7 @@ defmodule Ptolemy.Accounts.User do
     user
     |> cast(attrs, [:email])
     |> validate_required([:email])
+
     # |> validate_format(:email, ~r/@/)
   end
 end

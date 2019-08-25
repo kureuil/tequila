@@ -3,7 +3,8 @@ defmodule Ptolemy.Repo.Migrations.AddInvitesTable do
 
   def change do
     alter table(:users) do
-      add :invited_by_id, references(:users, on_delete: :nilify_all, type: :binary_id), default: nil
+      add :invited_by_id, references(:users, on_delete: :nilify_all, type: :binary_id),
+        default: nil
     end
 
     create table(:invites, primary_key: false) do
