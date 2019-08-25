@@ -2,13 +2,15 @@ defmodule Ptolemy.Accounts.Credential do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Ptolemy.Accounts.User
+
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "credentials" do
+    belongs_to :user, User
     field :provider, :string
     field :token, :string
     field :uid, :string
-    field :user_id, :binary_id
     field :recovery_token, :string
     field :recovery_expires_at, :utc_datetime
 

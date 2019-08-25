@@ -1,0 +1,25 @@
+<section class="box">
+  <header class="box__header">
+    <h1 class="box__title">
+      <%= gettext "Pending invites" %>
+    </h1>
+    <div class="box__actions">
+      <%= link gettext("New"), to: Routes.invite_path(@conn, :new), class: "btn btn--primary" %>
+    </div>
+  </header>
+  <div class="box__body">
+    <ul class="entries-list">
+      <%= for entry <- @invites do %>
+        <li class="entry">
+          <div class="entry__title">
+            <%= entry.invitee %>
+            <span class="entry__location">(<%= gettext("Sent on %{instant}", instant: entry.inserted_at) %>)<span>
+          </div>
+          <nav class="entry__actions">
+            <%= link gettext("Delete"), to: "#" %>
+          </nav>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</section>

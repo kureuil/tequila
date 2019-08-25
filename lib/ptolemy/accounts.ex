@@ -4,6 +4,7 @@ defmodule Ptolemy.Accounts do
   """
 
   import Ecto.Query, warn: false
+  alias Ecto.Changeset
   alias Ptolemy.Repo
 
   alias Ptolemy.Accounts.User
@@ -77,16 +78,24 @@ defmodule Ptolemy.Accounts do
 
   ## Examples
 
-      iex> create_user(%{field: value})
+      iex> create_user(%{email: "louis@person.guru"})
       {:ok, %User{}}
 
-      iex> create_user(%{field: bad_value})
+      iex> create_user(%{field: "louis.person.guru"})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_user(attrs \\ %{}) do
+  def create_user(attrs \\ %{}, invited_by \\ nil) do
     %User{}
     |> User.changeset(attrs)
+    |> Changeset.put_assoc(:invited_by, invited_by)
+    |> Repo.insert()
+  end
+
+  def create_credential(attrs \\ %{}, %User{} = user) do
+    %Credential{}
+    |> Credential.changeset(attrs)
+    |> Changeset.put_assoc(:user, user)
     |> Repo.insert()
   end
 

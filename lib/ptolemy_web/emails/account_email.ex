@@ -6,11 +6,13 @@ defmodule PtolemyWeb.AccountEmail do
   alias Ptolemy.Accounts.User
 
   def password_recovery(user = %User{}, token) do
+    url_config = PtolemyWeb.Endpoint.config(:url)
+
     base_uri = %URI{
-      scheme: PtolemyWeb.Endpoint.config(:url, :scheme),
-      host: PtolemyWeb.Endpoint.config(:url, :host),
-      port: PtolemyWeb.Endpoint.config(:url, :port),
-      path: PtolemyWeb.Endpoint.config(:url, :path)
+      scheme: Keyword.get(url_config, :scheme, "http"),
+      host: Keyword.get(url_config, :host),
+      port: Keyword.get(url_config, :port),
+      path: Keyword.get(url_config, :path)
     }
 
     new()

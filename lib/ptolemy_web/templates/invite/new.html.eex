@@ -1,0 +1,28 @@
+<section class="box">
+  <header class="box__header">
+    <h1 class="box__title">
+      <%= gettext "New Invite" %>
+    </h1>
+  </header>
+  <div class="box__body">
+    <%= form_for @changeset, Routes.invite_path(@conn, :create), fn f -> %>
+      <%= if @changeset.action do %>
+        <div class="alert alert--danger">
+          <p><%= gettext "Oops, something went wrong! Please check the errors below." %></p>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= label f, :invitee, gettext("Email"), class: "form-group__label" %>
+        <div class="form-group__content">
+          <%= email_input f, :invitee, class: "form-group__input" %>
+          <%= error_tag f, :invitee %>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <%= submit gettext("Send"), class: "btn btn--primary" %>
+      </div>
+    <% end %>
+  </div>
+</section>

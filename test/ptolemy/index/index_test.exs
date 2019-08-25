@@ -37,7 +37,7 @@ defmodule Ptolemy.IndexTest do
 
     test "get_link!/1 returns the link with given id" do
       link = link_fixture()
-      assert Index.get_link!(link.id) == link
+      assert Index.get_link!(link.id).id == link.id
     end
 
     test "create_link/1 with valid data creates a link" do
@@ -62,7 +62,7 @@ defmodule Ptolemy.IndexTest do
     test "update_link/2 with invalid data returns error changeset" do
       link = link_fixture()
       assert {:error, %Ecto.Changeset{}} = Index.update_submit(link, @invalid_attrs)
-      assert link == Index.get_link!(link.id)
+      assert link.title == Index.get_link!(link.id).title
     end
 
     test "delete_link/1 deletes the link" do
