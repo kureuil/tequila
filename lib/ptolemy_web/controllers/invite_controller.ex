@@ -77,7 +77,7 @@ defmodule PtolemyWeb.InviteController do
             |> put_layout("unauthenticated.html")
             |> render("redeem.html", invite: invite, changeset: changeset)
 
-          {:ok, user} ->
+          {:ok, _user} ->
             conn
             |> redirect(to: Routes.session_path(conn, :new))
         end

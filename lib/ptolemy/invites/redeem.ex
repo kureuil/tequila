@@ -3,9 +3,6 @@ defmodule Ptolemy.Invites.Redeem do
   import Ecto.Changeset
   import PtolemyWeb.Gettext
 
-  alias Ptolemy.Accounts.Credential
-  alias Ptolemy.Accounts.User
-
   embedded_schema do
     field :email, :string
     field :password, :string
