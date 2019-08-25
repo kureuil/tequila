@@ -27,18 +27,23 @@ defmodule PtolemyWeb.InviteControllerTest do
 
   describe "redeem" do
     test "the redeem form pre-fills the email field" do
+      # TODO
     end
 
     test "redeeming an invite deletes it" do
+      # TODO
     end
 
     test "an invite older than 5 days can not be redeemed" do
+      # TODO
     end
 
     test "the password filled in the form must match to redeem the invite" do
+      # TODO
     end
 
     test "it is not possible to create an account with an already used email" do
+      # TODO
     end
   end
 
