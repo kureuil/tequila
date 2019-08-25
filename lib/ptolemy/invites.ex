@@ -58,13 +58,12 @@ defmodule Ptolemy.Invites do
     case Redeem.changeset(%Redeem{}, redeem_params) do
       %{valid?: true} = changeset ->
         redeem = Changeset.apply_changes(changeset)
-
         case Repo.transaction(fn ->
-               {:ok, user} = Accounts.create_user(Redeem.to_user(redeem))
-               {:ok, _} = Accounts.create_credential(Redeem.to_credential(redeem), user)
-               delete_invite!(invite)
-               user
-             end) do
+          {:ok, user} = Accounts.create_user(Redeem.to_user(redeem), invite.owner)
+          {:ok, _} = Accounts.create_credential(Redeem.to_credential(redeem), user)
+          delete_invite!(invite)
+          user
+        end) do
           {:ok, user} ->
             {:ok, user}
 

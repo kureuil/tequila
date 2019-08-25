@@ -78,16 +78,17 @@ defmodule Ptolemy.Accounts do
 
   ## Examples
 
-      iex> create_user(%{field: value})
+      iex> create_user(%{email: "louis@person.guru"})
       {:ok, %User{}}
 
-      iex> create_user(%{field: bad_value})
+      iex> create_user(%{field: "louis.person.guru"})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_user(attrs \\ %{}) do
+  def create_user(attrs \\ %{}, invited_by \\ nil) do
     %User{}
     |> User.changeset(attrs)
+    |> Changeset.put_assoc(:invited_by, invited_by)
     |> Repo.insert()
   end
 

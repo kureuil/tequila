@@ -19,7 +19,7 @@ config :logger, level: :info
 
 config :ptolemy, Ptolemy.Mailer,
   adapter: Swoosh.Adapters.Mailgun,
-  api_key: "7d1c6f09cb0bb64986021f9043e2747e-52b0ea77-db94515b",
+  api_key: nil, # TODO: fetch api from an evironment variable ?
   domain: "https://api.eu.mailgun.net/v3/mg.particular.systems"
 
 # ## SSL Support
