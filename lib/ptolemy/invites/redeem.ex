@@ -22,7 +22,7 @@ defmodule Ptolemy.Invites.Redeem do
     %{
       provider: "email",
       uid: email,
-      token: Pbkdf2.hash_pwd_salt(password),
+      token: Pbkdf2.hash_pwd_salt(password)
     }
   end
 

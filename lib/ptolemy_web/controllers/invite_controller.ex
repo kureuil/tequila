@@ -58,7 +58,7 @@ defmodule PtolemyWeb.InviteController do
     end
   end
 
-  def register(conn, %{ "invite" => invite_id, "redeem" => redeem_params }) do
+  def register(conn, %{"invite" => invite_id, "redeem" => redeem_params}) do
     case Invites.find_for_redeem(invite_id) do
       nil ->
         conn
