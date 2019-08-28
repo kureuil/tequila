@@ -3,7 +3,7 @@ defmodule Mix.Tasks.SearchIndex do
 
   @shortdoc "Create or update the search index in Redis"
   def run(_) do
-    {:ok, _} = Redix.start_link("redis://localhost:6379/0", name: :redix, sync_connect: true)
+    Mix.Task.run("app.start", [])
 
     last_version = last_version()
 

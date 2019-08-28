@@ -37,7 +37,9 @@ jobs:
       env:
         MIX_ENV: test
         TEST_DATABASE_HOST: "postgres"
+        REDIS_URL: "redis://redis:6379/0"
     - name: Run Tests
       run: mix test
       env:
         TEST_DATABASE_HOST: "postgres"
+        REDIS_URL: "redis://redis:6379/0"

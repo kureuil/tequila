@@ -14,7 +14,7 @@ defmodule Ptolemy.Application do
       PtolemyWeb.Endpoint,
       # Starts a worker by calling: Ptolemy.Worker.start_link(arg)
       # {Ptolemy.Worker, arg},
-      {Redix, {"redis://localhost:6379/0", [name: :redix]}}
+      {Redix, {Application.get_env(:ptolemy, :redis_url), [name: :redix, sync_connect: true]}}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
