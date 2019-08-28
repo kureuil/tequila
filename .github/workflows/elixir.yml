@@ -7,6 +7,20 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: "postgres:11-alpine"
+        ports:
+        - 5423:5432
+        env:
+          POSTGRES_USER: "ptolemy"
+          POSTGRES_PASSWORD: "imnotmeantforproduction"
+          POSTGRES_DB: "ptolemy_dev"
+      redis:
+        image: "redislabs/redisearch:latest"
+        ports:
+        - 6379:6379
+
     container:
       image: elixir:1.9.1-slim
 
@@ -14,8 +28,6 @@ jobs:
     - uses: actions/checkout@v1
     - name: Install Dependencies
       run: |
-        docker run -dp 6379:6379 redislabs/redisearch:latest
-        docker run -dp 5432:5432 -e POSTGRES_USER="ptolemy" -e POSTGRES_PASSWORD="imnotmeantforproduction" -e POSTGRES_DB="ptolemy_dev" postgres:11-alpine
         mix local.rebar --force
         mix local.hex --force
         MIX_ENV=test mix deps.get
