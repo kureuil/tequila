@@ -1,0 +1,62 @@
+name: Elixir CI
+
+on: push
+
+jobs:
+  lint:
+
+    runs-on: ubuntu-latest
+
+    container:
+      image: elixir:1.9.1-slim
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Dependencies
+      run: |
+        mix local.rebar --force
+        mix local.hex --force
+        mix deps.get
+    - name: mix format
+      run: mix format --check-formatted
+
+  test:
+
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: "postgres:11-alpine"
+        ports:
+        - 5423:5432
+        env:
+          POSTGRES_USER: "ptolemy"
+          POSTGRES_PASSWORD: "imnotmeantforproduction"
+          POSTGRES_DB: "ptolemy_dev"
+      redis:
+        image: "redislabs/redisearch:latest"
+        ports:
+        - 6379:6379
+
+    container:
+      image: elixir:1.9.1-slim
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Dependencies
+      run: |
+        mix local.rebar --force
+        mix local.hex --force
+        mix deps.get
+        mix ecto.create
+        mix ecto.migrate
+        mix search_index
+      env:
+        MIX_ENV: test
+        TEST_DATABASE_HOST: "postgres"
+        REDIS_URL: "redis://redis:6379/0"
+    - name: Run Tests
+      run: mix test
+      env:
+        TEST_DATABASE_HOST: "postgres"
+        REDIS_URL: "redis://redis:6379/0"
