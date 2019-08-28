@@ -36,6 +36,7 @@ jobs:
         mix search_index
       env:
         MIX_ENV: test
+        TEST_DATABASE_HOST: "postgres"
     - name: Run Tests
       run: mix test
       env:
