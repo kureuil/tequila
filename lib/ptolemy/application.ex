@@ -14,8 +14,7 @@ defmodule Ptolemy.Application do
       PtolemyWeb.Endpoint,
       # Starts a worker by calling: Ptolemy.Worker.start_link(arg)
       # {Ptolemy.Worker, arg},
-      # Start the Elasticsearch client
-      Ptolemy.ElasticsearchCluster
+      {Redix, {"redis://localhost:6379/0", [name: :redix]}}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

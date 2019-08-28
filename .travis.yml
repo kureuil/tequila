@@ -25,14 +25,12 @@ env:
 
 elixir: '1.8'
 
-before_install:
-- curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.0.1-amd64.deb && sudo dpkg -i --force-confnew elasticsearch-7.0.1-amd64.deb && sudo chown -R elasticsearch:elasticsearch /etc/default/elasticsearch && sudo systemctl restart elasticsearch
-
 install:
 - sudo cp /etc/postgresql/10/main/pg_hba.conf /etc/postgresql/11/main/pg_hba.conf
 - sudo systemctl restart postgresql@11-main
 
 before_script:
+- docker run -dp 6379:6379 redislabs/redisearch:latest
 - sleep 10
 
 script:
@@ -42,7 +40,7 @@ script:
 - mix format --check-formatted
 - MIX_ENV=test mix ecto.create
 - MIX_ENV=test mix ecto.migrate
-- MIX_ENV=test mix elasticsearch.build entries --cluster Ptolemy.ElasticsearchCluster
+- MIX_ENV=test mix search_index
 - mix test
 
 notifications:

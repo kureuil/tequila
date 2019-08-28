@@ -10,17 +10,3 @@ defmodule Ptolemy.Index.Entry do
     field :tags, {:array, :string}
   end
 end
-
-defimpl Elasticsearch.Document, for: Ptolemy.Index.Entry do
-  def id(entry), do: entry.id
-  def routing(_), do: false
-
-  def encode(entry) do
-    %{
-      title: entry.title,
-      description: entry.description,
-      hostname: URI.parse(entry.location).host,
-      tags: entry.tags
-    }
-  end
-end

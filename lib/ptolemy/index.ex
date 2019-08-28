@@ -9,7 +9,6 @@ defmodule Ptolemy.Index do
   alias Ecto.Changeset
   alias Ptolemy.Index.Link
   alias Ptolemy.Index.Submit
-  alias Ptolemy.Index.Entry
   alias Ptolemy.Accounts.User
   alias Ptolemy.Taxonomy
   alias Ptolemy.QueryParser
@@ -24,15 +23,22 @@ defmodule Ptolemy.Index do
       {:ok, result, _, _, _, _} ->
         constraints = build_constraints(result)
 
-        {:ok, %{"hits" => %{"hits" => hits}}} =
-          Elasticsearch.post(Ptolemy.ElasticsearchCluster, "/entries/_doc/_search", %{
-            "query" => constraints
-          })
-
-        hits_ids = Enum.map(hits, fn entry -> entry["_id"] end)
+        {:ok, [_count | hits]} =
+          Redix.command(:redix, [
+            "FT.SEARCH",
+            "ptolemy-links",
+            constraints,
+            "NOCONTENT",
+            "SORTBY",
+            "inserted_at",
+            "DESC",
+            "LIMIT",
+            "0",
+            "50"
+          ])
 
         Link
-        |> where([l], l.id in ^hits_ids)
+        |> where([l], l.id in ^hits)
         |> Repo.all()
 
       error ->
@@ -40,48 +46,36 @@ defmodule Ptolemy.Index do
     end
   end
 
-  defp build_constraints([]), do: %{"match_all" => %{}}
+  defp build_constraints([]), do: "*"
 
   defp build_constraints([root | []]), do: build_constraints(root)
 
   defp build_constraints({:word, word}) do
-    %{"match" => %{"title" => word}}
+    "\"#{word}\""
   end
 
   defp build_constraints({:tag, tag}) do
-    %{"term" => %{"tags" => tag}}
+    "(@tags:{#{tag}})"
   end
 
   defp build_constraints({:and, [clause, rest]}) do
     lhs = build_constraints(clause)
     rhs = build_constraints(rest)
 
-    %{
-      "bool" => %{
-        "must" => [lhs, rhs]
-      }
-    }
+    "(#{lhs} #{rhs})"
   end
 
   defp build_constraints({:or, [clause, rest]}) do
     lhs = build_constraints(clause)
     rhs = build_constraints(rest)
 
-    %{
-      "bool" => %{
-        "should" => [lhs, rhs]
-      }
-    }
+    "(#{lhs} | #{rhs})"
   end
 
   defp build_constraints({:not, clause}) do
     constraint = build_constraints(clause)
 
-    %{
-      "bool" => %{
-        "must_not" => constraint
-      }
-    }
+    "-#{constraint}"
   end
 
   @doc """
@@ -115,8 +109,7 @@ defmodule Ptolemy.Index do
   def delete_link(%Link{} = link) do
     Repo.transaction(fn ->
       deleted = Repo.delete!(link)
-      entry = %Entry{id: link.id}
-      Elasticsearch.delete_document!(Ptolemy.ElasticsearchCluster, entry, "entries")
+      Redix.command!(:redix, ["FT.DEL", "ptolemy-links", link.id, "DD"])
       deleted
     end)
   end
@@ -142,15 +135,30 @@ defmodule Ptolemy.Index do
           |> Changeset.put_assoc(:tags, tags)
           |> Repo.insert!()
 
-        entry = %Entry{
-          id: link.id,
-          location: link.location,
-          title: link.title,
-          description: link.description,
-          tags: Enum.map(tags, fn tag -> tag.name end)
-        }
+        tags = tags |> Enum.map(fn tag -> tag.name end) |> Enum.join(",")
+        host = URI.parse(link.location).host
 
-        Elasticsearch.put_document!(Ptolemy.ElasticsearchCluster, entry, "entries")
+        Redix.command!(:redix, [
+          "FT.ADD",
+          "ptolemy-links",
+          link.id,
+          "1.0",
+          "FIELDS",
+          "location",
+          link.location,
+          "host",
+          host,
+          "title",
+          link.title,
+          "description",
+          link.description,
+          "author",
+          author.id,
+          "tags",
+          tags,
+          "inserted_at",
+          link.inserted_at
+        ])
 
         link
       end)
@@ -174,15 +182,31 @@ defmodule Ptolemy.Index do
           |> Changeset.put_assoc(:tags, tags)
           |> Repo.update!()
 
-        entry = %Entry{
-          id: link.id,
-          location: link.location,
-          title: link.title,
-          description: link.description,
-          tags: Enum.map(tags, fn tag -> tag.name end)
-        }
+        tags = tags |> Enum.map(fn tag -> tag.name end) |> Enum.join(",")
+        host = URI.parse(link.location).host
 
-        Elasticsearch.put_document!(Ptolemy.ElasticsearchCluster, entry, "entries")
+        Redix.command!(:redix, [
+          "FT.ADD",
+          "ptolemy-links",
+          link.id,
+          "1.0",
+          "REPLACE",
+          "FIELDS",
+          "location",
+          link.location,
+          "host",
+          host,
+          "title",
+          link.title,
+          "description",
+          link.description,
+          "author",
+          link.author_id,
+          "tags",
+          tags,
+          "inserted_at",
+          link.inserted_at
+        ])
 
         link
       end)
