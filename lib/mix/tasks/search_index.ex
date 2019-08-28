@@ -35,18 +35,22 @@ defmodule Mix.Tasks.SearchIndex do
           end)
       end
 
-    commands = Enum.map(steps, fn step ->
-      {_, command} = step
-      command
-    end)
+    commands =
+      Enum.map(steps, fn step ->
+        {_, command} = step
+        command
+      end)
 
     {last_version, _} = Enum.at(steps, length(steps) - 1)
 
     version_upgrade = [["SET", "ptolemy-migration", last_version]]
 
     case Redix.transaction_pipeline(:redix, commands ++ version_upgrade) do
-      {:ok, _} -> IO.puts("Successfully upgraded search index to version #{last_version}")
-      {:err, error} -> IO.puts(:stderr, "An error occured while upgrading the search index: #{error}")
+      {:ok, _} ->
+        IO.puts("Successfully upgraded search index to version #{last_version}")
+
+      {:err, error} ->
+        IO.puts(:stderr, "An error occured while upgrading the search index: #{error}")
     end
   end
 

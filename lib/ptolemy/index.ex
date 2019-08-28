@@ -24,7 +24,18 @@ defmodule Ptolemy.Index do
         constraints = build_constraints(result)
 
         {:ok, [_count | hits]} =
-          Redix.command(:redix, ["FT.SEARCH", "ptolemy-links", constraints, "NOCONTENT", "SORTBY", "inserted_at", "DESC", "LIMIT", "0", "50"])
+          Redix.command(:redix, [
+            "FT.SEARCH",
+            "ptolemy-links",
+            constraints,
+            "NOCONTENT",
+            "SORTBY",
+            "inserted_at",
+            "DESC",
+            "LIMIT",
+            "0",
+            "50"
+          ])
 
         Link
         |> where([l], l.id in ^hits)
