@@ -1,0 +1,26 @@
+name: Elixir CI
+
+on: push
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    container:
+      image: elixir:1.9.1-slim
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Dependencies
+      run: |
+        docker run -dp 6379:6379 redislabs/redisearch:latest
+        docker run -dp 5432:5432 -e POSTGRES_USER="ptolemy" -e POSTGRES_PASSWORD="imnotmeantforproduction" -e POSTGRES_DB="ptolemy_dev" postgres:11-alpine
+        mix local.rebar --force
+        mix local.hex --force
+        MIX_ENV=test mix deps.get
+        MIX_ENV=test mix ecto.create
+        MIX_ENV=test mix ecto.migrate
+        MIX_ENV=test mix search_index
+    - name: Run Tests
+      run: mix test
