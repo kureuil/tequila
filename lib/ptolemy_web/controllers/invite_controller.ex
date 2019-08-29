@@ -37,8 +37,14 @@ defmodule PtolemyWeb.InviteController do
     try do
       invite = Invites.find!(invite_id)
       Invites.delete_invite!(invite)
+
       conn
-      |> put_flash(:info, gettext("The invite addressed to %{invitee} was successfully deleted.", invitee: invite.invitee))
+      |> put_flash(
+        :info,
+        gettext("The invite addressed to %{invitee} was successfully deleted.",
+          invitee: invite.invitee
+        )
+      )
       |> redirect(to: Routes.invite_path(conn, :index))
     rescue
       _ ->
