@@ -1,25 +1,38 @@
-<section class="box">
-  <header class="box__header">
-    <h1 class="box__title">
+<section class="bg-white px-4 pt-2 shadow-md rounded">
+  <header class="flex flex-col md:flex-row">
+    <h1 class="flex-1 font-bold text-xl md:text-2xl">
       <%= gettext "Pending invites" %>
     </h1>
-    <div class="box__actions">
-      <%= link gettext("New"), to: Routes.invite_path(@conn, :new), class: "btn btn--primary" %>
+    <div class="flex-initial text-right text-xl md:text-2xl">
+      <%= link gettext("New"), to: Routes.invite_path(@conn, :new), class: "align-baseline text-sm text-neutral-700 font-bold py-1 px-2 mr-2 rounded hover:bg-neutral-100" %>
     </div>
   </header>
-  <div class="box__body">
-    <ul class="entries-list">
-      <%= for entry <- @invites do %>
-        <li class="entry">
-          <div class="entry__title">
-            <%= entry.invitee %>
-            <span class="entry__location">(<%= gettext("Sent on %{instant}", instant: entry.inserted_at) %>)<span>
-          </div>
-          <nav class="entry__actions">
-            <%= link gettext("Delete"), to: "#" %>
-          </nav>
-        </li>
-      <% end %>
-    </ul>
+  <div class="-mx-4 pt-2">
+    <table class="w-full">
+      <thead>
+        <tr class="text-left bg-neutral-200 text-neutral-800">
+          <th class="pl-4 font-semibold py-1">Adresse e-mail</th>
+          <th class="font-semibold py-1">Envoyée le</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for entry <- @invites do %>
+          <tr class="border-t-2 border-neutral-200">
+            <td class="pl-4 py-2">
+              <%= entry.invitee %>
+            </td>
+            <td class="py-2">
+              <abbr title="<%= entry.inserted_at %>"><%= relative_time entry.inserted_at %></abbr>
+            </td>
+            <td class="pr-4 py-2 text-right">
+              <%= form_for @conn, Routes.invite_path(@conn, :delete, entry), [class: "inline align-baseline", method: :delete], fn _f ->  %>
+                <%= submit gettext("Delete"), class: "text-sm text-neutral-700 font-bold hover:text-red-500 py-1 px-2 rounded hover:bg-red-000" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </section>

@@ -48,7 +48,8 @@ defmodule Ptolemy.MixProject do
       {:pbkdf2_elixir, "~> 1.0"},
       {:swoosh, "~> 0.23"},
       {:phoenix_swoosh, "~> 0.2"},
-      {:redix, "~> 0.10.2"}
+      {:redix, "~> 0.10.2"},
+      {:timex, "~> 3.0"}
     ]
   end
 

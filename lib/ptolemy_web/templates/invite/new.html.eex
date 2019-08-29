@@ -1,27 +1,25 @@
-<section class="box">
-  <header class="box__header">
-    <h1 class="box__title">
+<section class="bg-white px-4 pb-2 pt-2 shadow-md rounded">
+  <header class="flex flex-col md:flex-row">
+    <h1 class="flex-1 font-bold text-xl md:text-2xl">
       <%= gettext "New Invite" %>
     </h1>
   </header>
-  <div class="box__body">
+  <div>
     <%= form_for @changeset, Routes.invite_path(@conn, :create), fn f -> %>
       <%= if @changeset.action do %>
-        <div class="alert alert--danger">
-          <p><%= gettext "Oops, something went wrong! Please check the errors below." %></p>
+        <div class="bg-red-100 border-l-2 border-red-700 p-2 pl-4 my-2 -ml-4 rounded-r-sm">
+          <p class="font-semibold text-red-700"><%= gettext "Oops, something went wrong! Please check the errors below." %></p>
         </div>
       <% end %>
 
-      <div class="form-group">
-        <%= label f, :invitee, gettext("Email"), class: "form-group__label" %>
-        <div class="form-group__content">
-          <%= email_input f, :invitee, class: "form-group__input" %>
-          <%= error_tag f, :invitee %>
-        </div>
+      <div class="mb-4">
+        <%= label f, :invitee, gettext("Email"), class: "font-semibold" %>
+        <%= email_input f, :invitee, class: if has_error?(f, :invitee), do: "border border-red-300 bg-neutral-100 focus:bg-white focus:border-secondary-500 py-1 px-2 w-full rounded", else: "border border-neutral-100 bg-neutral-100 focus:bg-white focus:border-secondary-500 py-1 px-2 w-full rounded" %>
+        <%= error_tag f, :invitee %>
       </div>
 
-      <div class="form-actions">
-        <%= submit gettext("Send"), class: "btn btn--primary" %>
+      <div class="mb-2 text-right">
+        <%= submit gettext("Send"), class: "bg-neutral-800 text-white p-2 rounded-sm" %>
       </div>
     <% end %>
   </div>

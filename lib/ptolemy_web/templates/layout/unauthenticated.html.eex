@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -7,8 +7,8 @@
   <title>Ptolemy</title>
   <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
 </head>
-<body>
-  <div class="app-shell app-shell--narrow">
+<body class="flex justify-center items-center h-full bg-neutral-100">
+  <div class="flex-1 max-w-md">
     <main role="main" class="app-shell__main">
       <div class="alert alert--info" role="alert"><%= get_flash(@conn, :info) %></div>
       <div class="alert alert--danger" role="alert"><%= get_flash(@conn, :error) %></div>

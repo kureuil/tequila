@@ -1,10 +1,10 @@
-<section class="box">
-  <header class="box__header">
-    <h1 class="box__title">
+<section class="bg-white px-4 pb-2 pt-2 shadow-md rounded">
+  <header class="flex flex-col md:flex-row">
+    <h1 class="flex-1 font-bold text-xl md:text-2xl">
       <%= gettext "New channel" %>
     </h1>
   </header>
-  <div class="box__body">
+  <div>
     <%= render "form.html", Map.put(assigns, :action, Routes.channel_path(@conn, :create)) %>
   </div>
 </section>

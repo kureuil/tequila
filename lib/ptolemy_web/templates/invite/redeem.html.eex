@@ -1,28 +1,22 @@
-<h1><%= gettext "Redeem invite" %></h1>
+<h1 class="text-center font-bold text-2xl mb-2"><%= gettext "Redeem invite" %></h1>
 
-<%= form_for @changeset, Routes.invite_path(@conn, :register, @invite.id), [class: "form--vertical"], fn f -> %>
-  <div class="form-group">
-    <%= label f, :email, gettext("Email"), class: "form-group__label" %>
-    <div class="form-group__content">
-      <%= email_input f, :email, class: "form-group__input", required: true %>
-      <%= error_tag f, :email %>
-    </div>
+<%= form_for @changeset, Routes.invite_path(@conn, :register, @invite.id), [class: "bg-white rounded p-4 shadow-md mb-8 border-t-4 border-secondary-500"], fn f -> %>
+  <div class="mb-4">
+    <%= label f, :email, gettext("Email"), class: "font-semibold" %>
+    <%= email_input f, :email, class: "border border-neutral-100 bg-neutral-100 focus:bg-white focus:border-secondary-500 py-1 px-2 w-full rounded", required: true %>
+    <%= error_tag f, :email %>
   </div>
-  <div class="form-group">
-    <%= label f, :password, gettext("Password"), class: "form-group__label" %>
-    <div class="form-group__content">
-      <%= password_input f, :password, class: "form-group__input", required: true %>
-      <%= error_tag f, :password %>
-    </div>
+  <div class="mb-4">
+    <%= label f, :password, gettext("Password"), class: "font-semibold" %>
+    <%= password_input f, :password, class: "border border-neutral-100 bg-neutral-100 focus:bg-white focus:border-secondary-500 py-1 px-2 w-full rounded", required: true %>
+    <%= error_tag f, :password %>
   </div>
-  <div class="form-group">
-    <%= label f, :password_confirmation, gettext("Confirm password"), class: "form-group__label" %>
-    <div class="form-group__content">
-      <%= password_input f, :password_confirmation, class: "form-group__input", required: true %>
-      <%= error_tag f, :password_confirmation %>
-    </div>
+  <div class="mb-4">
+    <%= label f, :password_confirmation, gettext("Confirm password"), class: "font-semibold" %>
+    <%= password_input f, :password_confirmation, class: "border border-neutral-100 bg-neutral-100 focus:bg-white focus:border-secondary-500 py-1 px-2 w-full rounded", required: true %>
+    <%= error_tag f, :password_confirmation %>
   </div>
   <div class="form-actions">
-    <%= submit gettext("Sign up"), class: "btn btn--primary" %>
+    <%= submit gettext("Sign up"), class: "bg-secondary-500 text-white w-full text-center p-2 rounded" %>
   </div>
 <% end %>
