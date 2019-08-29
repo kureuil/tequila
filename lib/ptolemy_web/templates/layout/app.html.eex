@@ -21,14 +21,14 @@
         <div class="pt-4 lg:pr-4 lg:pt-0">
           <%= link gettext("Submit link"), to: Routes.link_path(@conn, :new), class: "block w-full bg-secondary-300 text-secondary-900 font-bold rounded shadow text-center p-2 mb-2" %>
           <p class="text-sm uppercase font-bold text-neutral-900 mt-4"><%= gettext "Channels" %></p>
-          <%= active_link @conn, gettext("Create channel"), to: Routes.channel_path(@conn, :new), class: "block font-semibold rounded p-1 text-neutral-800 hover:text-primary-800 hover:bg-neutral-200", class_active: "text-primary-900 underline" %>
+          <%= active_link @conn, gettext("Create channel"), to: Routes.channel_path(@conn, :new), class: "block font-semibold text-sm rounded p-1 text-neutral-800 hover:text-primary-800 hover:bg-neutral-200", class_active: "text-primary-900 underline" %>
           <%= for channel <- user_channels(@conn.assigns[:current_user]) do %>
-            <%= active_link @conn, channel.name, to: Routes.channel_path(@conn, :show, channel), class: "block font-semibold rounded p-1 text-neutral-800 hover:text-primary-800 hover:bg-neutral-200", class_active: "text-primary-900 underline" %>
+            <%= active_link @conn, channel.name, to: Routes.channel_path(@conn, :show, channel), class: "block font-semibold text-sm rounded p-1 text-neutral-800 hover:text-primary-800 hover:bg-neutral-200", class_active: "text-primary-900 underline" %>
           <% end %>
           <p class="text-sm uppercase font-bold text-neutral-900 mt-4"><%= gettext "My account" %></p>
-          <%= active_link @conn, "Invitations", to: Routes.invite_path(@conn, :index), class: "block font-semibold rounded p-1 text-neutral-800 hover:text-primary-800 hover:bg-neutral-200", class_active: "text-primary-900 underline" %>
+          <%= active_link @conn, "Invitations", to: Routes.invite_path(@conn, :index), class: "block font-semibold text-sm rounded p-1 text-neutral-800 hover:text-primary-800 hover:bg-neutral-200", class_active: "text-primary-900 underline" %>
           <%= form_for @conn, Routes.session_path(@conn, :delete), [class: "block w-full"], fn _f ->  %>
-            <%= submit gettext("Log out"), class: "block w-full text-left font-semibold rounded p-1 text-neutral-800 hover:text-red-500 hover:bg-neutral-200" %>
+            <%= submit gettext("Log out"), class: "block w-full text-left font-semibold text-sm rounded p-1 text-neutral-800 hover:text-red-500 hover:bg-neutral-200" %>
           <% end %>
         </div>
       </nav>
