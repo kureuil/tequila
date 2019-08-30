@@ -1,21 +1,19 @@
-<section class="box">
-  <header class="box__header">
-    <h1 class="box__title">
+<section class="bg-white px-4 pb-2 pt-2 shadow-md rounded">
+  <header class="flex flex-col md:flex-row">
+    <h1 class="flex-1 font-bold font-headline text-xl md:text-2xl">
       <%= gettext "Search results" %>
     </h1>
-    <div class="box__actions">
-    </div>
   </header>
-  <div class="box__body">
-    <ul class="entries-list">
+  <div>
+    <ul>
       <%= for entry <- @entries do %>
-        <li class="entry">
-          <img src="" alt="" class="entry__favicon">
-          <div class="entry__title">
-            <%= link entry.title, to: entry.location, class: "entry__link" %>
-            <span class="entry__location">(<%= link_host entry.location %>)<span>
+        <li class="py-1 my-1">
+          <img src="" alt="">
+          <div>
+            <%= link entry.title, to: entry.location, class: "font-semibold" %>
+            <span class="italic">(<%= link_host entry.location %>)<span>
           </div>
-          <nav class="entry__actions" title="<%= entry.location %>">
+          <nav class="text-sm text-neutral-800" title="<%= entry.location %>">
             <%= link ngettext("%{count} comment", "%{count} comments", 0), to: Routes.link_path(@conn, :show, entry) %>
           </nav>
         </li>

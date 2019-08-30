@@ -1,27 +1,25 @@
-<section class="box">
-  <header class="box__header">
-    <h1 class="box__title">
+<section class="bg-white px-4 pb-2 pt-2 shadow-md rounded">
+  <header class="flex flex-col md:flex-row">
+    <h1 class="flex-1 font-bold font-headline text-xl md:text-2xl">
       <%= gettext "New Invite" %>
     </h1>
   </header>
-  <div class="box__body">
+  <div>
     <%= form_for @changeset, Routes.invite_path(@conn, :create), fn f -> %>
       <%= if @changeset.action do %>
-        <div class="alert alert--danger">
+        <div class="form-alert">
           <p><%= gettext "Oops, something went wrong! Please check the errors below." %></p>
         </div>
       <% end %>
 
-      <div class="form-group">
-        <%= label f, :invitee, gettext("Email"), class: "form-group__label" %>
-        <div class="form-group__content">
-          <%= email_input f, :invitee, class: "form-group__input" %>
-          <%= error_tag f, :invitee %>
-        </div>
+      <div class="mb-4">
+        <%= label f, :invitee, gettext("Email"), class: "form-label" %>
+        <%= email_input f, :invitee, class: if has_error?(f, :invitee), do: "form-input border-red-300", else: "form-input" %>
+        <%= error_tag f, :invitee %>
       </div>
 
-      <div class="form-actions">
-        <%= submit gettext("Send"), class: "btn btn--primary" %>
+      <div class="mb-2 text-right">
+        <%= submit gettext("Send"), class: "btn btn--secondary" %>
       </div>
     <% end %>
   </div>

@@ -10,9 +10,14 @@ defmodule PtolemyWeb.ErrorHelpers do
   """
   def error_tag(form, field) do
     Enum.map(Keyword.get_values(form.errors, field), fn error ->
-      content_tag(:span, translate_error(error), class: "form-group__error")
+      content_tag(:span, translate_error(error), class: "text-red-500 font-semibold")
     end)
   end
+
+  @doc """
+  Returns true if the given form field has associated errors.
+  """
+  def has_error?(form, field), do: Keyword.has_key?(form.errors, field)
 
   @doc """
   Translates an error message using gettext.

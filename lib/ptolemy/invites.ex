@@ -28,6 +28,10 @@ defmodule Ptolemy.Invites do
     )
   end
 
+  def find!(id) do
+    Repo.one!(from i in Invite, where: i.id == ^id)
+  end
+
   def change_invite(%Invite{} = invite) do
     Invite.changeset(invite, %{})
   end

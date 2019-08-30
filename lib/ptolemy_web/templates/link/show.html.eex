@@ -1,34 +1,19 @@
-<section class="box">
-  <header class="box__header">
-    <h1 class="box__title">
+<section class="bg-white px-4 pb-3 pt-2 shadow-md rounded">
+  <header class="flex flex-col md:flex-row">
+    <h1 class="flex-1 font-bold font-headline text-xl md:text-2xl">
       <%= @link.title %>
     </h1>
-    <div class="box__actions">
-      <%= link gettext("Edit"), to: Routes.link_path(@conn, :edit, @link), class: "btn btn--primary" %>
+    <div class="flex-initial text-right text-xl align-baseline md:text-2xl">
+      <%= link gettext("Edit"), to: Routes.link_path(@conn, :edit, @link), class: "btn btn--muted text-sm" %>
     </div>
   </header>
-  <div class="box__body">
+  <div>
+    <%= link @link.location, to: @link.location, class: "block text-primary-500 font-semibold text-sm" %>
     <ul>
-      <li>
-        <strong><%= gettext "URL:" %></strong>
-        <%= @link.location %>
-      </li>
-      <li>
-        <strong><%= gettext "Title:" %></strong>
-        <%= @link.title %>
-      </li>
-      <li>
-        <strong><%= gettext "Description:" %></strong>
-        <%= @link.description %>
-      </li>
-      <li>
-        <strong><%= gettext "Tags:" %></strong>
-        <ul>
-          <%= for tag <- @link.tags do %>
-            <li><%= tag.name %></li>
-          <% end %>
-        </ul>
-      </li>
+      <%= for tag <- @link.tags do %>
+        <li class="inline text-sm">#<%= tag.name %></li>
+      <% end %>
     </ul>
+    <p class="font-copy"><%= @link.description %></p>
   </div>
 </section>

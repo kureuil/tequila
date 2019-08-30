@@ -1,0 +1,15 @@
+.sidenav-header {
+  @apply text-sm uppercase font-ui font-bold text-neutral-900 mt-4;
+}
+
+.sidenav-link {
+  @apply block w-full text-left font-semibold text-sm rounded p-1 text-neutral-800;
+}
+
+.sidenav-link:hover {
+  @apply text-primary-800 bg-neutral-200;
+}
+
+.sidenav-link.sidenav-link--destructive:hover {
+  @apply text-red-500;
+}
