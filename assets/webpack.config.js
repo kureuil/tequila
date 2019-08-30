@@ -35,6 +35,15 @@ module.exports = (env, options) => ({
           { loader: 'css-loader', options: { importLoaders: 1 } },
           { loader: 'postcss-loader' }
         ]
+      },
+      {
+        test: /\.woff2?$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: { name: '[name].[hash].[ext]', outputPath: '../css/fonts' }
+          }
+        ]
       }
     ]
   },

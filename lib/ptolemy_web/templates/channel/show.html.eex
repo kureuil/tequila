@@ -1,12 +1,12 @@
 <section class="bg-white px-4 pb-2 pt-2 shadow-md rounded">
   <header class="flex flex-col md:flex-row">
-    <h1 class="flex-1 font-bold text-xl md:text-2xl">
+    <h1 class="flex-1 font-bold font-headline text-xl md:text-2xl">
       <%= @channel.name %>
     </h1>
-    <div class="flex-initial text-right text-xl md:text-2xl">
-      <%= link gettext("Edit"), to: Routes.channel_path(@conn, :edit, @channel), class: "align-baseline text-sm text-neutral-700 font-bold py-1 px-2 mr-2 rounded hover:bg-neutral-100" %>
-      <%= form_for @conn, Routes.channel_path(@conn, :delete, @channel), [class: "inline align-baseline", method: :delete], fn _f ->  %>
-        <%= submit gettext("Delete"), class: "text-sm text-neutral-700 font-bold hover:text-red-500 py-1 px-2 rounded hover:bg-red-000" %>
+    <div class="flex-initial text-right text-xl align-baseline md:text-2xl">
+      <%= link gettext("Edit"), to: Routes.channel_path(@conn, :edit, @channel), class: "btn btn--muted text-sm mr-2" %>
+      <%= form_for @conn, Routes.channel_path(@conn, :delete, @channel), [class: "inline", method: :delete], fn _f ->  %>
+        <%= submit gettext("Delete"), class: "btn btn--muted btn--destructive text-sm" %>
       <% end %>
     </div>
   </header>

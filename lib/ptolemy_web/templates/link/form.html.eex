@@ -1,43 +1,35 @@
 <%= form_for @changeset, @action, [method: @method], fn f -> %>
   <%= if @changeset.action do %>
-    <div class="bg-red-100 border-l-2 border-red-700 p-2 pl-4 my-2 -ml-4 rounded-r-sm">
-      <p class="font-semibold text-red-700"><%= gettext "Oops, something went wrong! Please check the errors below." %></p>
+    <div class="form-alert">
+      <p><%= gettext "Oops, something went wrong! Please check the errors below." %></p>
     </div>
   <% end %>
 
   <div class="mb-4">
-    <%= label f, :location, gettext("URL"), class: "font-semibold" %>
-    <div class="form-group__content">
-      <%= url_input f, :location, required: true, class: if has_error?(f, :location), do: "border border-red-300 bg-neutral-100 focus:bg-white focus:border-secondary-500 py-1 px-2 w-full rounded", else: "border border-neutral-100 bg-neutral-100 focus:bg-white focus:border-secondary-500 py-1 px-2 w-full rounded" %>
-      <%= error_tag f, :location %>
-    </div>
+    <%= label f, :location, gettext("URL"), class: "form-label" %>
+    <%= url_input f, :location, required: true, class: if has_error?(f, :location), do: "form-input border-red-300", else: "form-input" %>
+    <%= error_tag f, :location %>
   </div>
 
   <div class="mb-4">
-    <%= label f, :tags, gettext("Tags"), class: "font-semibold" %>
-    <div class="form-group__content">
-      <%= text_input f, :tags, class: if has_error?(f, :tags), do: "border border-red-300 bg-neutral-100 focus:bg-white focus:border-secondary-500 py-1 px-2 w-full rounded", else: "border border-neutral-100 bg-neutral-100 focus:bg-white focus:border-secondary-500 py-1 px-2 w-full rounded" %>
-      <%= error_tag f, :tags %>
-    </div>
+    <%= label f, :tags, gettext("Tags"), class: "form-label" %>
+    <%= text_input f, :tags, class: if has_error?(f, :tags), do: "form-input border-red-300", else: "form-input" %>
+    <%= error_tag f, :tags %>
   </div>
 
   <div class="mb-4">
-    <%= label f, :title, gettext("Title"), class: "font-semibold" %>
-    <div class="form-group__content">
-      <%= text_input f, :title, class: if has_error?(f, :title), do: "border border-red-300 bg-neutral-100 focus:bg-white focus:border-secondary-500 py-1 px-2 w-full rounded", else: "border border-neutral-100 bg-neutral-100 focus:bg-white focus:border-secondary-500 py-1 px-2 w-full rounded" %>
-      <%= error_tag f, :title %>
-    </div>
+    <%= label f, :title, gettext("Title"), class: "form-label" %>
+    <%= text_input f, :title, class: if has_error?(f, :title), do: "form-input border-red-300", else: "form-input" %>
+    <%= error_tag f, :title %>
   </div>
 
   <div class="mb-4">
-    <%= label f, :description, gettext("Description"), class: "font-semibold" %>
-    <div class="form-group__content">
-      <%= textarea f, :description, class: if has_error?(f, :description), do: "border border-red-300 bg-neutral-100 focus:bg-white focus:border-secondary-500 py-1 px-2 w-full rounded", else: "border border-neutral-100 bg-neutral-100 focus:bg-white focus:border-secondary-500 py-1 px-2 w-full rounded" %>
-      <%= error_tag f, :description %>
-    </div>
+    <%= label f, :description, gettext("Description"), class: "form-label" %>
+    <%= textarea f, :description, class: if has_error?(f, :description), do: "form-input border-red-300", else: "form-input" %>
+    <%= error_tag f, :description %>
   </div>
 
   <div class="mb-2 text-right">
-    <%= submit gettext("Save"), class: "bg-neutral-800 text-white p-2 rounded-sm" %>
+    <%= submit gettext("Save"), class: "btn btn--neutral" %>
   </div>
 <% end %>

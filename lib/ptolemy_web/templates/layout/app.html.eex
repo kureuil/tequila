@@ -1,44 +1,45 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full">
+<html lang="en" class="h-full antialiased">
 <head>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ptolemy</title>
   <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
+  <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>" async></script>
 </head>
 <body class="h-full bg-neutral-100">
   <div class="container mx-auto">
     <a class="lg:hidden block px-4 py-2 bg-primary-500 text-white font-bold" href="#app-shell-navigation">☰&nbsp;<%= gettext "Menu" %></a>
-    <form class="mb-4 pt-4 flex flex-row" id="app-shell-search-container" action="<%= Routes.search_path(@conn, :index) %>" method="GET">
-        <label for="app-shell-search-input" class="flex-1 pr-2 lg:px-0"><%= gettext "Search" %></label>
-        <div class="flex-1 pl-2 lg:p-0">
-          <input type="search" class="w-full shadow-inner rounded py-1 px-2 bg-neutral-white border border-neutral-200 focus:border-secondary-500" id="app-shell-search-input" name="q" value="<%= @conn.params["q"] %>">
+    <form class="mb-4 pt-4 lg:pl-64 block" id="app-shell-search-container" action="<%= Routes.search_path(@conn, :index) %>" method="GET">
+        <label for="app-shell-search-input" class="sr-only"><%= gettext "Search" %></label>
+        <div class="search-form max-w-md xl:max-w-xl">
+          <input type="search" class="search-form__input" id="app-shell-search-input" name="q" value="<%= @conn.params["q"] %>">
+          <button class="search-form__submit" type="submit"><%= gettext "Search" %></button>
         </div>
     </form>
     <div class="flex flex-col-reverse lg:flex-row">
       <nav class="flex-initial min-h-screen lg:w-64 lg:min-h-0" id="app-shell-navigation">
         <div class="pt-4 lg:pr-4 lg:pt-0">
-          <%= link gettext("Submit link"), to: Routes.link_path(@conn, :new), class: "block w-full bg-secondary-300 text-secondary-900 font-bold rounded shadow text-center p-2 mb-2" %>
-          <p class="text-sm uppercase font-bold text-neutral-900 mt-4"><%= gettext "Channels" %></p>
-          <%= active_link @conn, gettext("Create channel"), to: Routes.channel_path(@conn, :new), class: "block font-semibold text-sm rounded p-1 text-neutral-800 hover:text-primary-800 hover:bg-neutral-200", class_active: "text-primary-900 underline" %>
+          <%= link gettext("Submit link"), to: Routes.link_path(@conn, :new), class: "block w-full font-ui bg-primary-500 text-white font-semibold rounded shadow text-center p-2 mb-2" %>
+          <p class="sidenav-header"><%= gettext "Channels" %></p>
+          <%= active_link @conn, gettext("Create channel"), to: Routes.channel_path(@conn, :new), class: "sidenav-link", class_active: "text-primary-900 underline" %>
           <%= for channel <- user_channels(@conn.assigns[:current_user]) do %>
-            <%= active_link @conn, channel.name, to: Routes.channel_path(@conn, :show, channel), class: "block font-semibold text-sm rounded p-1 text-neutral-800 hover:text-primary-800 hover:bg-neutral-200", class_active: "text-primary-900 underline" %>
+            <%= active_link @conn, channel.name, to: Routes.channel_path(@conn, :show, channel), class: "sidenav-link", class_active: "text-primary-900 underline" %>
           <% end %>
-          <p class="text-sm uppercase font-bold text-neutral-900 mt-4"><%= gettext "My account" %></p>
-          <%= active_link @conn, "Invitations", to: Routes.invite_path(@conn, :index), class: "block font-semibold text-sm rounded p-1 text-neutral-800 hover:text-primary-800 hover:bg-neutral-200", class_active: "text-primary-900 underline" %>
+          <p class="sidenav-header"><%= gettext "My account" %></p>
+          <%= active_link @conn, "Invitations", to: Routes.invite_path(@conn, :index), class: "sidenav-link", class_active: "text-primary-900 underline" %>
           <%= form_for @conn, Routes.session_path(@conn, :delete), [class: "block w-full"], fn _f ->  %>
-            <%= submit gettext("Log out"), class: "block w-full text-left font-semibold text-sm rounded p-1 text-neutral-800 hover:text-red-500 hover:bg-neutral-200" %>
+            <%= submit gettext("Log out"), class: "sidenav-link sidenav-link--destructive" %>
           <% end %>
         </div>
       </nav>
       <main role="main" class="flex-1">
-        <div class="bg-primary-200 text-primary-900 font-semibold py-2 px-4 mb-4 border-l-4 border-primary-800 empty:hidden" role="alert"><%= get_flash(@conn, :info) %></div>
-        <div class="bg-red-100 text-red-700 font-semibold py-2 px-4 mb-4 border-l-4 border-red-700 empty:hidden" role="alert"><%= get_flash(@conn, :error) %></div>
+        <div class="alert alert--info" role="alert"><%= get_flash(@conn, :info) %></div>
+        <div class="alert alert--danger" role="alert"><%= get_flash(@conn, :error) %></div>
         <%= render @view_module, @view_template, assigns %>
       </main>
     </div>
   </div>
-  <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
 </body>
 </html>

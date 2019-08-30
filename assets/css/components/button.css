@@ -1,0 +1,35 @@
+.btn {
+  @apply font-ui p-2 rounded;
+}
+
+.btn--block {
+  @apply w-full text-center;
+}
+
+.btn--neutral {
+  @apply text-white bg-neutral-800;
+}
+
+.btn--neutral:hover {
+  @apply bg-neutral-600;
+}
+
+.btn--secondary {
+  @apply bg-secondary-600 text-white;
+}
+
+.btn--secondary:hover {
+  @apply bg-secondary-700;
+}
+
+.btn--muted {
+  @apply text-neutral-700 font-bold py-1;
+}
+
+.btn--muted:hover {
+  @apply bg-neutral-100;
+}
+
+.btn--muted.btn--destructive:hover {
+  @apply text-red-500 bg-red-000;
+}

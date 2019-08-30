@@ -1,22 +1,22 @@
-<h1 class="text-center font-bold text-2xl mb-2"><%= gettext "Redeem invite" %></h1>
+<h1 class="text-center font-bold font-ui text-2xl mb-2"><%= gettext "Redeem invite" %></h1>
 
 <%= form_for @changeset, Routes.invite_path(@conn, :register, @invite.id), [class: "bg-white rounded p-4 shadow-md mb-8 border-t-4 border-secondary-500"], fn f -> %>
   <div class="mb-4">
-    <%= label f, :email, gettext("Email"), class: "font-semibold" %>
-    <%= email_input f, :email, class: "border border-neutral-100 bg-neutral-100 focus:bg-white focus:border-secondary-500 py-1 px-2 w-full rounded", required: true %>
+    <%= label f, :email, gettext("Email"), class: "form-label" %>
+    <%= email_input f, :email, class: "form-input", required: true %>
     <%= error_tag f, :email %>
   </div>
   <div class="mb-4">
-    <%= label f, :password, gettext("Password"), class: "font-semibold" %>
-    <%= password_input f, :password, class: "border border-neutral-100 bg-neutral-100 focus:bg-white focus:border-secondary-500 py-1 px-2 w-full rounded", required: true %>
+    <%= label f, :password, gettext("Password"), class: "form-label" %>
+    <%= password_input f, :password, class: "form-input", required: true %>
     <%= error_tag f, :password %>
   </div>
   <div class="mb-4">
-    <%= label f, :password_confirmation, gettext("Confirm password"), class: "font-semibold" %>
-    <%= password_input f, :password_confirmation, class: "border border-neutral-100 bg-neutral-100 focus:bg-white focus:border-secondary-500 py-1 px-2 w-full rounded", required: true %>
+    <%= label f, :password_confirmation, gettext("Confirm password"), class: "form-label" %>
+    <%= password_input f, :password_confirmation, class: "form-input", required: true %>
     <%= error_tag f, :password_confirmation %>
   </div>
   <div class="form-actions">
-    <%= submit gettext("Sign up"), class: "bg-secondary-500 text-white w-full text-center p-2 rounded" %>
+    <%= submit gettext("Sign up"), class: "btn btn--block btn--secondary" %>
   </div>
 <% end %>

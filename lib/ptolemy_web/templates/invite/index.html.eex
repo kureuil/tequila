@@ -3,14 +3,14 @@
     <h1 class="flex-1 font-bold text-xl md:text-2xl">
       <%= gettext "Pending invites" %>
     </h1>
-    <div class="flex-initial text-right text-xl md:text-2xl">
-      <%= link gettext("New"), to: Routes.invite_path(@conn, :new), class: "align-baseline text-sm text-neutral-700 font-bold py-1 px-2 mr-2 rounded hover:bg-neutral-100" %>
+    <div class="flex-initial text-right text-xl align-baseline md:text-2xl">
+      <%= link gettext("New"), to: Routes.invite_path(@conn, :new), class: "btn btn--muted text-sm" %>
     </div>
   </header>
   <div class="-mx-4 pt-2">
     <table class="w-full">
       <thead>
-        <tr class="text-left bg-neutral-200 text-neutral-800">
+        <tr class="font-ui text-left bg-neutral-200 text-neutral-800">
           <th class="pl-4 font-semibold py-1">Adresse e-mail</th>
           <th class="font-semibold py-1">Envoyée le</th>
           <th></th>
@@ -27,7 +27,7 @@
             </td>
             <td class="pr-4 py-2 text-right">
               <%= form_for @conn, Routes.invite_path(@conn, :delete, entry), [class: "inline align-baseline", method: :delete], fn _f ->  %>
-                <%= submit gettext("Delete"), class: "text-sm text-neutral-700 font-bold hover:text-red-500 py-1 px-2 rounded hover:bg-red-000" %>
+                <%= submit gettext("Delete"), class: "btn btn--muted btn--destructive text-sm" %>
               <% end %>
             </td>
           </tr>

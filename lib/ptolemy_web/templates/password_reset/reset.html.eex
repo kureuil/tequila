@@ -1,17 +1,17 @@
-<h1 class="text-center font-bold text-2xl mb-2"><%= gettext("Change password for %{email}", email: @user.email) %></h1>
+<h1 class="text-center font-bold font-ui text-2xl mb-2"><%= gettext("Change password for %{email}", email: @user.email) %></h1>
 
 <%= form_for @changeset, Routes.password_reset_path(@conn, :apply, @token), [class: "bg-white rounded p-4 shadow-md border-t-4 border-secondary-500"], fn f -> %>
   <div class="mb-4">
-    <%= label f, :password, gettext("Password"), class: "font-semibold" %>
-    <%= password_input f, :password, class: "border border-neutral-500 bg-neutral-100 focus:bg-white focus:border-secondary-500 py-1 px-2 w-full rounded", required: true %>
+    <%= label f, :password, gettext("Password"), class: "form-label" %>
+    <%= password_input f, :password, class: "form-input", required: true %>
     <%= error_tag f, :password %>
   </div>
   <div class="mb-4">
-    <%= label f, :password_confirmation, gettext("Confirm password"), class: "font-semibold" %>
-    <%= password_input f, :password_confirmation, class: "border border-neutral-500 bg-neutral-100 focus:bg-white focus:border-secondary-500 py-1 px-2 w-full rounded", required: true %>
+    <%= label f, :password_confirmation, gettext("Confirm password"), class: "form-label" %>
+    <%= password_input f, :password_confirmation, class: "form-input", required: true %>
     <%= error_tag f, :password_confirmation %>
   </div>
   <div class="text-right">
-    <%= submit gettext("Change password"), class: "bg-neutral-800 text-white p-2 rounded-sm" %>
+    <%= submit gettext("Change password"), class: "btn btn--secondary" %>
   </div>
 <% end %>

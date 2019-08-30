@@ -1,5 +1,23 @@
+const SYSTEM_FONT_FAMILIES = [
+  '-apple-system',
+  'BlinkMacSystemFont',
+  '"Segoe UI"',
+  'Roboto',
+  'Oxygen-Sans',
+  'Ubuntu',
+  'Cantarell',
+  '"Helvetica Neue"',
+  'sans-serif',
+];
+
 module.exports = {
   theme: {
+    fontFamily: {
+      mono: ['Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
+      ui: ['"Source Sans Pro"'].concat(SYSTEM_FONT_FAMILIES),
+      copy: SYSTEM_FONT_FAMILIES,
+      headline: SYSTEM_FONT_FAMILIES,
+    },
     colors: {
       transparent: 'transparent',
       white: '#FFFFFF',

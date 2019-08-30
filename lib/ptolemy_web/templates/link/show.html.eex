@@ -1,10 +1,10 @@
 <section class="bg-white px-4 pb-3 pt-2 shadow-md rounded">
   <header class="flex flex-col md:flex-row">
-    <h1 class="flex-1 font-bold text-xl md:text-2xl">
+    <h1 class="flex-1 font-bold font-headline text-xl md:text-2xl">
       <%= @link.title %>
     </h1>
-    <div class="flex-initial text-right text-xl md:text-2xl">
-      <%= link gettext("Edit"), to: Routes.link_path(@conn, :edit, @link), class: "align-baseline text-sm text-neutral-700 font-bold py-1 px-2 mr-2 rounded hover:bg-neutral-100" %>
+    <div class="flex-initial text-right text-xl align-baseline md:text-2xl">
+      <%= link gettext("Edit"), to: Routes.link_path(@conn, :edit, @link), class: "btn btn--muted text-sm" %>
     </div>
   </header>
   <div>
@@ -14,6 +14,6 @@
         <li class="inline text-sm">#<%= tag.name %></li>
       <% end %>
     </ul>
-    <p><%= @link.description %></p>
+    <p class="font-copy"><%= @link.description %></p>
   </div>
 </section>
