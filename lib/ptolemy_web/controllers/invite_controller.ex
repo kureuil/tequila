@@ -33,7 +33,7 @@ defmodule PtolemyWeb.InviteController do
     end
   end
 
-  def delete(conn, %{"id" => invite_id} = params) do
+  def delete(conn, %{"id" => invite_id}) do
     try do
       invite = Invites.find!(invite_id)
       Invites.delete_invite!(invite)
