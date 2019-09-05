@@ -14,7 +14,8 @@ jobs:
       with:
         otp-version: "22.0.7"
         elixir-version: "1.9.1"
-    - run: |
+    - name: mix release
+      run: |
         mix deps.get
         mix deps.compile
         npm install --prefix assets
@@ -22,8 +23,9 @@ jobs:
         mix phx.digest
         mix compile
         mix release --path tequila-master
-        tar czf tequila-master.tar.gz tequila-master
+      env:
+        MIX_ENV: prod
     - uses: actions/upload-artifact@master
       with:
-        name: tequila-master.tar.gz
-        path: ./tequila-master.tar.gz
+        name: tequila-master.zip
+        path: ./tequila-master
