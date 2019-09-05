@@ -1,7 +1,7 @@
-defmodule Ptolemy.QueryParserTest do
+defmodule Tequila.QueryParserTest do
   use ExUnit.Case, async: true
 
-  alias Ptolemy.QueryParser
+  alias Tequila.QueryParser
 
   test "empty string" do
     result = QueryParser.parse("")

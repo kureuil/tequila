@@ -1,9 +1,9 @@
-defmodule Ptolemy.MixProject do
+defmodule Tequila.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :ptolemy,
+      app: :tequila,
       version: "0.1.0",
       elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -19,7 +19,7 @@ defmodule Ptolemy.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Ptolemy.Application, []},
+      mod: {Tequila.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

@@ -1,10 +1,10 @@
-defmodule Ptolemy.TaxonomyTest do
-  use Ptolemy.DataCase
+defmodule Tequila.TaxonomyTest do
+  use Tequila.DataCase
 
-  alias Ptolemy.Taxonomy
+  alias Tequila.Taxonomy
 
   describe "tags" do
-    alias Ptolemy.Taxonomy.Tag
+    alias Tequila.Taxonomy.Tag
 
     @valid_attrs %{description: "some description", name: "some name"}
     @update_attrs %{description: "some updated description", name: "some updated name"}

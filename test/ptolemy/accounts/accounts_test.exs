@@ -1,10 +1,10 @@
-defmodule Ptolemy.AccountsTest do
-  use Ptolemy.DataCase
+defmodule Tequila.AccountsTest do
+  use Tequila.DataCase
 
-  alias Ptolemy.Accounts
+  alias Tequila.Accounts
 
   describe "users" do
-    alias Ptolemy.Accounts.User
+    alias Tequila.Accounts.User
 
     @valid_attrs %{email: "some email"}
     @update_attrs %{email: "some updated email"}

@@ -1,4 +1,4 @@
-defmodule Ptolemy.Repo.Migrations.AddPasswordRecoveryToCredentials do
+defmodule Tequila.Repo.Migrations.AddPasswordRecoveryToCredentials do
   use Ecto.Migration
 
   def change do

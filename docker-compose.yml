@@ -3,12 +3,17 @@ services:
   postgres:
     image: "postgres:11-alpine"
     environment:
-    - POSTGRES_USER=ptolemy
+    - POSTGRES_USER=tequila
     - POSTGRES_PASSWORD=imnotmeantforproduction
-    - POSTGRES_DB=ptolemy_dev
+    - POSTGRES_DB=tequila_dev
     ports:
     - "5432:5432"
   redisearch:
     image: "redislabs/redisearch:latest"
     ports:
       - "6379:6379"
+  # webapp:
+  #   build: .
+  #   command: bin/tequila start
+  #   ports:
+  #   - "8000:8000"

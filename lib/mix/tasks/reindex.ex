@@ -3,8 +3,8 @@ defmodule Mix.Tasks.Reindex do
 
   import Ecto.Query
 
-  alias Ptolemy.Repo
-  alias Ptolemy.Index.Link
+  alias Tequila.Repo
+  alias Tequila.Index.Link
 
   @shortdoc "Reindex all content from the database into the search engine"
   def run(_) do
@@ -16,7 +16,7 @@ defmodule Mix.Tasks.Reindex do
       Enum.each(links, fn link ->
         case Redix.command(:redix, [
                "FT.ADD",
-               "ptolemy-links",
+               "tequila-links",
                link.id,
                "1.0",
                "REPLACE",

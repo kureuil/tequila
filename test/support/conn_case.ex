@@ -1,4 +1,4 @@
-defmodule PtolemyWeb.ConnCase do
+defmodule TequilaWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -19,19 +19,19 @@ defmodule PtolemyWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      import PtolemyWeb.Gettext
-      alias PtolemyWeb.Router.Helpers, as: Routes
+      import TequilaWeb.Gettext
+      alias TequilaWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint PtolemyWeb.Endpoint
+      @endpoint TequilaWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Ptolemy.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Tequila.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Ptolemy.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Tequila.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}

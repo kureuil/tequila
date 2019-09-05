@@ -1,4 +1,4 @@
-defmodule Ptolemy.Repo.Migrations.CreateEntriesView do
+defmodule Tequila.Repo.Migrations.CreateEntriesView do
   use Ecto.Migration
 
   def change do

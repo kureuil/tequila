@@ -1,17 +1,17 @@
-defmodule Ptolemy.IndexTest do
-  use Ptolemy.DataCase
+defmodule Tequila.IndexTest do
+  use Tequila.DataCase
 
-  alias Ptolemy.Index
+  alias Tequila.Index
 
   describe "links" do
-    alias Ptolemy.Index.Link
+    alias Tequila.Index.Link
 
     @valid_attrs %{location: "some location", title: "some title"}
     @update_attrs %{location: "some updated location", title: "some updated title"}
     @invalid_attrs %{location: nil, title: nil}
 
     def owner_fixture() do
-      alias Ptolemy.Accounts
+      alias Tequila.Accounts
 
       email = "louis@person.guru"
 

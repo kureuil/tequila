@@ -1,17 +1,17 @@
-defmodule Ptolemy.ChannelsTest do
-  use Ptolemy.DataCase
+defmodule Tequila.ChannelsTest do
+  use Tequila.DataCase
 
-  alias Ptolemy.Channels
+  alias Tequila.Channels
 
   describe "channels" do
-    alias Ptolemy.Channels.Channel
+    alias Tequila.Channels.Channel
 
     @valid_attrs %{name: "some name", query: "some query"}
     @update_attrs %{name: "some updated name", query: "some updated query"}
     @invalid_attrs %{name: nil, query: nil}
 
     def owner_fixture() do
-      alias Ptolemy.Accounts
+      alias Tequila.Accounts
 
       email = "louis@person.guru"
 

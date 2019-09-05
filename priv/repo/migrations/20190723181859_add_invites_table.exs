@@ -1,4 +1,4 @@
-defmodule Ptolemy.Repo.Migrations.AddInvitesTable do
+defmodule Tequila.Repo.Migrations.AddInvitesTable do
   use Ecto.Migration
 
   def change do

@@ -1,14 +1,14 @@
-defmodule PtolemyWeb.ErrorViewTest do
-  use PtolemyWeb.ConnCase, async: true
+defmodule TequilaWeb.ErrorViewTest do
+  use TequilaWeb.ConnCase, async: true
 
   # Bring render/3 and render_to_string/3 for testing custom views
   import Phoenix.View
 
   test "renders 404.html" do
-    assert render_to_string(PtolemyWeb.ErrorView, "404.html", []) == "Not Found"
+    assert render_to_string(TequilaWeb.ErrorView, "404.html", []) == "Not Found"
   end
 
   test "renders 500.html" do
-    assert render_to_string(PtolemyWeb.ErrorView, "500.html", []) == "Internal Server Error"
+    assert render_to_string(TequilaWeb.ErrorView, "500.html", []) == "Internal Server Error"
   end
 end

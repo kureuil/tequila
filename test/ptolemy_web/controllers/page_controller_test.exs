@@ -1,7 +1,7 @@
-defmodule PtolemyWeb.PageControllerTest do
-  use PtolemyWeb.ConnCase
+defmodule TequilaWeb.PageControllerTest do
+  use TequilaWeb.ConnCase
 
-  alias Ptolemy.Accounts
+  alias Tequila.Accounts
 
   def fixture_owner() do
     email = "louis@person.guru"

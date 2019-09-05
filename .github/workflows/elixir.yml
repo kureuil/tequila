@@ -30,9 +30,9 @@ jobs:
         ports:
         - 5423:5432
         env:
-          POSTGRES_USER: "ptolemy"
+          POSTGRES_USER: "tequila"
           POSTGRES_PASSWORD: "imnotmeantforproduction"
-          POSTGRES_DB: "ptolemy_dev"
+          POSTGRES_DB: "tequila_dev"
       redis:
         image: "redislabs/redisearch:latest"
         ports:

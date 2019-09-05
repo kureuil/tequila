@@ -1,4 +1,4 @@
-defmodule Ptolemy.Repo.Migrations.AddLinksTagsTable do
+defmodule Tequila.Repo.Migrations.AddLinksTagsTable do
   use Ecto.Migration
 
   def change do

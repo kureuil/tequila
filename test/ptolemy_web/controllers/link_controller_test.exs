@@ -1,17 +1,17 @@
-defmodule PtolemyWeb.LinkControllerTest do
-  use PtolemyWeb.ConnCase
+defmodule TequilaWeb.LinkControllerTest do
+  use TequilaWeb.ConnCase
 
-  alias Ptolemy.Index
-  alias Ptolemy.Accounts
+  alias Tequila.Index
+  alias Tequila.Accounts
 
   @create_attrs %{
     location: "https://github.com/",
-    title: "Ptolemy repository",
+    title: "Tequila repository",
     tags: "knowledgebase, learning, collaborative, sharing"
   }
   @update_attrs %{
-    location: "https://kureuil.github.io/ptolemy/",
-    title: "Ptolemy homepage",
+    location: "https://kureuil.github.io/tequila/",
+    title: "Tequila homepage",
     tags: "knowledgebase, learning, collaborative, sharing"
   }
   @invalid_attrs %{location: nil, title: nil}

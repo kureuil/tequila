@@ -1,4 +1,4 @@
-defmodule Ptolemy.DataCase do
+defmodule Tequila.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -16,20 +16,20 @@ defmodule Ptolemy.DataCase do
 
   using do
     quote do
-      alias Ptolemy.Repo
+      alias Tequila.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Ptolemy.DataCase
+      import Tequila.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Ptolemy.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Tequila.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Ptolemy.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Tequila.Repo, {:shared, self()})
     end
 
     :ok

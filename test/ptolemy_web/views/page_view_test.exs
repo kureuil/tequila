@@ -1,3 +1,3 @@
-defmodule PtolemyWeb.PageViewTest do
-  use PtolemyWeb.ConnCase, async: true
+defmodule TequilaWeb.PageViewTest do
+  use TequilaWeb.ConnCase, async: true
 end

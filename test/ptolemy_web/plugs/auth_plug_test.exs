@@ -1,10 +1,10 @@
-defmodule PtolemyWeb.AuthPlugTest do
-  use PtolemyWeb.ConnCase
+defmodule TequilaWeb.AuthPlugTest do
+  use TequilaWeb.ConnCase
   import Ecto.Query
-  alias Ptolemy.Repo
-  alias Ptolemy.Accounts
-  alias Ptolemy.Accounts.Credential
-  alias PtolemyWeb.AuthPlug
+  alias Tequila.Repo
+  alias Tequila.Accounts
+  alias Tequila.Accounts.Credential
+  alias TequilaWeb.AuthPlug
 
   def fixture_owner() do
     email = "louis@person.guru"
