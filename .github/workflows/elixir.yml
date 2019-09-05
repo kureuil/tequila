@@ -4,26 +4,18 @@ on: push
 
 jobs:
   lint:
-
     runs-on: ubuntu-latest
-
-    container:
-      image: elixir:1.9.1-slim
-
     steps:
     - uses: actions/checkout@v1
-    - name: Install Dependencies
-      run: |
-        mix local.rebar --force
-        mix local.hex --force
-        mix deps.get
-    - name: mix format
-      run: mix format --check-formatted
+    - uses: actions/setup-elixir@v1
+      with:
+        otp-version: "22.0.7"
+        elixir-version: "1.9.1"
+    - run: mix deps.get
+    - run: mix format --check-formatted
 
   test:
-
     runs-on: ubuntu-latest
-
     services:
       postgres:
         image: "postgres:11-alpine"
@@ -33,20 +25,24 @@ jobs:
           POSTGRES_USER: "tequila"
           POSTGRES_PASSWORD: "imnotmeantforproduction"
           POSTGRES_DB: "tequila_dev"
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
       redis:
         image: "redislabs/redisearch:latest"
         ports:
         - 6379:6379
 
-    container:
-      image: elixir:1.9.1-slim
-
     steps:
     - uses: actions/checkout@v1
+    - uses: actions/setup-elixir@v1
+      with:
+        otp-version: "22.0.7"
+        elixir-version: "1.9.1"
     - name: Install Dependencies
       run: |
-        mix local.rebar --force
-        mix local.hex --force
         mix deps.get
         mix ecto.create
         mix ecto.migrate
