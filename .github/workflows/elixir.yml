@@ -20,7 +20,7 @@ jobs:
       postgres:
         image: "postgres:11-alpine"
         ports:
-        - 5432/tcp
+        - 5432:5432
         env:
           POSTGRES_USER: "tequila"
           POSTGRES_PASSWORD: "imnotmeantforproduction"
@@ -49,10 +49,5 @@ jobs:
         mix search_index
       env:
         MIX_ENV: test
-        TEST_DATABASE_PORT: ${{ job.services.postgres['5432'] }}
-        REDIS_URL: "redis://redis:6379/0"
     - name: Run Tests
       run: mix test
-      env:
-        TEST_DATABASE_PORT: ${{ job.services.postgres['5432'] }}
-        REDIS_URL: "redis://redis:6379/0"
