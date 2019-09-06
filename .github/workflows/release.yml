@@ -1,6 +1,9 @@
-name: Elixir CI
+name: Release management
 
-on: push
+on:
+  push:
+    branches:
+    - master
 
 jobs:
   release:
