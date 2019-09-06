@@ -23,4 +23,4 @@ config :pbkdf2_elixir, :rounds, 1
 
 config :tequila, Tequila.Mailer, adapter: Swoosh.Adapters.Local
 
-config :tequila, :redis_url, System.get_env("TEST_REDIS_URL") || "redis://localhost:6379/1"
+config :tequila, :redis_url, System.get_env("TEST_REDIS_URL") || "redis://localhost:6379/0"
