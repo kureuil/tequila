@@ -15,3 +15,7 @@ config :tequila, Tequila.Repo,
   migration_primary_key: [name: :id, type: :binary_id]
 
 config :tequila, :redis_url, System.get_env("REDIS_URL")
+
+config :tequila, Tequila.Mailer,
+  adapter: Swoosh.Adapters.Postmark,
+  api_key: System.get_env("POSTMARK_API_KEY")

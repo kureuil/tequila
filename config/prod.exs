@@ -17,12 +17,6 @@ config :tequila, TequilaWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
-config :tequila, Tequila.Mailer,
-  adapter: Swoosh.Adapters.Mailgun,
-  # TODO: fetch api from an evironment variable ?
-  api_key: nil,
-  domain: "https://api.eu.mailgun.net/v3/mg.particular.systems"
-
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
