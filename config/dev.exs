@@ -76,3 +76,5 @@ config :tequila, Tequila.Repo,
   migration_primary_key: [name: :id, type: :binary_id]
 
 config :tequila, Tequila.Mailer, adapter: Swoosh.Adapters.Local
+
+config :tequila, :redis_url, System.get_env("REDIS_URL") || "redis://localhost:6379/0"
