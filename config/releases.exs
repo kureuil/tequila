@@ -1,9 +1,10 @@
 import Config
 
-scheme = case System.get_env("URL_SCHEME", "https") do
-  "http" -> :http
-  _ -> :https
-end
+scheme =
+  case System.get_env("URL_SCHEME", "https") do
+    "http" -> :http
+    _ -> :https
+  end
 
 config :tequila, TequilaWeb.Endpoint,
   http: [port: System.get_env("PORT", "8378") |> Integer.parse() |> elem(0)],
