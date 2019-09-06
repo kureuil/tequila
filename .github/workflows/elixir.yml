@@ -20,7 +20,7 @@ jobs:
       postgres:
         image: "postgres:11-alpine"
         ports:
-        - 5423/tcp
+        - 5432/tcp
         env:
           POSTGRES_USER: "tequila"
           POSTGRES_PASSWORD: "imnotmeantforproduction"
