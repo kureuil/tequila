@@ -15,7 +15,7 @@ config :tequila, Tequila.Repo,
   password: System.get_env("TEST_DATABASE_PASS") || "imnotmeantforproduction",
   database: System.get_env("TEST_DATABASE_NAME") || "tequila_test",
   hostname: System.get_env("TEST_DATABASE_HOST") || "localhost",
-  port: (System.get_env("TEST_DATABASE_PORT") || "5432") |> Integer.parse() |> elem(0),
+  port: System.get_env("TEST_DATABASE_PORT", "5432") |> Integer.parse() |> elem(0),
   pool: Ecto.Adapters.SQL.Sandbox,
   migration_primary_key: [name: :id, type: :binary_id]
 
