@@ -1,4 +1,4 @@
-defmodule Ptolemy.Repo.Migrations.CreateSessions do
+defmodule Tequila.Repo.Migrations.CreateSessions do
   use Ecto.Migration
 
   def change do

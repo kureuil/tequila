@@ -1,4 +1,4 @@
-defmodule Ptolemy.Repo.Migrations.CreateCredentials do
+defmodule Tequila.Repo.Migrations.CreateCredentials do
   use Ecto.Migration
 
   def change do

@@ -5,18 +5,18 @@
 # Inside the script, you can read and write to any of your
 # repositories directly:
 #
-#     Ptolemy.Repo.insert!(%Ptolemy.SomeSchema{})
+#     Tequila.Repo.insert!(%Tequila.SomeSchema{})
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
 defmodule Seeds do
-  alias Ptolemy.Repo
-  alias Ptolemy.Accounts.User
-  alias Ptolemy.Accounts.Credential
-  alias Ptolemy.Channels.Channel
-  alias Ptolemy.Index.Link
-  alias Ptolemy.Taxonomy.Tag
+  alias Tequila.Repo
+  alias Tequila.Accounts.User
+  alias Tequila.Accounts.Credential
+  alias Tequila.Channels.Channel
+  alias Tequila.Index.Link
+  alias Tequila.Taxonomy.Tag
   alias Ecto.Changeset
   import Ecto.Query, warn: false
 

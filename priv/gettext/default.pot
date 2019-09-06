@@ -11,294 +11,294 @@ msgid ""
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/controllers/channel_controller.ex:22
+#: lib/tequila_web/controllers/channel_controller.ex:22
 msgid "Channel created successfully."
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/controllers/channel_controller.ex:73
+#: lib/tequila_web/controllers/channel_controller.ex:73
 msgid "Channel deleted successfully."
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/controllers/channel_controller.ex:58
+#: lib/tequila_web/controllers/channel_controller.ex:58
 msgid "Channel updated successfully."
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/layout/app.html.eex:12
+#: lib/tequila_web/templates/layout/app.html.eex:12
 msgid "Menu"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/layout/app.html.eex:15
+#: lib/tequila_web/templates/layout/app.html.eex:15
 msgid "Search"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/layout/app.html.eex:22
+#: lib/tequila_web/templates/layout/app.html.eex:22
 msgid "Create channel"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/layout/app.html.eex:20
+#: lib/tequila_web/templates/layout/app.html.eex:20
 msgid "Submit link"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/layout/app.html.eex:29
+#: lib/tequila_web/templates/layout/app.html.eex:29
 msgid "Log out"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/layout/app.html.eex:27
+#: lib/tequila_web/templates/layout/app.html.eex:27
 msgid "My account"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/channel/edit.html.eex:3
-#: lib/ptolemy_web/templates/channel/edit.html.eex:4
+#: lib/tequila_web/templates/channel/edit.html.eex:3
+#: lib/tequila_web/templates/channel/edit.html.eex:4
 msgid "Editing channel %{channel}"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/channel/form.html.eex:4
-#: lib/ptolemy_web/templates/link/form.html.eex:4
+#: lib/tequila_web/templates/channel/form.html.eex:4
+#: lib/tequila_web/templates/link/form.html.eex:4
 msgid "Oops, something went wrong! Please check the errors below."
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/channel/form.html.eex:9
+#: lib/tequila_web/templates/channel/form.html.eex:9
 msgid "Name"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/channel/form.html.eex:17
+#: lib/tequila_web/templates/channel/form.html.eex:17
 msgid "Query"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/layout/app.html.eex:21
+#: lib/tequila_web/templates/layout/app.html.eex:21
 msgid "Channels"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/channel/form.html.eex:25
-#: lib/ptolemy_web/templates/link/form.html.eex:41
+#: lib/tequila_web/templates/channel/form.html.eex:25
+#: lib/tequila_web/templates/link/form.html.eex:41
 msgid "Save"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/channel/new.html.eex:4
+#: lib/tequila_web/templates/channel/new.html.eex:4
 msgid "New channel"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/channel/show.html.eex:23
-#: lib/ptolemy_web/templates/search/results.html.eex:19
+#: lib/tequila_web/templates/channel/show.html.eex:23
+#: lib/tequila_web/templates/search/results.html.eex:19
 msgid "%{count} comment"
 msgid_plural "%{count} comments"
 msgstr[0] ""
 msgstr[1] ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/channel/show.html.eex:9
+#: lib/tequila_web/templates/channel/show.html.eex:9
 msgid "Delete"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/channel/show.html.eex:7
-#: lib/ptolemy_web/templates/link/show.html.eex:7
+#: lib/tequila_web/templates/channel/show.html.eex:7
+#: lib/tequila_web/templates/link/show.html.eex:7
 msgid "Edit"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/link/edit.html.eex:3
-#: lib/ptolemy_web/templates/link/edit.html.eex:4
+#: lib/tequila_web/templates/link/edit.html.eex:3
+#: lib/tequila_web/templates/link/edit.html.eex:4
 msgid "Editing link %{link}"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/link/form.html.eex:17
+#: lib/tequila_web/templates/link/form.html.eex:17
 msgid "Tags"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/link/form.html.eex:9
+#: lib/tequila_web/templates/link/form.html.eex:9
 msgid "URL"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/link/form.html.eex:33
+#: lib/tequila_web/templates/link/form.html.eex:33
 msgid "Description"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/link/form.html.eex:25
+#: lib/tequila_web/templates/link/form.html.eex:25
 msgid "Title"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/link/new.html.eex:4
+#: lib/tequila_web/templates/link/new.html.eex:4
 msgid "New link"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/link/show.html.eex:21
+#: lib/tequila_web/templates/link/show.html.eex:21
 msgid "Description:"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/link/show.html.eex:25
+#: lib/tequila_web/templates/link/show.html.eex:25
 msgid "Tags:"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/link/show.html.eex:17
+#: lib/tequila_web/templates/link/show.html.eex:17
 msgid "Title:"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/link/show.html.eex:13
+#: lib/tequila_web/templates/link/show.html.eex:13
 msgid "URL:"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/controllers/link_controller.ex:16
+#: lib/tequila_web/controllers/link_controller.ex:16
 msgid "Link created successfully."
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/controllers/link_controller.ex:55
+#: lib/tequila_web/controllers/link_controller.ex:55
 msgid "Link deleted successfully."
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/controllers/link_controller.ex:42
+#: lib/tequila_web/controllers/link_controller.ex:42
 msgid "Link updated successfully."
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/search/no-query.html.eex:4
+#: lib/tequila_web/templates/search/no-query.html.eex:4
 msgid "Empty query"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/search/results.html.eex:4
+#: lib/tequila_web/templates/search/results.html.eex:4
 msgid "Search results"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/controllers/channel_controller.ex:41
+#: lib/tequila_web/controllers/channel_controller.ex:41
 msgid "You are not authorized to view this channel"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/session/new.html.eex:5
+#: lib/tequila_web/templates/session/new.html.eex:5
 msgid "Email"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/controllers/session_controller.ex:23
+#: lib/tequila_web/controllers/session_controller.ex:23
 msgid "Invalid email/password combination"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/password_reset/reset.html.eex:5
-#: lib/ptolemy_web/templates/session/new.html.eex:12
+#: lib/tequila_web/templates/password_reset/reset.html.eex:5
+#: lib/tequila_web/templates/session/new.html.eex:12
 msgid "Password"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/session/new.html.eex:1
-#: lib/ptolemy_web/templates/session/new.html.eex:19
+#: lib/tequila_web/templates/session/new.html.eex:1
+#: lib/tequila_web/templates/session/new.html.eex:19
 msgid "Sign in"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/controllers/session_controller.ex:17
+#: lib/tequila_web/controllers/session_controller.ex:17
 msgid "Welcome back !"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/controllers/password_reset_controller.ex:22
+#: lib/tequila_web/controllers/password_reset_controller.ex:22
 msgid "An email has been sent to %{email}, please check your inbox."
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/emails/account_email.ex:24
+#: lib/tequila_web/emails/account_email.ex:24
 msgid "But don’t worry! You can use the following link to reset your password:"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/password_reset/reset.html.eex:19
+#: lib/tequila_web/templates/password_reset/reset.html.eex:19
 msgid "Change password"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/password_reset/reset.html.eex:1
+#: lib/tequila_web/templates/password_reset/reset.html.eex:1
 msgid "Change password for %{email}"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/password_reset/send.html.eex:3
+#: lib/tequila_web/templates/password_reset/send.html.eex:3
 msgid "Check your email for a link to reset your password. If it doesn’t appear within a few minutes, check your spam folder."
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/password_reset/reset.html.eex:12
+#: lib/tequila_web/templates/password_reset/reset.html.eex:12
 msgid "Confirm password"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/password_reset/new.html.eex:5
+#: lib/tequila_web/templates/password_reset/new.html.eex:5
 msgid "Enter your email address and we will send you a link to reset your password"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/emails/account_email.ex:26
+#: lib/tequila_web/emails/account_email.ex:26
 msgid "If you don’t use this link within 3 hours, it will expire. To get a new password reset link, visit %{url}"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/controllers/password_reset_controller.ex:40
-#: lib/ptolemy_web/controllers/password_reset_controller.ex:61
+#: lib/tequila_web/controllers/password_reset_controller.ex:40
+#: lib/tequila_web/controllers/password_reset_controller.ex:61
 msgid "It looks like you clicked on an invalid password reset link. Please try again."
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/controllers/password_reset_controller.ex:73
+#: lib/tequila_web/controllers/password_reset_controller.ex:73
 msgid "Password updated successfully for %{user}"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/password_reset/new.html.eex:1
-#: lib/ptolemy_web/templates/password_reset/send.html.eex:1
-#: lib/ptolemy_web/templates/session/new.html.eex:25
+#: lib/tequila_web/templates/password_reset/new.html.eex:1
+#: lib/tequila_web/templates/password_reset/send.html.eex:1
+#: lib/tequila_web/templates/session/new.html.eex:25
 msgid "Reset your password"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/password_reset/send.html.eex:5
+#: lib/tequila_web/templates/password_reset/send.html.eex:5
 msgid "Return to sign in"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/templates/password_reset/new.html.eex:12
+#: lib/tequila_web/templates/password_reset/new.html.eex:12
 msgid "Send password reset email"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/emails/account_email.ex:23
-msgid "We heard that you lost your Ptolemy password. Sorry about that!"
+#: lib/tequila_web/emails/account_email.ex:23
+msgid "We heard that you lost your Tequila password. Sorry about that!"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy_web/emails/account_email.ex:19
-msgid "[Ptolemy] Please reset your password"
+#: lib/tequila_web/emails/account_email.ex:19
+msgid "[Tequila] Please reset your password"
 msgstr ""
 
 #, elixir-format
-#: lib/ptolemy/accounts/password_reset.ex:17
+#: lib/tequila/accounts/password_reset.ex:17
 msgid "does not match password"
 msgstr ""

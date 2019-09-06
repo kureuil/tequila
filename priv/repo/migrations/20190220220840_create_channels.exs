@@ -1,4 +1,4 @@
-defmodule Ptolemy.Repo.Migrations.CreateChannels do
+defmodule Tequila.Repo.Migrations.CreateChannels do
   use Ecto.Migration
 
   def change do

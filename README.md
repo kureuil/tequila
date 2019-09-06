@@ -1,4 +1,4 @@
-# Ptolemy
+# Tequila
 
 To start your Phoenix server:
 

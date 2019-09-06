@@ -2,7 +2,7 @@ use Mix.Config
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :ptolemy, PtolemyWeb.Endpoint,
+config :tequila, TequilaWeb.Endpoint,
   http: [port: 4002],
   server: false
 
@@ -10,10 +10,10 @@ config :ptolemy, PtolemyWeb.Endpoint,
 config :logger, level: :warn
 
 # Configure your database
-config :ptolemy, Ptolemy.Repo,
-  username: System.get_env("TEST_DATABASE_USER") || "ptolemy",
+config :tequila, Tequila.Repo,
+  username: System.get_env("TEST_DATABASE_USER") || "tequila",
   password: System.get_env("TEST_DATABASE_PASS") || "imnotmeantforproduction",
-  database: System.get_env("TEST_DATABASE_NAME") || "ptolemy_test",
+  database: System.get_env("TEST_DATABASE_NAME") || "tequila_test",
   hostname: System.get_env("TEST_DATABASE_HOST") || "localhost",
   port: (System.get_env("TEST_DATABASE_PORT") || "5432") |> Integer.parse() |> elem(0),
   pool: Ecto.Adapters.SQL.Sandbox,
@@ -21,4 +21,4 @@ config :ptolemy, Ptolemy.Repo,
 
 config :pbkdf2_elixir, :rounds, 1
 
-config :ptolemy, Ptolemy.Mailer, adapter: Swoosh.Adapters.Local
+config :tequila, Tequila.Mailer, adapter: Swoosh.Adapters.Local

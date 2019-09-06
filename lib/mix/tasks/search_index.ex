@@ -7,7 +7,7 @@ defmodule Mix.Tasks.SearchIndex do
 
     last_version = last_version()
 
-    case Redix.command(:redix, ["GET", "ptolemy-migration"]) do
+    case Redix.command(:redix, ["GET", "tequila-migration"]) do
       {:ok, ^last_version} ->
         IO.puts("Search index is already up-to-date, nothing to do.")
 
@@ -43,7 +43,7 @@ defmodule Mix.Tasks.SearchIndex do
 
     {last_version, _} = Enum.at(steps, length(steps) - 1)
 
-    version_upgrade = [["SET", "ptolemy-migration", last_version]]
+    version_upgrade = [["SET", "tequila-migration", last_version]]
 
     case Redix.transaction_pipeline(:redix, commands ++ version_upgrade) do
       {:ok, _} ->
@@ -64,7 +64,7 @@ defmodule Mix.Tasks.SearchIndex do
       {"2019-08-27 18:30:00Z",
        [
          "FT.CREATE",
-         "ptolemy-links",
+         "tequila-links",
          "SCHEMA",
          "title",
          "TEXT",

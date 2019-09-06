@@ -6,7 +6,7 @@ use Mix.Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :ptolemy, PtolemyWeb.Endpoint,
+config :tequila, TequilaWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -46,13 +46,13 @@ config :ptolemy, PtolemyWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :ptolemy, PtolemyWeb.Endpoint,
+config :tequila, TequilaWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
-      ~r{lib/ptolemy_web/views/.*(ex)$},
-      ~r{lib/ptolemy_web/templates/.*(eex)$}
+      ~r{lib/tequila_web/views/.*(ex)$},
+      ~r{lib/tequila_web/templates/.*(eex)$}
     ]
   ]
 
@@ -67,12 +67,12 @@ config :phoenix, :stacktrace_depth, 20
 config :phoenix, :plug_init_mode, :runtime
 
 # Configure your database
-config :ptolemy, Ptolemy.Repo,
-  username: "ptolemy",
+config :tequila, Tequila.Repo,
+  username: "tequila",
   password: "imnotmeantforproduction",
-  database: "ptolemy_dev",
+  database: "tequila_dev",
   hostname: "localhost",
   pool_size: 10,
   migration_primary_key: [name: :id, type: :binary_id]
 
-config :ptolemy, Ptolemy.Mailer, adapter: Swoosh.Adapters.Local
+config :tequila, Tequila.Mailer, adapter: Swoosh.Adapters.Local

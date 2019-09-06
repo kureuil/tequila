@@ -1,0 +1,11 @@
+# The directory Mix downloads your dependencies sources to.
+/deps/
+
+# If the VM crashes, it generates a dump, let's ignore it too.
+erl_crash.dump
+
+# If NPM crashes, it generates a log, let's ignore it too.
+npm-debug.log
+
+# The directory NPM downloads your dependencies sources to.
+/assets/node_modules/

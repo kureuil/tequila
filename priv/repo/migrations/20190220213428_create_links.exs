@@ -1,4 +1,4 @@
-defmodule Ptolemy.Repo.Migrations.CreateLinks do
+defmodule Tequila.Repo.Migrations.CreateLinks do
   use Ecto.Migration
 
   def change do

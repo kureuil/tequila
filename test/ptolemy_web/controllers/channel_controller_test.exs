@@ -1,8 +1,8 @@
-defmodule PtolemyWeb.ChannelControllerTest do
-  use PtolemyWeb.ConnCase
+defmodule TequilaWeb.ChannelControllerTest do
+  use TequilaWeb.ConnCase
 
-  alias Ptolemy.Channels
-  alias Ptolemy.Accounts
+  alias Tequila.Channels
+  alias Tequila.Accounts
 
   @create_attrs %{name: "Programming", query: "#programming"}
   @update_attrs %{name: "Distributed systems", query: "#distributedsystems"}

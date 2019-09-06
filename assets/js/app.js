@@ -15,14 +15,3 @@ import "phoenix_html"
 //
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
-
-const searchContainer = document.querySelector("#app-shell-search-container");
-const searchInput = document.querySelector("#app-shell-search-input");
-const handleInputFocus = () => {
-	searchContainer.classList.add("app-shell__search--focused");
-};
-const handleInputBlur = () => {
-	searchContainer.classList.remove("app-shell__search--focused");
-};
-searchInput.addEventListener("focus", handleInputFocus);
-searchInput.addEventListener("blur", handleInputBlur);
