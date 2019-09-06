@@ -27,5 +27,5 @@ jobs:
         MIX_ENV: prod
     - uses: actions/upload-artifact@master
       with:
-        name: tequila-master.zip
+        name: tequila-master
         path: ./tequila-master
