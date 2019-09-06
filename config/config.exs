@@ -29,7 +29,7 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :tequila, :redis_url, System.get_env("REDIS_URL") || "redis://localhost:6379/0"
+config :tequila, :redis_url, nil
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
