@@ -5,18 +5,29 @@ defmodule Tequila.Release do
     Application.load(@app)
     {:ok, u} = Tequila.Accounts.create_user(%{email: email})
     pass_len = 32
-    pass = :crypto.strong_rand_bytes(pass_len) |> Base.encode64 |> binary_part(0, pass_len) |> Pbkdf2.hash_pwd_salt()
-    {:ok, _} = Tequila.Accounts.create_credential(%{
-      uid: email,
-      token: pass,
-      provider: "email",
-    }, u)
+
+    pass =
+      :crypto.strong_rand_bytes(pass_len)
+      |> Base.encode64()
+      |> binary_part(0, pass_len)
+      |> Pbkdf2.hash_pwd_salt()
+
+    {:ok, _} =
+      Tequila.Accounts.create_credential(
+        %{
+          uid: email,
+          token: pass,
+          provider: "email"
+        },
+        u
+      )
   end
 
   def migrate do
     for repo <- repos() do
       {:ok, _, _} = Ecto.Migrator.with_repo(repo, &Ecto.Migrator.run(&1, :up, all: true))
     end
+
     migrate_redis()
   end
 
