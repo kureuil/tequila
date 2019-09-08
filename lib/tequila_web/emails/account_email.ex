@@ -6,14 +6,7 @@ defmodule TequilaWeb.AccountEmail do
   alias Tequila.Accounts.User
 
   def password_recovery(user = %User{}, token) do
-    url_config = TequilaWeb.Endpoint.config(:url)
-
-    base_uri = %URI{
-      scheme: Keyword.get(url_config, :scheme, "http"),
-      host: Keyword.get(url_config, :host),
-      port: Keyword.get(url_config, :port),
-      path: Keyword.get(url_config, :path)
-    }
+    base_uri = TequilaWeb.Endpoint.struct_url()
 
     new()
     |> to({user.email, user.email})
