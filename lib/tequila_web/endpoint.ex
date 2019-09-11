@@ -39,7 +39,8 @@ defmodule TequilaWeb.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   plug Plug.Session,
     store: :cookie,
-    key: (if System.get_env("URL_SCHEME") == "https", do: "__Host-tequila_key", else: "_tequila_key"),
+    key:
+      if(System.get_env("URL_SCHEME") == "https", do: "__Host-tequila_key", else: "_tequila_key"),
     signing_salt: "JPY8ZFCC",
     secure: System.get_env("URL_SCHEME") == "https",
     extra: "SameSite=Lax"
