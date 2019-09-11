@@ -6,8 +6,13 @@ defmodule TequilaWeb.ChannelController do
   alias Tequila.Index
 
   def index(conn, _params) do
-    default_channel = Channels.get_default_for_user(conn.assigns[:current_user])
-    redirect(conn, to: Routes.channel_path(conn, :show, default_channel))
+    case Channels.get_default_for_user(conn.assigns[:current_user]) do
+      nil ->
+        redirect(conn, to: Routes.channel_path(conn, :new))
+
+      default_channel ->
+        redirect(conn, to: Routes.channel_path(conn, :show, default_channel))
+    end
   end
 
   def new(conn, _params) do
