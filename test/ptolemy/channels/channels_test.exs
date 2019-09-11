@@ -13,7 +13,7 @@ defmodule Tequila.ChannelsTest do
     def owner_fixture() do
       alias Tequila.Accounts
 
-      email = "louis@person.guru"
+      email = "louis@example.com"
 
       try do
         Accounts.get_user_by_email!(email)

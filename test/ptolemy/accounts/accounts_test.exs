@@ -6,8 +6,8 @@ defmodule Tequila.AccountsTest do
   describe "users" do
     alias Tequila.Accounts.User
 
-    @valid_attrs %{email: "some email"}
-    @update_attrs %{email: "some updated email"}
+    @valid_attrs %{email: "louis@example.com"}
+    @update_attrs %{email: "walouis@example.com"}
     @invalid_attrs %{email: nil}
 
     def user_fixture(attrs \\ %{}) do
@@ -31,7 +31,7 @@ defmodule Tequila.AccountsTest do
 
     test "create_user/1 with valid data creates a user" do
       assert {:ok, %User{} = user} = Accounts.create_user(@valid_attrs)
-      assert user.email == "some email"
+      assert user.email == "louis@example.com"
     end
 
     test "create_user/1 with invalid data returns error changeset" do
@@ -41,7 +41,7 @@ defmodule Tequila.AccountsTest do
     test "update_user/2 with valid data updates the user" do
       user = user_fixture()
       assert {:ok, %User{} = user} = Accounts.update_user(user, @update_attrs)
-      assert user.email == "some updated email"
+      assert user.email == "walouis@example.com"
     end
 
     test "update_user/2 with invalid data returns error changeset" do
