@@ -7,7 +7,7 @@ defmodule TequilaWeb.AuthPlugTest do
   alias TequilaWeb.AuthPlug
 
   def fixture_owner() do
-    email = "louis@person.guru"
+    email = "louis@example.com"
 
     try do
       Accounts.get_user_by_email!(email)
@@ -19,12 +19,12 @@ defmodule TequilaWeb.AuthPlugTest do
   end
 
   def fixture_credential() do
-    query = from(c in Credential, where: c.provider == "email" and c.uid == "louis@person.guru")
+    query = from(c in Credential, where: c.provider == "email" and c.uid == "louis@example.com")
 
     Repo.one(query) ||
       Repo.insert!(%Credential{
         provider: "email",
-        uid: "louis@person.guru",
+        uid: "louis@example.com",
         token: "supersecretpassword",
         user_id: fixture_owner().id
       })
@@ -46,7 +46,7 @@ defmodule TequilaWeb.AuthPlugTest do
     } do
       other_user =
         Repo.insert!(%Accounts.User{
-          email: "walouis@person.guru"
+          email: "walouis@example.com"
         })
 
       session =

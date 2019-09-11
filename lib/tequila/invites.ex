@@ -44,10 +44,13 @@ defmodule Tequila.Invites do
   end
 
   def find_for_redeem(id) do
-    Repo.one(
+    query =
       from i in Invite,
         where: i.id == ^id and i.inserted_at < datetime_add(i.inserted_at, 5, "day")
-    )
+
+    query
+    |> Repo.one()
+    |> Repo.preload(:owner)
   end
 
   def change_redeem(%Redeem{} = redeem) do

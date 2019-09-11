@@ -22,7 +22,7 @@ defmodule TequilaWeb.ChannelControllerTest do
   end
 
   def fixture_owner() do
-    email = "louis@person.guru"
+    email = "louis@example.com"
 
     try do
       Accounts.get_user_by_email!(email)
@@ -40,7 +40,7 @@ defmodule TequilaWeb.ChannelControllerTest do
   end
 
   def fixture_user() do
-    email = "walouis@person.guru"
+    email = "walouis@example.com"
 
     try do
       Accounts.get_user_by_email!(email)
