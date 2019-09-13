@@ -16,6 +16,8 @@ config :tequila, Tequila.Repo,
 
 config :tequila, :redis_url, System.get_env("REDIS_URL")
 
+config :tequila, :public_email, System.get_env("PUBLIC_EMAIL", "tequila@localhost")
+
 config :tequila, Tequila.Mailer,
   adapter: Swoosh.Adapters.Postmark,
   api_key: System.get_env("POSTMARK_API_KEY")
