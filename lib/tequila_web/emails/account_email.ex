@@ -7,10 +7,11 @@ defmodule TequilaWeb.AccountEmail do
 
   def password_recovery(user = %User{}, token) do
     base_uri = TequilaWeb.Endpoint.struct_url()
+    from_email = Application.get_env(:tequila, :public_email)
 
     new()
     |> to({user.email, user.email})
-    |> from({"Tequila", "support@particular.systems"})
+    |> from({"Tequila", from_email})
     |> subject(gettext("[Tequila] Please reset your password"))
     |> text_body(
       Enum.join(

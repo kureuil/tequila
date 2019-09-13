@@ -8,12 +8,13 @@ defmodule TequilaWeb.InviteEmail do
 
   def invite(%Invite{} = invite, %User{email: sender}) do
     base_uri = TequilaWeb.Endpoint.struct_url()
+    from_email = Application.get_env(:tequila, :public_email)
 
     instance = "tequila.particular.systems"
 
     new()
     |> to({invite.invitee, invite.invitee})
-    |> from({"Tequila", "no-reply@tequila.particular.systems"})
+    |> from({"Tequila", from_email})
     |> subject(gettext("[Tequila] You've been invited to %{instance}", instance: instance))
     |> text_body(
       Enum.join(
