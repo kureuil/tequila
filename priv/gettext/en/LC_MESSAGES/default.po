@@ -12,47 +12,48 @@ msgstr ""
 "Plural-Forms: nplurals=2\n"
 
 #, elixir-format
-#: lib/tequila_web/controllers/channel_controller.ex:22
+#: lib/tequila_web/controllers/channel_controller.ex:27
 msgid "Channel created successfully."
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/controllers/channel_controller.ex:73
+#: lib/tequila_web/controllers/channel_controller.ex:85
 msgid "Channel deleted successfully."
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/controllers/channel_controller.ex:58
+#: lib/tequila_web/controllers/channel_controller.ex:70
 msgid "Channel updated successfully."
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/templates/layout/app.html.eex:12
+#: lib/tequila_web/templates/layout/app.html.eex:13
 msgid "Menu"
 msgstr ""
 
 #, elixir-format
 #: lib/tequila_web/templates/layout/app.html.eex:15
+#: lib/tequila_web/templates/layout/app.html.eex:18
 msgid "Search"
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/templates/layout/app.html.eex:22
+#: lib/tequila_web/templates/layout/app.html.eex:26
 msgid "Create channel"
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/templates/layout/app.html.eex:20
+#: lib/tequila_web/templates/layout/app.html.eex:24
 msgid "Submit link"
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/templates/layout/app.html.eex:29
+#: lib/tequila_web/templates/layout/app.html.eex:33
 msgid "Log out"
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/templates/layout/app.html.eex:27
+#: lib/tequila_web/templates/layout/app.html.eex:30
 msgid "My account"
 msgstr ""
 
@@ -64,6 +65,7 @@ msgstr ""
 
 #, elixir-format
 #: lib/tequila_web/templates/channel/form.html.eex:4
+#: lib/tequila_web/templates/invite/new.html.eex:11
 #: lib/tequila_web/templates/link/form.html.eex:4
 msgid "Oops, something went wrong! Please check the errors below."
 msgstr ""
@@ -74,18 +76,18 @@ msgid "Name"
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/templates/channel/form.html.eex:17
+#: lib/tequila_web/templates/channel/form.html.eex:15
 msgid "Query"
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/templates/layout/app.html.eex:21
+#: lib/tequila_web/templates/layout/app.html.eex:25
 msgid "Channels"
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/templates/channel/form.html.eex:25
-#: lib/tequila_web/templates/link/form.html.eex:41
+#: lib/tequila_web/templates/channel/form.html.eex:21
+#: lib/tequila_web/templates/link/form.html.eex:33
 msgid "Save"
 msgstr ""
 
@@ -96,7 +98,7 @@ msgstr ""
 
 #, elixir-format
 #: lib/tequila_web/templates/channel/show.html.eex:23
-#: lib/tequila_web/templates/search/results.html.eex:19
+#: lib/tequila_web/templates/search/results.html.eex:17
 msgid "%{count} comment"
 msgid_plural "%{count} comments"
 msgstr[0] ""
@@ -104,6 +106,7 @@ msgstr[1] ""
 
 #, elixir-format
 #: lib/tequila_web/templates/channel/show.html.eex:9
+#: lib/tequila_web/templates/invite/index.html.eex:30
 msgid "Delete"
 msgstr ""
 
@@ -120,7 +123,7 @@ msgid "Editing link %{link}"
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/templates/link/form.html.eex:17
+#: lib/tequila_web/templates/link/form.html.eex:15
 msgid "Tags"
 msgstr ""
 
@@ -130,38 +133,18 @@ msgid "URL"
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/templates/link/form.html.eex:33
+#: lib/tequila_web/templates/link/form.html.eex:27
 msgid "Description"
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/templates/link/form.html.eex:25
+#: lib/tequila_web/templates/link/form.html.eex:21
 msgid "Title"
 msgstr ""
 
 #, elixir-format
 #: lib/tequila_web/templates/link/new.html.eex:4
 msgid "New link"
-msgstr ""
-
-#, elixir-format
-#: lib/tequila_web/templates/link/show.html.eex:21
-msgid "Description:"
-msgstr ""
-
-#, elixir-format
-#: lib/tequila_web/templates/link/show.html.eex:25
-msgid "Tags:"
-msgstr ""
-
-#, elixir-format
-#: lib/tequila_web/templates/link/show.html.eex:17
-msgid "Title:"
-msgstr ""
-
-#, elixir-format
-#: lib/tequila_web/templates/link/show.html.eex:13
-msgid "URL:"
 msgstr ""
 
 #, elixir-format
@@ -180,22 +163,19 @@ msgid "Link updated successfully."
 msgstr ""
 
 #, elixir-format
-#: query.html.eex:4
-msgid "Empty query"
-msgstr ""
-
-#, elixir-format, fuzzy
 #: lib/tequila_web/templates/search/results.html.eex:4
 msgid "Search results"
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/controllers/channel_controller.ex:41
+#: lib/tequila_web/controllers/channel_controller.ex:53
 msgid "You are not authorized to view this channel"
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/templates/session/new.html.eex:5
+#: lib/tequila_web/templates/invite/new.html.eex:16
+#: lib/tequila_web/templates/invite/redeem.html.eex:5
+#: lib/tequila_web/templates/session/new.html.eex:3
 msgid "Email"
 msgstr ""
 
@@ -205,14 +185,14 @@ msgid "Invalid email/password combination"
 msgstr ""
 
 #, elixir-format
+#: lib/tequila_web/templates/invite/redeem.html.eex:10
 #: lib/tequila_web/templates/password_reset/reset.html.eex:5
-#: lib/tequila_web/templates/session/new.html.eex:12
+#: lib/tequila_web/templates/session/new.html.eex:8
 msgid "Password"
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/templates/session/new.html.eex:1
-#: lib/tequila_web/templates/session/new.html.eex:19
+#: lib/tequila_web/templates/session/new.html.eex:12
 msgid "Sign in"
 msgstr ""
 
@@ -227,12 +207,12 @@ msgid "An email has been sent to %{email}, please check your inbox."
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/emails/account_email.ex:24
+#: lib/tequila_web/emails/account_email.ex:20
 msgid "But don’t worry! You can use the following link to reset your password:"
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/templates/password_reset/reset.html.eex:19
+#: lib/tequila_web/templates/password_reset/reset.html.eex:15
 msgid "Change password"
 msgstr ""
 
@@ -247,7 +227,8 @@ msgid "Check your email for a link to reset your password. If it doesn’t appea
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/templates/password_reset/reset.html.eex:12
+#: lib/tequila_web/templates/invite/redeem.html.eex:15
+#: lib/tequila_web/templates/password_reset/reset.html.eex:10
 msgid "Confirm password"
 msgstr ""
 
@@ -257,7 +238,7 @@ msgid "Enter your email address and we will send you a link to reset your passwo
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/emails/account_email.ex:26
+#: lib/tequila_web/emails/account_email.ex:22
 msgid "If you don’t use this link within 3 hours, it will expire. To get a new password reset link, visit %{url}"
 msgstr ""
 
@@ -275,7 +256,7 @@ msgstr ""
 #, elixir-format
 #: lib/tequila_web/templates/password_reset/new.html.eex:1
 #: lib/tequila_web/templates/password_reset/send.html.eex:1
-#: lib/tequila_web/templates/session/new.html.eex:25
+#: lib/tequila_web/templates/session/new.html.eex:15
 msgid "Reset your password"
 msgstr ""
 
@@ -285,21 +266,104 @@ msgid "Return to sign in"
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/templates/password_reset/new.html.eex:12
+#: lib/tequila_web/templates/password_reset/new.html.eex:10
 msgid "Send password reset email"
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/emails/account_email.ex:23
+#: lib/tequila_web/emails/account_email.ex:19
 msgid "We heard that you lost your Tequila password. Sorry about that!"
 msgstr ""
 
 #, elixir-format
-#: lib/tequila_web/emails/account_email.ex:19
+#: lib/tequila_web/emails/account_email.ex:15
 msgid "[Tequila] Please reset your password"
 msgstr ""
 
 #, elixir-format
-#: lib/tequila/accounts/password_reset.ex:17
+#: lib/tequila/accounts/password_reset.ex:17 lib/tequila/invites/redeem.ex:18
 msgid "does not match password"
+msgstr ""
+
+#, elixir-format
+#: lib/tequila_web/controllers/invite_controller.ex:52
+msgid "Couldn't delete the invite. Please try again later."
+msgstr ""
+
+#, elixir-format, fuzzy
+#: lib/tequila_web/emails/invite_email.ex:28
+msgid "If you don’t use this link within 5 days, it will expire. In that case, ask %{sender} to invite you again."
+msgstr ""
+
+#, elixir-format
+#: lib/tequila_web/emails/invite_email.ex:26
+msgid "In order to create your account, you need to click on the link below:"
+msgstr ""
+
+#, elixir-format
+#: lib/tequila_web/controllers/invite_controller.ex:28
+msgid "Invite sent to %{invitee}."
+msgstr ""
+
+#, elixir-format
+#: lib/tequila_web/templates/invite/index.html.eex:7
+msgid "New"
+msgstr ""
+
+#, elixir-format
+#: lib/tequila_web/templates/invite/new.html.eex:4
+msgid "New Invite"
+msgstr ""
+
+#, elixir-format
+#: lib/tequila_web/templates/channel/show.html.eex:31
+#: lib/tequila_web/templates/search/results.html.eex:25
+msgid "Next page ⮞"
+msgstr ""
+
+#, elixir-format
+#: lib/tequila_web/templates/invite/index.html.eex:4
+msgid "Pending invites"
+msgstr ""
+
+#, elixir-format
+#: lib/tequila_web/templates/invite/redeem.html.eex:1
+msgid "Redeem invite"
+msgstr ""
+
+#, elixir-format
+#: lib/tequila_web/templates/invite/new.html.eex:22
+msgid "Send"
+msgstr ""
+
+#, elixir-format, fuzzy
+#: lib/tequila_web/templates/invite/redeem.html.eex:20
+msgid "Sign up"
+msgstr ""
+
+#, elixir-format
+#: lib/tequila_web/controllers/invite_controller.ex:44
+msgid "The invite addressed to %{invitee} was successfully deleted."
+msgstr ""
+
+#, elixir-format
+#: lib/tequila_web/controllers/invite_controller.ex:63
+#: lib/tequila_web/controllers/invite_controller.ex:84
+msgid "The invite link you used isn't valid. Please ask the person that invited you again."
+msgstr ""
+
+#, elixir-format
+#: lib/tequila_web/emails/invite_email.ex:22
+msgid "You've been invited to %{instance} by %{sender}"
+msgstr ""
+
+#, elixir-format
+#: lib/tequila_web/emails/invite_email.ex:18
+msgid "[Tequila] You've been invited to %{instance}"
+msgstr ""
+
+#, elixir-format
+#: lib/tequila_web/templates/channel/show.html.eex:29
+#: lib/tequila_web/templates/search/results.html.eex:23
+msgid "⮜ Previous page"
 msgstr ""

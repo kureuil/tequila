@@ -18,12 +18,16 @@ defmodule Tequila.Index do
 
   Returns `[]` if no entries matched the query.
   """
-  def search(query) do
+  def search!(query, opts \\ []) do
+    limit = Keyword.get(opts, :per_page, 50) |> max(1) |> min(100)
+    page = Keyword.get(opts, :page, 1) |> max(1)
+
     case QueryParser.parse(query) do
       {:ok, result, _, _, _, _} ->
         constraints = build_constraints(result)
+        offset = (page - 1) * limit
 
-        {:ok, [_count | hits]} =
+        {:ok, [count | hits]} =
           Redix.command(:redix, [
             "FT.SEARCH",
             "tequila-links",
@@ -33,13 +37,20 @@ defmodule Tequila.Index do
             "inserted_at",
             "DESC",
             "LIMIT",
-            "0",
-            "50"
+            to_string(offset),
+            to_string(limit + 1)
           ])
 
-        Link
+        has_next = (count - offset) > limit
+        has_prev = page > 1
+        hits = Enum.take(hits, limit)
+
+        entries = Link
         |> where([l], l.id in ^hits)
         |> Repo.all()
+        |> Enum.sort_by(fn entry -> Enum.find_index(hits, fn hit -> hit == entry.id end) end)
+
+        {entries, has_next, has_prev}
 
       error ->
         throw(error)

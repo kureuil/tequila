@@ -1,7 +1,0 @@
-<section class="bg-white px-4 pb-2 pt-2 shadow-md rounded">
-  <header class="flex flex-col md:flex-row">
-    <h1 class="flex-1 font-bold font-headline text-xl md:text-2xl">
-      <%= gettext "Empty query" %>
-    </h1>
-  </header>
-</section>
