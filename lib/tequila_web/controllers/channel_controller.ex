@@ -36,17 +36,27 @@ defmodule TequilaWeb.ChannelController do
     page = Map.get(params, "page", "1")
     channel = Channels.get_channel!(id)
     current_user = conn.assigns[:current_user].id
-    current_page = case Integer.parse(page) do
-      {parsed, _rest} -> parsed
-      :error -> 1
-    end
+
+    current_page =
+      case Integer.parse(page) do
+        {parsed, _rest} -> parsed
+        :error -> 1
+      end
 
     case channel.owner_id do
       ^current_user ->
         {entries, has_next, has_prev} = Index.search!(channel.query, page: current_page)
         prev_page = max(current_page - 1, 1)
         next_page = current_page + 1
-        render(conn, "show.html", channel: channel, entries: entries, has_next: has_next, has_prev: has_prev, prev_page: prev_page, next_page: next_page)
+
+        render(conn, "show.html",
+          channel: channel,
+          entries: entries,
+          has_next: has_next,
+          has_prev: has_prev,
+          prev_page: prev_page,
+          next_page: next_page
+        )
 
       _ ->
         conn

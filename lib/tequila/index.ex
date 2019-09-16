@@ -41,14 +41,15 @@ defmodule Tequila.Index do
             to_string(limit + 1)
           ])
 
-        has_next = (count - offset) > limit
+        has_next = count - offset > limit
         has_prev = page > 1
         hits = Enum.take(hits, limit)
 
-        entries = Link
-        |> where([l], l.id in ^hits)
-        |> Repo.all()
-        |> Enum.sort_by(fn entry -> Enum.find_index(hits, fn hit -> hit == entry.id end) end)
+        entries =
+          Link
+          |> where([l], l.id in ^hits)
+          |> Repo.all()
+          |> Enum.sort_by(fn entry -> Enum.find_index(hits, fn hit -> hit == entry.id end) end)
 
         {entries, has_next, has_prev}
 
