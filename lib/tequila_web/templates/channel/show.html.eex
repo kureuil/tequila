@@ -25,5 +25,10 @@
         </li>
       <% end %>
     </ul>
+    <div class="flex justify-between">
+      <%= link gettext("⮜ Previous page"), to: Routes.channel_path(@conn, :show, @channel, page: @prev_page), class: if @has_prev == false, do: "flex-initial hidden btn btn--muted", else: "flex-initial btn btn--muted" %>
+      <div></div>
+      <%= link gettext("Next page ⮞"), to: Routes.channel_path(@conn, :show, @channel, page: @next_page), class: if @has_next == false, do: "flex-initial hidden btn btn--muted", else: "flex-initial btn btn--muted" %>
+    </div>
   </div>
 </section>
