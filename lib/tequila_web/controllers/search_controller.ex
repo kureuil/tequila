@@ -5,7 +5,7 @@ defmodule TequilaWeb.SearchController do
 
   def index(conn, params) do
     page = Map.get(params, "page", "1")
-    query = Map.get(params, "query", "")
+    query = Map.get(params, "q", "")
 
     current_page =
       case Integer.parse(page) do
