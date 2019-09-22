@@ -63,7 +63,13 @@ defmodule Tequila.Index do
   defp build_constraints([root | []]), do: build_constraints(root)
 
   defp build_constraints({:word, word}) do
-    "\"#{word}\""
+    case String.contains?(word, ["\t", "\n", "\r", "\ "]) do
+      true ->
+        "\"#{word}\""
+
+      _ ->
+        word
+    end
   end
 
   defp build_constraints({:tag, tag}) do
