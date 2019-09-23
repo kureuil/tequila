@@ -293,7 +293,7 @@ msgstr ""
 #, elixir-format, fuzzy
 #: lib/tequila_web/emails/invite_email.ex:28
 msgid "If you don’t use this link within 5 days, it will expire. In that case, ask %{sender} to invite you again."
-msgstr "si vous n'utilisez pas ce lien d'ici 3 heures, il expirera. Pour obtenir un nouveau lien, rendez vous sur %{url}"
+msgstr "Si vous n'utilisez pas ce lien d'ici 5 jours, il expirera. Pour obtenir un nouveau lien, demandez à %{sender} de vous inviter à nouveau."
 
 #, elixir-format
 #: lib/tequila_web/emails/invite_email.ex:26
