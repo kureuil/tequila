@@ -2,6 +2,7 @@ defmodule Tequila.ChannelsTest do
   use Tequila.DataCase
 
   alias Tequila.Channels
+  alias Tequila.Fixtures
 
   describe "channels" do
     alias Tequila.Channels.Channel
@@ -11,17 +12,7 @@ defmodule Tequila.ChannelsTest do
     @invalid_attrs %{name: nil, query: nil}
 
     def owner_fixture() do
-      alias Tequila.Accounts
-
-      email = "louis@example.com"
-
-      try do
-        Accounts.get_user_by_email!(email)
-      rescue
-        _ in Ecto.NoResultsError ->
-          {:ok, user} = Accounts.create_user(%{email: email})
-          user
-      end
+      Fixtures.user("louis@example.com")
     end
 
     def channel_fixture(attrs \\ %{}) do

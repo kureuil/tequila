@@ -2,6 +2,7 @@ defmodule Tequila.IndexTest do
   use Tequila.DataCase
 
   alias Tequila.Index
+  alias Tequila.Fixtures
 
   describe "links" do
     alias Tequila.Index.Link
@@ -11,17 +12,7 @@ defmodule Tequila.IndexTest do
     @invalid_attrs %{location: nil, title: nil}
 
     def owner_fixture() do
-      alias Tequila.Accounts
-
-      email = "louis@example.com"
-
-      try do
-        Accounts.get_user_by_email!(email)
-      rescue
-        _ in Ecto.NoResultsError ->
-          {:ok, user} = Accounts.create_user(%{email: email})
-          user
-      end
+      Fixtures.user("louis@example.com")
     end
 
     def link_fixture(attrs \\ %{}) do

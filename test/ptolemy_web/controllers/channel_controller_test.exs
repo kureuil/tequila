@@ -2,54 +2,14 @@ defmodule TequilaWeb.ChannelControllerTest do
   use TequilaWeb.ConnCase
 
   alias Tequila.Channels
-  alias Tequila.Accounts
+  alias Tequila.Fixtures
 
   @create_attrs %{name: "Programming", query: "#programming"}
   @update_attrs %{name: "Distributed systems", query: "#distributedsystems"}
   @invalid_attrs %{name: nil, query: nil}
 
-  def fixture_channel() do
-    owner = fixture_owner()
-    {:ok, channel} = Channels.create_channel(@create_attrs, owner)
-    channel
-  end
-
-  def fixture_home_channel() do
-    attrs = %{name: "Home", query: "", default: true}
-    owner = fixture_owner()
-    {:ok, channel} = Channels.create_channel(attrs, owner)
-    channel
-  end
-
-  def fixture_owner() do
-    email = "louis@example.com"
-
-    try do
-      Accounts.get_user_by_email!(email)
-    rescue
-      _ in Ecto.NoResultsError ->
-        {:ok, user} = Accounts.create_user(%{email: email})
-        user
-    end
-  end
-
-  def fixture_forbidden_channel() do
-    owner = fixture_user()
-    {:ok, channel} = Channels.create_channel(@create_attrs, owner)
-    channel
-  end
-
-  def fixture_user() do
-    email = "walouis@example.com"
-
-    try do
-      Accounts.get_user_by_email!(email)
-    rescue
-      _ in Ecto.NoResultsError ->
-        {:ok, user} = Accounts.create_user(%{email: email})
-        user
-    end
-  end
+  @owner "louis@example.com"
+  @guest "walouis@example.com"
 
   describe "index" do
     setup [:create_owner, :create_home_channel]
@@ -165,22 +125,33 @@ defmodule TequilaWeb.ChannelControllerTest do
   end
 
   defp create_owner(_) do
-    owner = fixture_owner()
+    owner = Fixtures.user(@owner)
     {:ok, owner: owner}
   end
 
+  defp create_guest(_) do
+    guest = Fixtures.user(@guest)
+    {:ok, guest: guest}
+  end
+
   defp create_channel(_) do
-    channel = fixture_channel()
+    attrs = %{name: "Programming", query: "#programming"}
+    {:ok, owner: owner} = create_owner(nil)
+    {:ok, channel} = Channels.create_channel(attrs, owner)
     {:ok, channel: channel}
   end
 
   defp create_home_channel(_) do
-    channel = fixture_home_channel()
+    attrs = %{name: "Home", query: "", default: true}
+    {:ok, owner: owner} = create_owner(nil)
+    {:ok, channel} = Channels.create_channel(attrs, owner)
     {:ok, home_channel: channel}
   end
 
   defp create_forbidden_channel(_) do
-    channel = fixture_forbidden_channel()
+    attrs = %{name: "Video games", query: "#videogames"}
+    {:ok, guest: owner} = create_guest(nil)
+    {:ok, channel} = Channels.create_channel(attrs, owner)
     {:ok, forbidden_channel: channel}
   end
 end
