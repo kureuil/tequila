@@ -2,37 +2,21 @@ defmodule TequilaWeb.LinkControllerTest do
   use TequilaWeb.ConnCase
 
   alias Tequila.Index
-  alias Tequila.Accounts
+  alias Tequila.Fixtures
+
+  @owner "louis@example.com"
 
   @create_attrs %{
-    location: "https://github.com/",
-    title: "Tequila repository",
-    tags: "knowledgebase, learning, collaborative, sharing"
+    location: Faker.Internet.url(),
+    title: Faker.Name.title(),
+    tags: Faker.Util.join(4, ", ", &Faker.Pokemon.name/0)
   }
   @update_attrs %{
-    location: "https://kureuil.github.io/tequila/",
-    title: "Tequila homepage",
-    tags: "knowledgebase, learning, collaborative, sharing"
+    location: Faker.Internet.url(),
+    title: Faker.Name.title(),
+    tags: Faker.Util.join(4, ", ", &Faker.Pokemon.name/0)
   }
   @invalid_attrs %{location: nil, title: nil}
-
-  def fixture(:link) do
-    owner = fixture(:owner)
-    {:ok, link} = Index.create_submit(@create_attrs, owner)
-    link
-  end
-
-  def fixture(:owner) do
-    email = "louis@example.com"
-
-    try do
-      Accounts.get_user_by_email!(email)
-    rescue
-      _ in Ecto.NoResultsError ->
-        {:ok, user} = Accounts.create_user(%{email: email})
-        user
-    end
-  end
 
   describe "new link" do
     setup [:create_owner]
@@ -115,12 +99,13 @@ defmodule TequilaWeb.LinkControllerTest do
   end
 
   defp create_link(_) do
-    link = fixture(:link)
+    owner = Fixtures.user(@owner)
+    {:ok, link} = Index.create_submit(@create_attrs, owner)
     {:ok, link: link}
   end
 
   defp create_owner(_) do
-    owner = fixture(:owner)
+    owner = Fixtures.user(@owner)
     {:ok, owner: owner}
   end
 end

@@ -1,19 +1,7 @@
 defmodule TequilaWeb.PageControllerTest do
   use TequilaWeb.ConnCase
 
-  alias Tequila.Accounts
-
-  def fixture_owner() do
-    email = "louis@example.com"
-
-    try do
-      Accounts.get_user_by_email!(email)
-    rescue
-      _ in Ecto.NoResultsError ->
-        {:ok, user} = Accounts.create_user(%{email: email})
-        user
-    end
-  end
+  alias Tequila.Fixtures
 
   describe "index" do
     setup [:create_owner]
@@ -26,7 +14,7 @@ defmodule TequilaWeb.PageControllerTest do
   end
 
   defp create_owner(_) do
-    owner = fixture_owner()
+    owner = Fixtures.user("louis@example.com")
     {:ok, owner: owner}
   end
 end

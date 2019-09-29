@@ -1,34 +1,11 @@
 defmodule TequilaWeb.AuthPlugTest do
   use TequilaWeb.ConnCase
-  import Ecto.Query
   alias Tequila.Repo
   alias Tequila.Accounts
-  alias Tequila.Accounts.Credential
+  alias Tequila.Fixtures
   alias TequilaWeb.AuthPlug
 
-  def fixture_owner() do
-    email = "louis@example.com"
-
-    try do
-      Accounts.get_user_by_email!(email)
-    rescue
-      _ in Ecto.NoResultsError ->
-        {:ok, user} = Accounts.create_user(%{email: email})
-        user
-    end
-  end
-
-  def fixture_credential() do
-    query = from(c in Credential, where: c.provider == "email" and c.uid == "louis@example.com")
-
-    Repo.one(query) ||
-      Repo.insert!(%Credential{
-        provider: "email",
-        uid: "louis@example.com",
-        token: "supersecretpassword",
-        user_id: fixture_owner().id
-      })
-  end
+  @email "louis@example.com"
 
   describe "Authentication Plug" do
     setup [:create_owner, :create_credential]
@@ -44,9 +21,9 @@ defmodule TequilaWeb.AuthPlugTest do
       owner: owner,
       credential: credential
     } do
-      other_user =
-        Repo.insert!(%Accounts.User{
-          email: "walouis@example.com"
+      {:ok, other_user} =
+        Accounts.create_user(%{
+          email: Faker.Internet.email()
         })
 
       session =
@@ -81,12 +58,13 @@ defmodule TequilaWeb.AuthPlugTest do
   end
 
   defp create_owner(_) do
-    owner = fixture_owner()
+    owner = Fixtures.user(@email)
     {:ok, owner: owner}
   end
 
   defp create_credential(_) do
-    credential = fixture_credential()
+    {:ok, owner: user} = create_owner(nil)
+    credential = Fixtures.credential("email", @email, user)
     {:ok, credential: credential}
   end
 end

@@ -46,7 +46,8 @@ defmodule Tequila.Invites do
   def find_for_redeem(id) do
     query =
       from i in Invite,
-        where: i.id == ^id and i.inserted_at < datetime_add(i.inserted_at, 5, "day")
+        where:
+          i.id == ^id and fragment("CURRENT_TIMESTAMP") < datetime_add(i.inserted_at, 5, "day")
 
     query
     |> Repo.one()
@@ -66,12 +67,25 @@ defmodule Tequila.Invites do
       %{valid?: true} = changeset ->
         redeem = Changeset.apply_changes(changeset)
 
-        case Repo.transaction(fn ->
-               {:ok, user} = Accounts.create_user(Redeem.to_user(redeem), invite.owner)
-               {:ok, _} = Accounts.create_credential(Redeem.to_credential(redeem), user)
-               delete_invite!(invite)
-               user
-             end) do
+        transaction =
+          Repo.transaction(fn ->
+            case Accounts.create_user(Redeem.to_user(redeem), invite.owner) do
+              {:ok, user} ->
+                case Accounts.create_credential(Redeem.to_credential(redeem), user) do
+                  {:ok, _} ->
+                    delete_invite!(invite)
+                    user
+
+                  {:error, changeset} ->
+                    Repo.rollback(changeset)
+                end
+
+              {:error, changeset} ->
+                Repo.rollback(changeset)
+            end
+          end)
+
+        case transaction do
           {:ok, user} ->
             {:ok, user}
 

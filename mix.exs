@@ -49,7 +49,8 @@ defmodule Tequila.MixProject do
       {:swoosh, "~> 0.23"},
       {:phoenix_swoosh, "~> 0.2"},
       {:redix, "~> 0.10.2"},
-      {:timex, "~> 3.0"}
+      {:timex, "~> 3.0"},
+      {:faker, "~> 0.12", only: :test}
     ]
   end
 
@@ -64,7 +65,7 @@ defmodule Tequila.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       "ecto.seed": ["run priv/repo/seeds.exs"],
-      test: ["ecto.create --quiet", "ecto.migrate", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate", "search_index", "test"]
     ]
   end
 end
