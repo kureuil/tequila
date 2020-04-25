@@ -1,15 +1,47 @@
-<%= form_for @conn, Routes.session_path(@conn, :create), [class: "bg-white rounded p-4 shadow-md mb-8 border-t-4 border-secondary-500"], fn f -> %>
-  <div class="mb-4">
-    <%= label f, :email, gettext("Email"), class: "form-label" %>
-    <%= email_input f, :email, class: "form-input", required: true %>
-    <%= error_tag f, :email %>
-  </div>
-  <div class="mb-4">
-    <%= label f, :password, gettext("Password"), class: "form-label" %>
-    <%= password_input f, :password, class: "form-input", required: true %>
-    <%= error_tag f, :password %>
-  </div>
-  <%= submit gettext("Sign in"), class: "btn btn--block btn--secondary" %>
-<% end %>
+<div class="sm:mx-auto sm:w-full sm:max-w-md">
+  <h3 class="font-medium text-center text-xl">🍹 Tequila</h3>
+  <h1 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+    <%= gettext("Sign in to your account") %>
+  </h1>
+</div>
 
-<p><%= link gettext("Reset your password"), to: Routes.password_reset_path(@conn, :new), class: "font-ui" %></p>
+<div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+  <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+    <%= form_for @conn, Routes.session_path(@conn, :create), fn f -> %>
+      <div>
+        <%= label f, :email, gettext("Email"), class: "block text-sm font-medium leading-5 text-gray-700" %>
+        <div class="mt-1 rounded-md shadow-sm">
+          <%= email_input f, :email, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
+          <%= error_tag f, :email %>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <%= label f, :password, gettext("Password"), class: "block text-sm font-medium leading-5 text-gray-700" %>
+        <div class="mt-1 rounded-md shadow-sm">
+          <%= password_input f, :password, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
+          <%= error_tag f, :password %>
+        </div>
+      </div>
+
+      <div class="mt-6 flex items-center justify-between">
+        <div class="flex items-center">
+          <input id="remember_me" type="checkbox" class="form-checkbox h-4 w-4 text-blue-600 transition duration-150 ease-in-out" />
+          <label for="remember_me" class="ml-2 block text-sm leading-5 text-gray-900">
+            Remember me
+          </label>
+        </div>
+
+        <div class="text-sm leading-5">
+          <%= link gettext("Reset your password"), to: Routes.password_reset_path(@conn, :new), class: "font-medium text-blue-600 hover:text-blue-500 focus:outline-none focus:underline transition ease-in-out duration-150" %>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <span class="block w-full rounded-md shadow-sm">
+          <%= submit gettext("Sign in"), class: "w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out" %>
+        </span>
+      </div>
+    <% end %>
+  </div>
+</div>

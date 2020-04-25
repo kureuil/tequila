@@ -1,15 +1,20 @@
-<section class="bg-white px-4 pb-2 pt-2 shadow-md rounded">
-  <header class="flex flex-col md:flex-row">
-    <h1 class="flex-1 font-bold font-headline text-xl md:text-2xl">
+<header class="md:flex md:items-center md:justify-between mb-4">
+  <div class="flex-1 min-w-0">
+    <h1 class="text-2xl font-bold leading-7 text-neutral-900 sm:text-3xl sm:leading-9 sm:truncate">
       <%= @channel.name %>
     </h1>
-    <div class="flex-initial text-right text-xl align-baseline md:text-2xl">
-      <%= link gettext("Edit"), to: Routes.channel_path(@conn, :edit, @channel), class: "btn btn--muted text-sm mr-2" %>
-      <%= form_for @conn, Routes.channel_path(@conn, :delete, @channel), [class: "inline", method: :delete], fn _f ->  %>
-        <%= submit gettext("Delete"), class: "btn btn--muted btn--destructive text-sm" %>
-      <% end %>
-    </div>
-  </header>
+  </div>
+  <div class="mt-4 flex md:mt-0 md:ml-4">
+    <span class="shadow-sm rounded-md">
+      <%= link gettext("Edit"), to: Routes.channel_path(@conn, :edit, @channel), class: "inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50 transition duration-150 ease-in-out" %>
+    </span>
+    <%= form_for @conn, Routes.channel_path(@conn, :delete, @channel), [class: "inline ml-3 shadow-sm rounded-md", method: :delete], fn _f ->  %>
+      <%= submit gettext("Delete"), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none focus:shadow-outline-red focus:border-red-700 active:bg-red-700 transition duration-150 ease-in-out" %>
+    <% end %>
+  </div>
+</header>
+
+<section class="bg-white px-4 pb-2 pt-2 shadow-md rounded">
   <div>
     <ul>
       <%= for entry <- @entries do %>

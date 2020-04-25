@@ -1,9 +1,9 @@
+<header class="mb-4">
+  <h1 class="text-2xl font-bold leading-7 text-neutral-900 sm:text-3xl sm:leading-9 sm:truncate">
+    <%= gettext "Editing channel %{channel}", channel: @channel.name %>
+  </h1>
+</header>
 <section class="bg-white px-4 pb-2 pt-2 shadow-md rounded">
-  <header class="flex flex-col md:flex-row">
-    <h1 class="flex-1 font-bold text-xl md:text-2xl" title="<%= gettext "Editing channel %{channel}", channel: @channel.name %>">
-      <%= gettext "Editing channel %{channel}", channel: @channel.name %>
-    </h1>
-  </header>
   <div>
     <%= render "form.html", Map.put(assigns, :action, Routes.channel_path(@conn, :update, @channel)) %>
   </div>

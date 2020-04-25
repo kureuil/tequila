@@ -1,38 +1,49 @@
-<section class="bg-white px-4 pt-2 shadow-md rounded">
-  <header class="flex flex-col md:flex-row">
-    <h1 class="flex-1 font-bold text-xl md:text-2xl">
+<header class="md:flex md:items-center md:justify-between mb-4">
+  <div class="flex-1 min-w-0">
+    <h1 class="text-2xl font-bold leading-7 text-neutral-900 sm:text-3xl sm:leading-9 sm:truncate">
       <%= gettext "Pending invites" %>
     </h1>
-    <div class="flex-initial text-right text-xl align-baseline md:text-2xl">
-      <%= link gettext("New"), to: Routes.invite_path(@conn, :new), class: "btn btn--muted text-sm" %>
-    </div>
-  </header>
-  <div class="-mx-4 pt-2">
-    <table class="w-full">
-      <thead>
-        <tr class="font-ui text-left bg-neutral-200 text-neutral-800">
-          <th class="pl-4 font-semibold py-1">Adresse e-mail</th>
-          <th class="font-semibold py-1">Envoyée le</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <%= for entry <- @invites do %>
-          <tr class="border-t-2 border-neutral-200">
-            <td class="pl-4 py-2">
-              <%= entry.invitee %>
-            </td>
-            <td class="py-2">
-              <abbr title="<%= entry.inserted_at %>"><%= relative_time entry.inserted_at %></abbr>
-            </td>
-            <td class="pr-4 py-2 text-right">
-              <%= form_for @conn, Routes.invite_path(@conn, :delete, entry), [class: "inline align-baseline", method: :delete], fn _f ->  %>
-                <%= submit gettext("Delete"), class: "btn btn--muted btn--destructive text-sm" %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
   </div>
-</section>
+  <div class="mt-4 flex md:mt-0 md:ml-4">
+    <span class="shadow-sm rounded-md">
+      <%= link gettext("New"), to: Routes.invite_path(@conn, :new), class: "inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out" %>
+    </span>
+  </div>
+</header>
+
+<div class="flex flex-col">
+  <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+    <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+      <table class="min-w-full">
+        <thead>
+          <tr>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              <%= gettext("Email") %>
+            </th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+              <%= gettext("Sent at") %>
+            </th>
+            <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <%= for entry <- @invites do %>
+            <tr>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-900">
+                <%= entry.invitee %>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 font-medium text-gray-900">
+                <abbr title="<%= entry.inserted_at %>"><%= relative_time entry.inserted_at %></abbr>
+              </td>
+              <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                <%= form_for @conn, Routes.invite_path(@conn, :delete, entry), [class: "inline align-baseline", method: :delete], fn _f ->  %>
+                  <%= submit gettext("Delete"), class: "text-red-600 hover:text-red-900" %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

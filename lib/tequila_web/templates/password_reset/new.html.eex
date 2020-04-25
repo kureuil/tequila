@@ -1,12 +1,26 @@
-<h1 class="text-center font-bold font-ui text-2xl mb-2"><%= gettext "Reset your password" %></h1>
+<div class="sm:mx-auto sm:w-full sm:max-w-md">
+  <h3 class="font-medium text-center text-xl">🍹 Tequila</h3>
+  <h1 class="mt-6 text-center text-3xl leading-9 font-extrabold text-gray-900">
+    <%= gettext "Reset your password" %>
+  </h1>
+</div>
 
-<%= form_for @conn, Routes.password_reset_path(@conn, :send), [class: "bg-white rounded p-4 shadow-md border-t-4 border-secondary-500"], fn f -> %>
-  <div class="mb-4">
-    <%= label f, :email, gettext("Enter your email address and we will send you a link to reset your password"), class: "font-ui" %>
-    <%= email_input f, :email, class: "form-input mt-3", required: true %>
-    <%= error_tag f, :email %>
+<div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+  <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+    <%= form_for @conn, Routes.password_reset_path(@conn, :send), fn f -> %>
+      <div>
+        <%= label f, :email, gettext("Enter your email address and we will send you a link to reset your password"), class: "block text-sm font-medium leading-5 text-gray-700" %>
+        <div class="mt-1 rounded-md shadow-sm">
+          <%= email_input f, :email, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5", required: true %>
+          <%= error_tag f, :email %>
+        </div>
+      </div>
+
+      <div class="mt-6">
+        <span class="block w-full rounded-md shadow-sm">
+          <%= submit gettext("Send password reset email"), class: "w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out" %>
+        </span>
+      </div>
+    <% end %>
   </div>
-  <div class="form-actions">
-    <%= submit gettext("Send password reset email"), class: "btn btn--block btn--secondary" %>
-  </div>
-<% end %>
+</div>

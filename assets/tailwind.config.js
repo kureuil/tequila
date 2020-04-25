@@ -1,23 +1,14 @@
-const SYSTEM_FONT_FAMILIES = [
-  '-apple-system',
-  'BlinkMacSystemFont',
-  '"Segoe UI"',
-  'Roboto',
-  'Oxygen-Sans',
-  'Ubuntu',
-  'Cantarell',
-  '"Helvetica Neue"',
-  'sans-serif',
-];
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   theme: {
-    fontFamily: {
-      mono: ['Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
-      ui: ['"Source Sans Pro"'].concat(SYSTEM_FONT_FAMILIES),
-      copy: SYSTEM_FONT_FAMILIES,
-      headline: SYSTEM_FONT_FAMILIES,
-    },
+    extend: {
+      fontFamily: {
+        mono: ['Menlo', 'Monaco', 'Consolas', '"Liberation Mono"', '"Courier New"', 'monospace'],
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans]
+      },
+    }
+    /*
     colors: {
       transparent: 'transparent',
       white: '#FFFFFF',
@@ -94,7 +85,10 @@ module.exports = {
         '900': '#513C06',
       }
     }
+    */
   },
   variants: {},
-  plugins: []
+  plugins: [
+    require('@tailwindcss/ui'),
+  ]
 }

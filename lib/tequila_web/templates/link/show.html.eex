@@ -1,19 +1,26 @@
-<section class="bg-white px-4 pb-3 pt-2 shadow-md rounded">
-  <header class="flex flex-col md:flex-row">
-    <h1 class="flex-1 font-bold font-headline text-xl md:text-2xl">
+<header class="md:flex md:items-center md:justify-between mb-4">
+  <div class="flex-1 min-w-0">
+    <h1 class="text-2xl font-bold leading-7 text-neutral-900 sm:text-3xl sm:leading-9 sm:truncate">
       <%= @link.title %>
     </h1>
-    <div class="flex-initial text-right text-xl align-baseline md:text-2xl">
-      <%= link gettext("Edit"), to: Routes.link_path(@conn, :edit, @link), class: "btn btn--muted text-sm" %>
-    </div>
-  </header>
+  </div>
+  <div class="mt-4 flex md:mt-0 md:ml-4">
+    <span class="shadow-sm rounded-md">
+      <%= link gettext("Edit"), to: Routes.link_path(@conn, :edit, @link), class: "inline-flex items-center px-4 py-2 border border-gray-300 text-sm leading-5 font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 active:text-gray-800 active:bg-gray-50 transition duration-150 ease-in-out" %>
+    </span>
+  </div>
+</header>
+
+<section class="bg-white px-4 pb-3 pt-2 shadow-md rounded">
   <div>
-    <%= link @link.location, to: @link.location, class: "block text-primary-500 font-semibold text-sm" %>
+    <%= link @link.location, to: @link.location, class: "block hover:text-blue-500 font-medium" %>
     <ul>
       <%= for tag <- @link.tags do %>
-        <li class="inline text-sm">#<%= tag.name %></li>
+        <li class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium leading-4 bg-gray-100 text-gray-800">
+          <%= link "##{tag.name}", to: Routes.search_path(@conn, :index, q: "##{tag.name}"), class: "hover:underline" %>
+        </li>
       <% end %>
     </ul>
-    <p class="font-copy"><%= @link.description %></p>
+    <p class="mt-2"><%= @link.description %></p>
   </div>
 </section>
