@@ -13,7 +13,7 @@ defmodule TequilaWeb.HelmetPlug do
           Keyword.put(
             opts,
             :csp,
-            "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'"
+            "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src https://rsms.me 'self' 'unsafe-inline'; font-src https://rsms.me 'self'"
           )
       end
 

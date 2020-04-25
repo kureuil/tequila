@@ -1,35 +1,66 @@
 <%= form_for @changeset, @action, [method: @method], fn f -> %>
   <%= if @changeset.action do %>
-    <div class="form-alert">
-      <p><%= gettext "Oops, something went wrong! Please check the errors below." %></p>
+    <div class="bg-red-50 border-l-4 border-red-400 p-4 -mx-4 mb-4">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <svg class="h-5 w-5 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <div class="ml-3">
+          <p class="text-sm leading-5 text-red-700">
+            <%= gettext "Oops, something went wrong! Please check the errors below." %>
+          </p>
+        </div>
+      </div>
     </div>
   <% end %>
 
-  <div class="mb-4">
-    <%= label f, :location, gettext("URL"), class: "form-label" %>
-    <%= url_input f, :location, required: true, class: if has_error?(f, :location), do: "form-input border-red-300", else: "form-input" %>
-    <%= error_tag f, :location %>
+  <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:pt-2">
+    <%= label f, :location, gettext("URL"), class: "block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2" %>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <div class="max-w-lg rounded-md shadow-sm">
+        <%= url_input f, :location, required: true, class: if has_error?(f, :location), do: "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 border-red-300", else: "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+        <%= error_tag f, :location %>
+      </div>
+    </div>
   </div>
 
-  <div class="mb-4">
-    <%= label f, :tags, gettext("Tags"), class: "form-label" %>
-    <%= text_input f, :tags, class: if has_error?(f, :tags), do: "form-input border-red-300", else: "form-input" %>
-    <%= error_tag f, :tags %>
+  <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+    <%= label f, :tags, gettext("Tags"), class: "block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2" %>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <div class="max-w-lg rounded-md shadow-sm">
+        <%= text_input f, :tags, class: if has_error?(f, :tags), do: "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 border-red-300", else: "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+        <%= error_tag f, :tags %>
+      </div>
+    </div>
   </div>
 
-  <div class="mb-4">
-    <%= label f, :title, gettext("Title"), class: "form-label" %>
-    <%= text_input f, :title, class: if has_error?(f, :title), do: "form-input border-red-300", else: "form-input" %>
-    <%= error_tag f, :title %>
+  <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+    <%= label f, :title, gettext("Title"), class: "block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2" %>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <div class="max-w-lg rounded-md shadow-sm">
+        <%= text_input f, :title, class: if has_error?(f, :title), do: "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 border-red-300", else: "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+        <%= error_tag f, :title %>
+      </div>
+    </div>
   </div>
 
-  <div class="mb-4">
-    <%= label f, :description, gettext("Description"), class: "form-label" %>
-    <%= textarea f, :description, class: if has_error?(f, :description), do: "form-input border-red-300", else: "form-input" %>
-    <%= error_tag f, :description %>
+  <div class="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
+    <%= label f, :description, gettext("Description"), class: "block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2" %>
+    <div class="mt-1 sm:mt-0 sm:col-span-2">
+      <div class="max-w-lg rounded-md shadow-sm">
+        <%= textarea f, :description, class: if has_error?(f, :description), do: "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5 border-red-300", else: "form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5" %>
+        <%= error_tag f, :description %>
+      </div>
+    </div>
   </div>
 
-  <div class="mb-2 text-right">
-    <%= submit gettext("Save"), class: "btn btn--neutral" %>
+  <div class="mt-8 border-t border-gray-200 pt-5">
+    <div class="flex justify-end">
+      <span class="ml-3 inline-flex rounded-md shadow-sm">
+        <%= submit gettext("Save"), class: "inline-flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue active:bg-blue-700 transition duration-150 ease-in-out" %>
+      </span>
+    </div>
   </div>
 <% end %>
